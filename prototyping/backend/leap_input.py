@@ -4,11 +4,12 @@ src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
 lib_dir = os.path.abspath(os.path.join(src_dir, './lib'))
 sys.path.insert(0, lib_dir)
 import Leap
+import time
+import numpy as np
 
 
 def main():
     get_leap_input()
-
 
 
 def get_leap_input():
@@ -17,7 +18,7 @@ def get_leap_input():
     # Wait till controller is connected
     while not controller.is_connected:
         pass
-    print controller.is_service_connected()
+    print 'Controller CONNECTED'
 
     while controller.is_connected:
         # Uncomment if you want to enable gestures
@@ -29,6 +30,8 @@ def get_leap_input():
         # Get a frame object
         frame = controller.frame()
         hands = frame.hands
+
+        #fingers = frame.fingers
         # for gesture in frame.gestures():
         #     if gesture.type == Leap.Gesture.TYPE_CIRCLE:
         #         print "circle"
@@ -39,8 +42,30 @@ def get_leap_input():
         #     elif gesture.type == Leap.Gesture.TYPE_KEY_TAP:
         #         print "key tap"
         for hand in hands:
-            if hand.is_right:
-                print hand.confidence
+             if hand.is_right:
+                 # num of fingers
+                 # ext_fingers = frame.fingers.extended()
+                 # num_fingers = len(ext_fingers)
+                 pointables = frame.pointables
+                 extended_pointables = frame.pointables.extended()
+                 # Feature 1
+                 num_fingers = len(extended_pointables)
+                 # print 'FingersNum: ', num_fingers
+                 hand_center = hand.palm_position
+                 print type(hand_center)
+                 print 'HandCenter', hand_center
+                 for pointable in pointables:
+                     if pointable.is_extended:
+                        pointable_pos = pointable.tip_position
+                        relative_pos = pointable_pos - hand_center
+                        print relative_pos.magnitude
+                        print pointable_pos
+                 time.sleep(1)
+
+                # hands = frame.hands
+                # pointables = frame.pointables
+                # fingers = frame.fingers
+                # tools = frame.tools
                 # if hand.confidence >= 0.95:
                 #     for finger in frame.fingers:
                 #         if finger.is_extended:
