@@ -5,11 +5,11 @@
 # https://developer.leapmotion.com/sdk_agreement, or another agreement         #
 # between Leap Motion and you, your company or other organization.             #
 ################################################################################
-import os, sys, inspect
+import os, sys, inspect, thread, time
 src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-lib_dir = os.path.abspath(os.path.join(src_dir, './lib'))
-sys.path.insert(0, lib_dir)
-import Leap, thread, time
+arch_dir = './lib/x64' if sys.maxsize > 2**32 else './lib/x86'
+sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
+import Leap
 
 from Leap import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 
