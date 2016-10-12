@@ -3,9 +3,14 @@
 # Created by https://www.gitignore.io/api/python
 
 ### Python ###
+*.pyc
 
 # Django stuff:
 *.log
 local_settings.p
 
+#PyCharm stuff:
+*.idea
+
+# Mac stuff:
 .DS_Store
