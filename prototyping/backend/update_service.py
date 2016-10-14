@@ -6,6 +6,7 @@ Todo:
 
 """
 from expert_gesture_collection import ExpertGestureCollection
+from Calibration import Calibration
 
 class UpdateService:
     def __init__(self):
@@ -18,7 +19,13 @@ class UpdateService:
         return raw_input()
 
     @staticmethod
-    def get_single_gesture_data(label):
+    def get_single_gesture_data(label,cal_param):
         exp_ges = ExpertGestureCollection(label)
         exp_ges.wait_for_connection()
-        return exp_ges.extract_features()
+        return exp_ges.extract_features(cal_param)
+
+    @staticmethod
+    def calibrate():
+        cal = Calibration()
+        cal.wait_for_connection()
+        return cal.calibrate()

@@ -16,6 +16,7 @@ elif platform == "darwin":
     sys.path.insert(0, lib_dir)
 
 import Leap
+from Features import Features
 
 
 class ExpertGestureCollection:
@@ -32,7 +33,7 @@ class ExpertGestureCollection:
             pass
         print 'Controller CONNECTED'
 
-    def extract_features(self, reps=5, skip_time=2, hold_time=4, gap_time=0.25):
+    def extract_features(self, cal_param, reps=5, skip_time=2, hold_time=5, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         features = Features(feat_len, reps)
@@ -52,10 +53,10 @@ class ExpertGestureCollection:
                         printed = True
                 elif feat_index < feat_len:
                     for hand in hands:
-                        # only for right hand as of now
+                    # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
                             pointables = frame.pointables
-                            # Relative origin(used to calculate the relative distances)
+                        # Relative origin(used to calculate the relative distances)
                             hand_center = hand.stabilized_palm_position
                             for pointable in pointables:
                                 finger = Leap.Finger(pointable)
@@ -63,7 +64,8 @@ class ExpertGestureCollection:
                                     features.extended_fingers[feat_index][finger.type] = 1.0
                                     pointable_pos = pointable.stabilized_tip_position
                                     relative_pos = pointable_pos - hand_center
-                                    features.finger_lengths[feat_index][finger.type] = relative_pos.magnitude
+                                    #scaling the lengths of fingers to the length of middle finger (cal_param)
+                                    features.finger_lengths[feat_index][finger.type] = relative_pos.magnitude/cal_param
                             print "Extended Fingers", features.extended_fingers[feat_index]
                             print "Finger lengths", features.finger_lengths[feat_index]
                             feat_index += 1
@@ -73,14 +75,14 @@ class ExpertGestureCollection:
                     reps_completed += 1
                     print "Remove hand from view"
                     printed = False
-            time.sleep(gap_time)
-            time_elapsed += gap_time
+                time.sleep(gap_time)
+                time_elapsed += gap_time
 
 
 # todo
 # Maybe make a separate class later or maybe not :)
 # Add python properties(for getters and setters)
-class Features:
+'''class Features:
     def __init__(self, feat_len, reps):
         self.feat_len = feat_len
         self.extended_fingers = np.zeros((self.feat_len, 5))
@@ -91,4 +93,4 @@ class Features:
         feat1 = np.mean(self.extended_fingers, axis=0)
         feat2 = np.mean(self.finger_lengths, axis=0)
         self.final_feat[reps_completed][0] = curr_label
-        self.final_feat[reps_completed][1:] = np.append(feat1, feat2)
+        self.final_feat[reps_completed][1:] = np.append(feat1, feat2)'''
