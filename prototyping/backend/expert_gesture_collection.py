@@ -34,7 +34,7 @@ class ExpertGestureCollection:
             pass
         print 'Controller CONNECTED'
 
-    def extract_features(self, cal_param, reps=5, skip_time=2, hold_time=5, gap_time=0.25):
+    def extract_features(self, cal_param, reps=1, skip_time=2, hold_time=3, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         features = Features(feat_len, reps)
@@ -57,7 +57,14 @@ class ExpertGestureCollection:
                     # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
                             pointables = frame.pointables
-
+                            #palm direction feature
+                            features.palm_direction[feat_index] = hand.direction.to_tuple()
+                            #palm sphere radius
+                            features.palm_radius[feat_index] = hand.sphere_radius
+                            #hand grab strength
+                            features.palm_grab[feat_index] = hand.grab_strength
+                            #hand pinch strength
+                            features.palm_pinch[feat_index] = hand.pinch_strength
                             #inner_distances features
                             combinations = list(itertools.combinations(pointables,2))
                             for comb, position in zip(combinations, range(len(combinations))):
@@ -79,6 +86,10 @@ class ExpertGestureCollection:
                             print "Extended Fingers", features.extended_fingers[feat_index]
                             print "Finger lengths", features.finger_lengths[feat_index]
                             print "Interdistances between tips", features.inner_distances[feat_index]
+                            print "Palm direction", features.palm_direction[feat_index]
+                            print "Palm sphere radius", features.palm_radius[feat_index]
+                            print "Palm grab strength", features.palm_grab[feat_index]
+                            print "Palm pinch strength", features.palm_pinch[feat_index]
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1

@@ -27,11 +27,11 @@ def main():
 
     #start calibration and store calibration parameters
     if not calibrated:
-        cal_param = us.calibrate()
-        with io.FileIO("calibration_data.txt", "w") as file:
+       cal_param = us.calibrate()
+       with io.FileIO("calibration_data.txt", "w") as file:
             file.write("Length of middle finger: " + str(cal_param))
 
-    print "Add Gesture ?(y/n) "
+    print "Add Gesture ?(y/n)"
     user_input = raw_input()
     if user_input == 'y':
         add_gesture = True
@@ -40,10 +40,10 @@ def main():
     while add_gesture:
         label = us.get_label_from_user()
         if label:
-            single_gesture_data = us.get_single_gesture_data(label,cal_param)
-            all_gesture_data.extend(single_gesture_data)
+            single_gesture_data_field = us.get_single_gesture_data(label,cal_param)
+            all_gesture_data.extend(single_gesture_data_field)
             print "Single Gesture Data: "
-            print single_gesture_data
+            print single_gesture_data_field
             print "Add Another Gesture ?(y/n) "
             user_input = raw_input()
             if user_input == 'y':
