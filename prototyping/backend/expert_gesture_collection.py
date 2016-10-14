@@ -4,6 +4,7 @@ import os
 import sys
 import time
 from sys import platform
+import itertools
 import numpy as np
 
 if platform == "linux" or platform == "linux2":
@@ -56,6 +57,15 @@ class ExpertGestureCollection:
                     # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
                             pointables = frame.pointables
+
+                            #inner_distances features
+                            combinations = list(itertools.combinations(pointables,2))
+                            for comb, position in zip(combinations, range(len(combinations))):
+                                finger1 = comb[0].stabilized_tip_position
+                                finger2 = comb[1].stabilized_tip_position
+                                inner_tip = (finger1 - finger2).magnitude
+                                features.inner_distances[feat_index][position] = inner_tip
+
                         # Relative origin(used to calculate the relative distances)
                             hand_center = hand.stabilized_palm_position
                             for pointable in pointables:
@@ -68,6 +78,7 @@ class ExpertGestureCollection:
                                     features.finger_lengths[feat_index][finger.type] = relative_pos.magnitude/cal_param
                             print "Extended Fingers", features.extended_fingers[feat_index]
                             print "Finger lengths", features.finger_lengths[feat_index]
+                            print "Interdistances between tips", features.inner_distances[feat_index]
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
