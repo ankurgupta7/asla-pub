@@ -15,4 +15,7 @@ local_settings.p
 # Mac stuff:
 .DS_Store
 
+#Calibration
+calibration_data.txt
+
 *.bine
