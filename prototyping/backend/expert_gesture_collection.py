@@ -34,7 +34,7 @@ class ExpertGestureCollection:
             pass
         print 'Controller CONNECTED'
 
-    def extract_features(self, cal_param, reps=1, skip_time=2, hold_time=3, gap_time=0.25):
+    def extract_features(self, cal_param, reps=5, skip_time=2, hold_time=5, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         features = Features(feat_len, reps)

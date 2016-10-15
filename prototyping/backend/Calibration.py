@@ -34,7 +34,7 @@ class Calibration:
         print 'Controller CONNECTED'
 
 
-    def calibrate(self,reps = 3, skip_time = 2, hold_time = 3, gap_time =0.25):
+    def calibrate(self,reps = 3, skip_time = 2, hold_time = 5, gap_time =0.25):
         feat_len = int(hold_time / gap_time)
         features = Features(feat_len, reps)
         reps_completed = 0
