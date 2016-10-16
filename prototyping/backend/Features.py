@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Features:
     def __init__(self, feat_len, reps):
         self.feat_len = feat_len
@@ -22,6 +23,3 @@ class Features:
         feat7 = np.mean(self.palm_pinch, axis=0)
         self.final_feat[reps_completed][0] = curr_label
         self.final_feat[reps_completed][1:] = np.concatenate((feat1, feat2, feat3, feat4, feat5, feat6, feat7),axis = 0)
-        #self.all_features  = self.all_features + curr_label
-        #self.all_features += list(feat1)
-        #self.all_features += list(feat2)

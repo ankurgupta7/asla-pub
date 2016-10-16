@@ -16,14 +16,13 @@ elif platform == "darwin":
     sys.path.insert(0, lib_dir)
 
 import Leap
-from Features import Features
+from features import Features
 
 
 class Calibration:
     def __init__(self):
         self.controller = Leap.Controller()
         pass
-
 
     def wait_for_connection(self):
         """
@@ -33,15 +32,17 @@ class Calibration:
             pass
         print 'Controller CONNECTED'
 
-
-    def calibrate(self,reps = 3, skip_time = 2, hold_time = 5, gap_time =0.25):
+    def calibrate(self, reps=3, skip_time=2, hold_time=5, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
         features = Features(feat_len, reps)
         reps_completed = 0
         printed = False
         extended = True
         index_middle_finger = 2
-        middle_len = []  #array of midlle finger averages of lengths. size is equal to number of reps
+        # array of middle finger averages of lengths. size is equal to number of reps
+        middle_len = []
+        time_elapsed = 0
+        feat_index = 0
         while self.controller.is_connected:
             if reps_completed == reps:
                 print "Calibration is finished!"
@@ -80,7 +81,7 @@ class Calibration:
                                 feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
-                    middle_len.append(np.mean(features.finger_lengths, axis = 0)[index_middle_finger])
+                    middle_len.append(np.mean(features.finger_lengths, axis=0)[index_middle_finger])
                     reps_completed += 1
                     print "Remove hand from view"
                     printed = False
