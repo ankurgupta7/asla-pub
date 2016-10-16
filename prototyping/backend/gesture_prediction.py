@@ -7,7 +7,6 @@ from sys import platform
 import itertools
 from features import Features
 
-
 if platform == "linux" or platform == "linux2":
     src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
     arch_dir = './lib/x64' if sys.maxsize > 2 ** 32 else './lib/x86'
@@ -20,10 +19,12 @@ elif platform == "darwin":
 import Leap
 
 
-class ExpertGestureCollection:
-    def __init__(self, label):
-        self.label = label
+class UserGesturePrediction:
+    def __init__(self, model, scaler):
         self.controller = Leap.Controller()
+        self.model = model
+        self.scaler = scaler
+        self.predicted_label = None
         pass
 
     def wait_for_connection(self):
@@ -34,16 +35,20 @@ class ExpertGestureCollection:
             pass
         print 'Controller CONNECTED'
 
-    def extract_features(self, cal_param, reps=5, skip_time=2, hold_time=5, gap_time=0.25):
+    def extract_features(self, cal_param=1, reps=1, skip_time=0.5, hold_time=1, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
         features = Features(feat_len, reps)
         reps_completed = 0
         printed = False
+        to_predict = None
         while self.controller.is_connected:
             if reps_completed == reps:
-                return features.final_feat
+                to_predict = features.final_feat[0][1:].reshape(1, -1)
+                to_predict_scaled = self.scaler.transform(to_predict)
+                self.predicted_label = self.model.predict(to_predict_scaled)
+                return
             else:
                 frame = self.controller.frame()
                 hands = frame.hands
@@ -94,9 +99,12 @@ class ExpertGestureCollection:
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
-                    features.avg_and_append_features(int(self.label), reps_completed)
+                    features.avg_and_append_features(None, reps_completed)
                     reps_completed += 1
                     print "Remove hand from view"
                     printed = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time
+
+
+
