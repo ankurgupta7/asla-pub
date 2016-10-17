@@ -14,6 +14,7 @@ class GlobalModelService:
         :param data: the json data to train with
         :return:
         """
+        Classifier.train(data)
         return None
 
     @staticmethod
@@ -24,5 +25,3 @@ class GlobalModelService:
         """
         return None
 
-    def __init__(self):
-        self.classifier = Classifier()
