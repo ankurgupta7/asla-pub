@@ -15,6 +15,7 @@ class Expert(Profile):
         """
         Invokes the training service after the expert has selected a label
         """
+        self.training_service = TrainingService()
         self.training_service.capture_gesture(label)
 
     def end_training_service(self):
