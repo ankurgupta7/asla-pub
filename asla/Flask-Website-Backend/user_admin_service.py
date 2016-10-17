@@ -15,6 +15,14 @@ class UserAdminService:
         return None
 
     @staticmethod
+    def update_user():
+        """
+        Updates a user's data
+        :return:
+        """
+        return None
+
+    @staticmethod
     def authenticate_user():
         """
         Authenticates a user or login
