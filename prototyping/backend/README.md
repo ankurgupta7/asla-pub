@@ -1,3 +1,7 @@
+## Connect the Leap Motion
+1. Connect the leap motion device to the computer
+2. Set up the leap motion as described [here](https://www.leapmotion.com/setup)
+
 ## To capture expert data:
 1. Run invoke_update_service.py to start the process
 2. If the sensor is not calibrated, then process of calibration is started
