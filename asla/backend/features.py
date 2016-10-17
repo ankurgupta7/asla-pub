@@ -2,6 +2,7 @@ import numpy as np
 
 
 class Features:
+    """Object that holds all the features"""
     def __init__(self, feat_len, reps):
         """
         :param feat_len: Number of frames collected, before averaging and appending features. Used as number of rows for a given feature matrix
