@@ -21,7 +21,7 @@ def signup():
     return "Signup"
 
 
-@app.route('login/', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     """
     Allows for login
@@ -39,7 +39,7 @@ def update():
     return "Update"
 
 
-@app.route('/authenticate', method=['POST'])
+@app.route('/authenticate', methods=['POST'])
 def authenticate():
     return "Authenticate"
 
