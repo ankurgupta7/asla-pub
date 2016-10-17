@@ -1,32 +1,31 @@
-""" Expert user invokes this service.
+"""
+Expert user invokes this service.
 - Collect data from Leap Motion
 - Save collected data as csv(for now)
 Todo:
 - Send the collected data to the server?!
-
 """
-from expert_gesture_collection import ExpertGestureCollection
-from calibration import Calibration
+from gesture_collection import GestureCollection
+import numpy as np
+import time
 
 
 class UpdateService:
     def __init__(self):
-        self.label = ''
+        self.label = None
+        # this is the final data set that is sent to the server
+        # for now, this will be stored locally in a csv file
+        self.data_collected = []
         pass
 
-    @staticmethod
-    def get_label_from_user():
-        print "Enter Label(Int 1 to 5): "
-        return raw_input()
-
-    @staticmethod
-    def get_single_gesture_data(label, cal_param):
-        exp_ges = ExpertGestureCollection(label)
+    def capture_gesture(self, label):
+        exp_ges = GestureCollection(label)
         exp_ges.wait_for_connection()
-        return exp_ges.extract_features(cal_param)
+        if not exp_ges.is_calibrated():
+            exp_ges.calibration.calibrate()
+        self.data_collected.extend(exp_ges.extract_features())
 
-    @staticmethod
-    def calibrate():
-        cal = Calibration()
-        cal.wait_for_connection()
-        return cal.calibrate()
+    def save_collected_data(self):
+        to_save = np.array(self.data_collected)
+        filename = ''.join(['data-', time.strftime("%Y%m%d-%H%M%S"), '.csv'])
+        np.savetxt(filename, to_save, delimiter=',', fmt='%1.3f')

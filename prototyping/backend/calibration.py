@@ -5,6 +5,7 @@ import sys
 import time
 from sys import platform
 import numpy as np
+import io
 
 if platform == "linux" or platform == "linux2":
     src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
@@ -20,17 +21,11 @@ from features import Features
 
 
 class Calibration:
-    def __init__(self):
-        self.controller = Leap.Controller()
+    def __init__(self, controller):
+        self.controller = controller
+        self.middle_len = 1
+        self.max_inner_dist = 1
         pass
-
-    def wait_for_connection(self):
-        """
-        Wait for Controller to be connected to the device.
-        """
-        while not self.controller.is_connected:
-            pass
-        print 'Controller CONNECTED'
 
     def calibrate(self, reps=3, skip_time=2, hold_time=5, gap_time=0.25):
         feat_len = int(hold_time / gap_time)
@@ -46,7 +41,9 @@ class Calibration:
         while self.controller.is_connected:
             if reps_completed == reps:
                 print "Calibration is finished!"
-                return np.mean(middle_len)
+                self.middle_len = np.mean(middle_len)
+                self.write_calibration()
+                return
             else:
                 frame = self.controller.frame()
                 hands = frame.hands
@@ -88,3 +85,7 @@ class Calibration:
                     extended = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time
+
+    def write_calibration(self):
+        with io.FileIO("calibration_data.txt", "w") as cal_file:
+            cal_file.write("middle_len " + str(self.middle_len))

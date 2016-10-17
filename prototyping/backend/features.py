@@ -29,4 +29,4 @@ class Features:
         feat6 = np.mean(self.palm_grab, axis=0)
         feat7 = np.mean(self.palm_pinch, axis=0)
         self.final_feat[reps_completed][0] = curr_label
-        self.final_feat[reps_completed][1:] = np.concatenate((feat1, feat2, feat3, feat4, feat5, feat6, feat7),axis = 0)
+        self.final_feat[reps_completed][1:] = np.concatenate((feat1, feat2, feat3, feat4, feat5, feat6, feat7), axis=0)

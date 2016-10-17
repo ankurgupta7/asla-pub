@@ -6,7 +6,7 @@ import time
 from sys import platform
 import itertools
 from features import Features
-
+from calibration import Calibration
 
 if platform == "linux" or platform == "linux2":
     src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
@@ -20,11 +20,23 @@ elif platform == "darwin":
 import Leap
 
 
-class ExpertGestureCollection:
-    def __init__(self, label):
+class GestureCollection:
+    def __init__(self, label=-1):
         self.label = label
         self.controller = Leap.Controller()
+        self.calibration = Calibration(self.controller)
         pass
+
+    def is_calibrated(self):
+        try:
+            in_file = open('calibration_data.txt', 'r')
+            lines = in_file.readlines()
+            for line in lines:
+                field_name, field_val = line.rstrip('\n').split()
+                self.calibration.middle_len = float(field_val)
+            return True
+        except IOError:
+            return False
 
     def wait_for_connection(self):
         """
@@ -34,7 +46,7 @@ class ExpertGestureCollection:
             pass
         print 'Controller CONNECTED'
 
-    def extract_features(self, cal_param, reps=5, skip_time=2, hold_time=5, gap_time=0.25):
+    def extract_features(self, reps=5, skip_time=2, hold_time=5, gap_time=0.25, print_feat=True):
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
@@ -83,14 +95,16 @@ class ExpertGestureCollection:
                                     pointable_pos = pointable.stabilized_tip_position
                                     relative_pos = pointable_pos - hand_center
                                     # Scaling the lengths of fingers to the length of middle finger (cal_param)
-                                    features.finger_lengths[feat_index][finger.type] = relative_pos.magnitude/cal_param
-                            print "Extended Fingers", features.extended_fingers[feat_index]
-                            print "Finger lengths", features.finger_lengths[feat_index]
-                            print "Inter distances between tips", features.inner_distances[feat_index]
-                            print "Palm direction", features.palm_direction[feat_index]
-                            print "Palm sphere radius", features.palm_radius[feat_index]
-                            print "Palm grab strength", features.palm_grab[feat_index]
-                            print "Palm pinch strength", features.palm_pinch[feat_index]
+                                    features.finger_lengths[feat_index][finger.type] = \
+                                        relative_pos.magnitude/self.calibration.middle_len
+                            if print_feat:
+                                print "Extended Fingers", features.extended_fingers[feat_index]
+                                print "Finger lengths", features.finger_lengths[feat_index]
+                                print "Inter distances between tips", features.inner_distances[feat_index]
+                                print "Palm direction", features.palm_direction[feat_index]
+                                print "Palm sphere radius", features.palm_radius[feat_index]
+                                print "Palm grab strength", features.palm_grab[feat_index]
+                                print "Palm pinch strength", features.palm_pinch[feat_index]
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1

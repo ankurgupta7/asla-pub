@@ -11,7 +11,7 @@ from sklearn.externals import joblib
 
 def main():
     train_path = 'data-*.csv'
-    # test_path = 'data/padova/test/data*.csv'
+    test_path = 'test*.csv'
     flag = True
     num_files = 1
     for in_file in glob.glob(train_path):
@@ -39,7 +39,7 @@ def main():
     print("CV Accuracy: %0.2f (+/- %0.2f)" % (np.mean(scores), np.std(scores) * 2))
 
     # Analysis
-    total = np.zeros(5,)
+    total = np.zeros(5, )
     for train, test in logo.split(x_train_scaled, y_train, groups=groups):
         svc.fit(x_train_scaled[train], y_train[train])
         y_pred = svc.predict(x_train_scaled[test])
@@ -50,6 +50,23 @@ def main():
     fin_model = svc.fit(x_train_scaled, y_train)
     joblib.dump(fin_model, 'model.pkl')
     joblib.dump(scaler, 'scaler.pkl')
+
+    for test_file in glob.glob(test_path):
+        num_files += 1
+        # train/val data
+        print test_file
+        data = np.genfromtxt(test_file, delimiter=',')
+        if flag:
+            y_test = data[:, 0]
+            x_test = data[:, 1:]
+            flag = False
+        else:
+            y_test = np.append(y_train, data[:, 0], axis=0)
+            x_test = np.vstack((x_train, data[:, 1:]))
+        x_test_scaled = scaler.transform(x_test)
+        y_test_pred = svc.predict(x_test_scaled)
+        print metrics.classification_report(y_test, y_test_pred)
+
 
 if __name__ == '__main__':
     main()
