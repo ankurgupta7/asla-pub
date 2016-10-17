@@ -7,6 +7,9 @@ class GlobalModelService:
     Service that performs global model maintenance
     """
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def generate_model(data):
         """
