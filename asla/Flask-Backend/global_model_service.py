@@ -1,5 +1,5 @@
 from pymongo import *
-import Classifier
+import classifier
 
 
 class GlobalModelService:
@@ -14,7 +14,7 @@ class GlobalModelService:
         :param data: the json data to train with
         :return:
         """
-        Classifier.train(data)
+        classifier.train(data)
         return None
 
     @staticmethod

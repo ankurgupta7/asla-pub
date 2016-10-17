@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import Response
-import GlobalModelService
+import global_model_service
 
 app = Flask(__name__)
 
