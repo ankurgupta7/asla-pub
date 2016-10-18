@@ -14,8 +14,10 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_loginForm(object):
+class Ui_ExpertloginForm(object):
+    """ login form ui for user"""
     def setupUi(self, loginForm):
+        """ sets up the ui with pre fixed values. """
         loginForm.setObjectName(_fromUtf8("loginForm"))
         loginForm.resize(271, 139)
         self.verticalLayout = QtGui.QVBoxLayout(loginForm)
@@ -53,6 +55,7 @@ class Ui_loginForm(object):
         QtCore.QMetaObject.connectSlotsByName(loginForm)
 
     def retranslateUi(self, loginForm):
+        """repaints the ui on scaling and moving"""
         loginForm.setWindowTitle(_translate("loginForm", "Form", None))
         self.remMeChk.setText(_translate("loginForm", "Remeber Me", None))
         self.atoken.setText(_translate("loginForm", "Expert Access Token", None))
@@ -61,6 +64,4 @@ class Ui_loginForm(object):
         self.signupText.setText(_translate("loginForm", "Don\'t have an account? ", None))
    
     def loginbtnClicked(self):
-    """ sends the authentication token to server for euthentication """
-
-        
+        """ sends the authentication token to server for euthentication """

@@ -1,24 +1,21 @@
 from PyQt4 import QtCore, QtGui
 
 try:
-	_fromUtf8 = QtCore.QString.fromUtf8
+    _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-	def _fromUtf8(s):
-		return s
+    def _fromUtf8(s):
+        return s
 
 try:
-	_encoding = QtGui.QApplication.UnicodeUTF8
-	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig, _encoding)
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
-	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig)
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Asla_Expert(object):
-    """ main native binary ui class for expert """
     def setupUi(self, Asla_Expert):
-        """ sets up the ui with pre fixed values. """
-
         Asla_Expert.setObjectName(_fromUtf8("Asla_Expert"))
         Asla_Expert.resize(679, 416)
         self.centralwidget = QtGui.QWidget(Asla_Expert)
@@ -100,7 +97,6 @@ class Ui_Asla_Expert(object):
         QtCore.QMetaObject.connectSlotsByName(Asla_Expert)
 
     def retranslateUi(self, Asla_Expert):
-        """repaints the ui on scaling and moving"""
         Asla_Expert.setWindowTitle(_translate("Asla_Expert", "MainWindow", None))
         self.labelCombo.setItemText(0, _translate("Asla_Expert", "Choose a Label to Train", None))
         self.labelCombo.setItemText(1, _translate("Asla_Expert", "A", None))
@@ -127,9 +123,8 @@ class Ui_Asla_Expert(object):
         self.iternum.setText(_translate("Asla_Expert", "1", None))
         self.timeleft.setText(_translate("Asla_Expert", "5s", None))
 
-    def submitDataBtn_clicked(self):
-         """ collects all the gesture data from expert and sends it to the server for training """
-
+     def submitDataBtn_clicked(self):
+        """ collects all the gesture data from expert and sends it to the server for training """
     def checkSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
     def ifLabelTrainingFin(self):
