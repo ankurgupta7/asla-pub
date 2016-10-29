@@ -3,7 +3,7 @@ python:
   - "2.7"
 
 # command to install dependencies
-install : "sudo pip install requirements.txt"
+install : "sudo pip install -r requirements.txt"
 
 # run tests
 script : test_global_model_service.py
