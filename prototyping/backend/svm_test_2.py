@@ -8,18 +8,17 @@ from sklearn import svm
 from sklearn import metrics
 from sklearn import preprocessing
 from sklearn.externals import joblib
-
 #train and test data extraction
 df = pd.read_csv('LeapData.csv')
+df = df.drop_duplicates()
 train_data = pd.DataFrame()
 test_data = pd.DataFrame()
 labels = set(df.sign)
 for l in labels:
     temp = df[df['sign'] == l]
-    for i in range(0,100):
-        train_data = train_data.append(temp.iloc[i])
-    for j in range(100,140):
-        test_data = test_data.append(temp.iloc[j])
+    temp = temp.reset_index(drop = True)
+    train_data = train_data.append(temp.iloc[0:100])
+    test_data = test_data.append(temp.iloc[100:140])
 
 # resetting the index for both sets
 test_data = test_data.reset_index(drop = True)
@@ -44,6 +43,12 @@ svc = svm.SVC(C=10, kernel='rbf')
 for train, valid in KFold(x_train_scaled.shape[0], 10,shuffle = True):
     scores.append(svc.fit(x_train_scaled[train],y_train[train]).score(x_train_scaled[valid],y_train[valid]))
 print ("CV accuracy: %0.2f (+/- %0.2f)" %(np.mean(scores), np.std(scores)**2))
+
+
+
+fin_model = svc.fit(x_train_scaled, y_train)
+joblib.dump(fin_model, 'model_2.pkl')
+joblib.dump(scaler, 'scaler_2.pkl')
 
 #testing data prediction
 scaler = preprocessing.StandardScaler().fit(x_test)

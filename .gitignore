@@ -18,4 +18,7 @@ local_settings.p
 #Calibration
 calibration_data.txt
 
+#Model files
+*.npy
+
 *.bine
