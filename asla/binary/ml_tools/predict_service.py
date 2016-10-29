@@ -1,5 +1,6 @@
 from sklearn.externals import joblib
-from gesture_collection import GestureCollection
+from ..leap_tools.gesture_collection import GestureCollection
+
 
 
 class PredictService:
