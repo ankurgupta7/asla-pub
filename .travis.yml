@@ -3,9 +3,14 @@ python:
   - "2.7"
 
 # command to install dependencies
+virtualenv:
+  system_site_packages: true
 before_install:
- - sudo apt-get install python-numpy python-scipy python-sklearn
+ - sudo apt-get install -qq python-numpy python-scipy python-sklearn
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
 script : nosetests
+
+notifications:
+  email: false
