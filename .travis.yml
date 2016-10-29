@@ -3,7 +3,7 @@ python:
   - "2.7"
 
 # command to install dependencies
-install : "pip install -r requirements.txt"
+install : "pip install scikit-learn"
 
 # run tests
 script : test_predict_service.py
