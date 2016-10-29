@@ -22,3 +22,5 @@ calibration_data.txt
 *.npy
 
 *.bine
+
+*.un~
