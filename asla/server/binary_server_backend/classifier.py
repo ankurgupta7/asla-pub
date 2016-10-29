@@ -10,11 +10,11 @@ class Classifier:
         pass
 
     @staticmethod
-    def train(self,data):
+    def train(data):
         """
         Trains on data with ML Classification Algorithm
         :param data: data to train on
         :return: model object
         """
-        return self.model
+        return None
 
