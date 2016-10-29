@@ -6,4 +6,4 @@ python:
 install : "sudo pip install scikit-learn"
 
 # run tests
-script : test_predict_service.py
+script : test_global_model_service.py
