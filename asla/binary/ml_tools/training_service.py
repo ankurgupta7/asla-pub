@@ -1,4 +1,4 @@
-from gesture_collection import GestureCollection
+from ..leap_tools.gesture_collection import GestureCollection
 
 
 class TrainingService:
@@ -30,3 +30,4 @@ class TrainingService:
         """
         Sends the data to Controller(Server)
         """
+        return None
