@@ -1,6 +1,4 @@
-pytssx
 Flask
 numpy
 scipy
 scikit-learn
-beautifulsoup4
