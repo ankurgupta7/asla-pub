@@ -3,6 +3,7 @@ import numpy as np
 from ..predict_service import PredictService
 
 
+
 class TestPredictService(unittest.TestCase):
 
     def test_predict_label(self):
