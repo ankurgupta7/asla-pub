@@ -1,4 +1,4 @@
-import FlaskWebsiteBackend
+from ...flask_website import FlaskWebsiteBackend
 import unittest
 import logging
 
@@ -13,27 +13,27 @@ class FlaskWebsiteBackendTestCase(unittest.TestCase):
     def test_welcome(self):
         result = self.app.get("/")
         self.logger.debug(result.data)
-        assert 'Welcome to Asla' in result.data
+        self.assertEqual(result.status_code, 200)
 
     def test_signup(self):
-        result = self.app.post("/signup")
+        result = self.app.get("/signup")
         self.logger.debug(result.data)
-        assert 'Signup' in result.data
+        self.assertEqual(result.status_code, 200)
 
     def test_login(self):
-        result = self.app.post("/login")
+        result = self.app.get("/login")
         self.logger.debug(result.data)
-        assert 'Login' in result.data
+        self.assertEqual(result.status_code, 200)
 
     def test_update(self):
-        result = self.app.post("/login")
+        result = self.app.post("/update")
         self.logger.debug(result.data)
-        assert 'Login' in result.data
+        assert 'Update' in result.data
 
-    def test_login(self):
-        result = self.app.post("/login")
+    def test_authenticate(self):
+        result = self.app.post("/authenticate")
         self.logger.debug(result.data)
-        assert 'Login' in result.data
+        assert 'Authenticate' in result.data
 
 
 if __name__ == '__main__':
