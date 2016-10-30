@@ -14,3 +14,6 @@ script : nosetests
 
 notifications:
   email: false
+  slack:
+    rooms: 
+      - ooseproject:12QWBnU53gpfpzaCJtYuDYSd#self
