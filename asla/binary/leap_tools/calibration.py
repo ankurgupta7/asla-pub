@@ -1,29 +1,34 @@
 from __future__ import division
-import inspect
-import os
+
 import sys
 import time
 from sys import platform
 import numpy as np
 import io
+from features import Features
 
 if platform == "linux" or platform == "linux2":
-    src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-    arch_dir = './lib/x64' if sys.maxsize > 2 ** 32 else './lib/x86'
-    sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
+    if sys.maxsize > 2 ** 32:
+        from lib.x64 import Leap
+    else:
+        from lib.x86 import Leap
 elif platform == "darwin":
-    src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-    lib_dir = os.path.abspath(os.path.join(src_dir, './lib'))
-    sys.path.insert(0, lib_dir)
-
-import Leap
-from features import Features
+    from lib import Leap
+# if platform == "linux" or platform == "linux2":
+#     src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+#     arch_dir = './lib/x64' if sys.maxsize > 2 ** 32 else './lib/x86'
+#     sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
+# elif platform == "darwin":
+#     src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
+#     lib_dir = os.path.abspath(os.path.join(src_dir, './lib'))
+#     sys.path.insert(0, lib_dir)
 
 
 class Calibration:
     """
     Class to calibrate the sensor
     """
+
     def __init__(self, controller):
         self.controller = controller
         self.middle_len = 1

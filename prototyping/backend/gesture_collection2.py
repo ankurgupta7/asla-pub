@@ -7,28 +7,31 @@ from sys import platform
 import itertools
 from features import Features
 from calibration import Calibration
+import numpy as np
 
 if platform == "linux" or platform == "linux2":
     if sys.maxsize > 2 ** 32:
         from lib.x64 import Leap
     else:
         from lib.x86 import Leap
+        from lib.x86.Leap import Bone
     # src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
     # arch_dir = './lib/x64' if sys.maxsize > 2 ** 32 else './lib/x86'
     # sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
 elif platform == "darwin":
     from lib import Leap
+    from lib.Leap import Bone
+
     # src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
     # lib_dir = os.path.abspath(os.path.join(src_dir, './lib'))
     # sys.path.insert(0, lib_dir)
 
 # import Leap
 
+# from Leap import Bone
+
 
 class GestureCollection:
-    """
-    Extracting the features from captured gesture
-    """
     def __init__(self, label=-1):
         self.label = label
         self.controller = Leap.Controller()
@@ -36,11 +39,6 @@ class GestureCollection:
         pass
 
     def is_calibrated(self):
-        """
-        Checks if the sensor is calibrated
-        :return: True if calibrated, False if not
-        :rtype: boolean
-        """
         try:
             in_file = open('calibration_data.txt', 'r')
             lines = in_file.readlines()
@@ -60,10 +58,6 @@ class GestureCollection:
         print 'Controller CONNECTED'
 
     def extract_features(self, reps=5, skip_time=2, hold_time=5, gap_time=0.25, print_feat=True):
-        """Method to extract features
-        :return: final feature list
-        :rtype: list
-        """
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
@@ -72,6 +66,7 @@ class GestureCollection:
         printed = False
         while self.controller.is_connected:
             if reps_completed == reps:
+                print "Final", features.final_feat
                 return features.final_feat
             else:
                 frame = self.controller.frame()
@@ -87,6 +82,7 @@ class GestureCollection:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
                             pointables = frame.pointables
+                            fingers = frame.fingers
                             # palm direction feature
                             features.palm_direction[feat_index] = hand.direction.to_tuple()
                             # palm sphere radius
@@ -114,6 +110,22 @@ class GestureCollection:
                                     # Scaling the lengths of fingers to the length of middle finger (cal_param)
                                     features.finger_lengths[feat_index][finger.type] = \
                                         relative_pos.magnitude/self.calibration.middle_len
+                            feat_per_finger = np.zeros((12,5))
+                            #for i in range(0,4):
+                                #feat_per_finger[i] = np.zeros((12,1))
+                            i = 0
+                            for finger in fingers:
+                                feat1 = (finger.bone(Bone.TYPE_METACARPAL).next_joint - hand_center).to_float_array()
+                                feat2 = (finger.bone(Bone.TYPE_PROXIMAL).next_joint - hand_center).to_float_array()
+                                feat3 = (finger.bone(Bone.TYPE_INTERMEDIATE).next_joint - hand_center).to_float_array()
+                                feat4 = (finger.bone(Bone.TYPE_DISTAL).next_joint - hand_center).to_float_array()
+                                feat_per_finger[:,i] = np.concatenate((feat1, feat2,feat3,feat4), axis = 0)
+                                i = i + 1
+                            features.finger_bones[feat_index] = np.concatenate((feat_per_finger[:,0],feat_per_finger[:,1],feat_per_finger[:,2],feat_per_finger[:,3],feat_per_finger[:,4]), axis = 0)
+
+
+
+
                             if print_feat:
                                 print "Extended Fingers", features.extended_fingers[feat_index]
                                 print "Finger lengths", features.finger_lengths[feat_index]
@@ -122,6 +134,7 @@ class GestureCollection:
                                 print "Palm sphere radius", features.palm_radius[feat_index]
                                 print "Palm grab strength", features.palm_grab[feat_index]
                                 print "Palm pinch strength", features.palm_pinch[feat_index]
+                                print "Bones", features.finger_bones[feat_index]
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
