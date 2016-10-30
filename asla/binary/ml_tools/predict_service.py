@@ -8,9 +8,11 @@ class PredictService:
     Service for predicting gestures for users
     """
 
-    def __init__(self):
-        self.model = joblib.load('model.pkl')
-        self.scaler = joblib.load('scaler.pkl')
+    def __init__(self, model_file, scalar_file):
+        # type: (string, string)
+        # do some path append to model_file and scalar_file
+        self.model = joblib.load(model_file)
+        self.scaler = joblib.load(scalar_file)
         self.to_predict = []
         pass
 

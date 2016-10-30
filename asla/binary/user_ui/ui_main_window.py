@@ -14,7 +14,7 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_Asla_User(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(585, 607)
@@ -109,15 +109,6 @@ class Ui_Asla_User(object):
         self.pswdConfirm.setText(_translate("MainWindow", "asdadsd", None))
         self.mainTabContainer.setTabText(self.mainTabContainer.indexOf(self.gameTab), _translate("MainWindow", "Profile", None))
     
-    def applyBtn_clicked(self):
-        """ collects data from input fields and sends it to server for authenctication """ 
-    def skeletonView_render(handCoords):
-        """ does projections of hand coordinates on 3d space and renders bones on screen 
-            :param handCoords: hand coordinates for all fingers and thumbs
-        """
-    def spawn_gesture_prediction_service_thread(self):
-        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
-    def checkSpacebarpressed(self):
-        """checks if the user has pressed spacebar. toggles recording of gestures"""
+
 
 from PyQt4 import QtWebKit
