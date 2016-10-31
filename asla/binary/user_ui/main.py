@@ -27,3 +27,4 @@ if __name__ == "__main__":
     w = MainWindow()
     w.show()
     a.exec_()
+    exit(0)

@@ -18,12 +18,11 @@ class LoginDialog(QtGui.QDialog, Ui_MainWindow):
         else:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle(("LoginDialog", "Pythonthusiast", None))
+            msgBox.setWindowTitle(("LoginDialog", "ASLA", None))
             msgBox.setText(("LoginDialog", "Either incorrect username and/or password. Try again!", None))
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_()
             self.setResult(self.Failed)
-
 
     def loginBtn_clicked(self):
         """ sends the username and password to server for euthentication """

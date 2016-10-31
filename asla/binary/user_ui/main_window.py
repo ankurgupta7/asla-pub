@@ -1,4 +1,3 @@
-
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
@@ -8,6 +7,8 @@ from PyQt4.QtCore import QUrl
 
 import threading
 import time
+import glob
+import os
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -28,18 +29,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
 
-        self.model_path = self.update_models()
-        self.predict_service = PredictService(self.model_path,self.model_path)
-        self.predicted_label = None
-
-        self.thread = None
+        [self.model_path, self.scaler_path] = self.update_models()
+        self.thread = PredictionThread(self.model_path, self.scaler_path)
         self.pred_serv_launch = False
 
         self.applyBtn.clicked.connect(self.applyBtn_clicked)
 
     def update_models(self):
-        """ checks if the model is stale and updates it from remote"""
-        return '../models/filename.pickle'
+        """ checks if the model is stale and updates it from remote
+        returns the filepath for the latest model file"""
+        model_files = glob.glob("../models/model*pkl")
+        latest_model = os.path.abspath(max(model_files))
+        scaler_files =  glob.glob("../models/scaler*pkl")
+        latest_scaler = os.path.abspath(max(scaler_files))
+
+        return (latest_model, latest_scaler)
 
     def applyBtn_clicked(self):
         """ collects data from input fields and sends it to server for authenctication """
@@ -52,40 +56,62 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         asla_unused(handCoords)
         self.skeletonView.setUrl('file:///../resources/Perlich_Bones.html')
 
-    def spawn_gesture_prediction_service_thread(self):
-        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
-        self.thread = threading.Thread(target=self.do_predict_label())
-        self.thread.start()
-
-    def kill_gesture_prediction_service_thread(self):
-        """ kills prediction service and cleans up"""
-        self.thread.join(1)
-        if self.thread.isAlive():
-            print 'why wouldnt you die thread!'
-            self.thread.join(1)
-
-    def do_predict_label(self):
-        while True:
-            self.predict_service.capture_gesture()
-            self.predicted_label = self.predict_service.predict_label()
-            time.sleep(0.05)
+    # def do_predict_label(self):
+    #     while True:
+    #         print 'in predict label. mainwindow. thread functioning'
+    #         # self.predict_service.capture_gesture()
+    #         # self.predicted_label = self.predict_service.predict_label()
+    #         time.sleep(0.500)
 
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
         if self.pred_serv_launch:
-            self.kill_gesture_prediction_service_thread()
+            self.thread.kill_gesture_prediction_service_thread()
             self.pred_serv_launch = False
         else:
-            self.spawn_gesture_prediction_service_thread()
+            self.thread.spawn_gesture_prediction_service_thread()
             self.pred_serv_launch = True
 
     def keyPressEvent(self, event):
+        print 'key press detected!'
         if event.key() == QtCore.Qt.Key_Space:
             self.doSpacebarpressed()
         else:
             pass
 
 
-
 def asla_unused(a):
     return None
+
+
+class PredictionThread():
+    def __init__(self, model_path, scaler_path):
+        self.thread = None
+        self.stop = True
+
+        self.predict_service = PredictService(model_path, scaler_path)
+        self.predicted_label = None
+
+    def do_predict_label(self):
+        print 'in predict label. mainwindow. thread functioning'
+        while True:
+            self.predict_service.capture_gesture()
+            self.predicted_label = self.predict_service.predict_label()
+            if self.stop == True:
+                break
+
+            time.sleep(0.05)
+
+    def spawn_gesture_prediction_service_thread(self):
+        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
+        self.thread = threading.Thread(target=self.do_predict_label)
+        self.stop = False
+        self.thread.start()
+
+    def kill_gesture_prediction_service_thread(self):
+        """ kills prediction service and cleans up"""
+        self.stop = True
+        self.thread.join(1)
+        while self.thread.isAlive():
+            print 'why wouldnt you die thread!'
+            self.thread.join(1)

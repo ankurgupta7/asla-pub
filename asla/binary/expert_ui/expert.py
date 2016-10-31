@@ -29,7 +29,8 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
-        self.skeletonView.load(QUrl("http://htmlpreview.github.io/?https://github.com/leapmotion/leapjs/blob/master/examples/threejs-bones.html"))
+        self.thread = TrainingThread()
+        self.train_serv_launch = False
 
     def submitDataBtn_clicked(self):
         """ collects all the gesture data from expert and sends it to the server for training """
@@ -48,35 +49,49 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
 
     def updateTimeLeft(self):
         """ updates clock to let the expert know of time left to hold gesture"""
-    def spawn_gesture_prediction_service_thread(self):
-        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
-        self.thread = threading.Thread(target=self.do_predict_label())
-        self.thread.start()
-
-    def kill_gesture_prediction_service_thread(self):
-        """ kills prediction service and cleans up"""
-        self.thread.join(1)
-        if self.thread.isAlive():
-            print 'why wouldnt you die thread!'
-            self.thread.join(1)
-
-    def do_predict_label(self):
-        while True:
-            self.predict_service.capture_gesture()
-            self.predicted_label = self.predict_service.predict_label()
-            time.sleep(0.05)
 
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
-        if self.pred_serv_launch:
-            self.kill_gesture_prediction_service_thread()
-            self.pred_serv_launch = False
+        if self.train_serv_launch:
+            self.thread.kill_gesture_trainion_service_thread()
+            self.train_serv_launch = False
         else:
-            self.spawn_gesture_prediction_service_thread()
-            self.pred_serv_launch = True
+            self.thread.spawn_gesture_trainion_service_thread(self.labelCombo.currentText())
+            self.train_serv_launch = True
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Space:
             self.doSpacebarpressed()
         else:
             pass
+
+class TrainingThread():
+    def __init__(self):
+        self.thread = None
+        self.stop = True
+
+        self.train_service = TrainingService()
+        self.trained_label = None
+
+    def do_train_label(self, cur_label):
+        print 'in train label. mainwindow. thread functioning'
+        while True:
+            self.train_service.capture_gesture(label=cur_label)
+            if self.stop == True:
+                break
+
+            time.sleep(0.05)
+
+    def spawn_gesture_trainion_service_thread(self, cur_label):
+        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
+        self.thread = threading.Thread(target=self.do_train_label, args=(cur_label))
+        self.stop = False
+        self.thread.start()
+
+    def kill_gesture_trainion_service_thread(self):
+        """ kills trainion service and cleans up"""
+        self.stop = True
+        self.thread.join(1)
+        while self.thread.isAlive():
+            print 'why wouldnt you die thread!'
+            self.thread.join(1)
