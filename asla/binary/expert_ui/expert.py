@@ -1,143 +1,82 @@
-from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QMainWindow
+from ui_expert import Ui_MainWindow
+from binary.ml_tools.training_service import TrainingService
+
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QUrl
+
+import threading
+import time
 
 try:
-	_fromUtf8 = QtCore.QString.fromUtf8
+    _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-	def _fromUtf8(s):
-		return s
+    def _fromUtf8(s):
+        return s
 
 try:
-	_encoding = QtGui.QApplication.UnicodeUTF8
-	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig, _encoding)
+    _encoding = QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
-	def _translate(context, text, disambig):
-		return QtGui.QApplication.translate(context, text, disambig)
+    def _translate(context, text, disambig):
+        return QApplication.translate(context, text, disambig)
 
-class Ui_Asla_Expert(object):
-    """ main native binary ui class for expert """
-    def setupUi(self, Asla_Expert):
-        """ sets up the ui with pre fixed values. """
 
-        Asla_Expert.setObjectName(_fromUtf8("Asla_Expert"))
-        Asla_Expert.resize(679, 416)
-        self.centralwidget = QtGui.QWidget(Asla_Expert)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.gridLayout_2 = QtGui.QGridLayout()
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.skeletonView = QtWebKit.QWebView(self.centralwidget)
-        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
-        self.skeletonView.setObjectName(_fromUtf8("skeletonView"))
-        self.gridLayout_2.addWidget(self.skeletonView, 1, 0, 1, 3)
-        self.labelCombo = QtGui.QComboBox(self.centralwidget)
-        self.labelCombo.setStatusTip(_fromUtf8(""))
-        self.labelCombo.setObjectName(_fromUtf8("labelCombo"))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.labelCombo.addItem(_fromUtf8(""))
-        self.gridLayout_2.addWidget(self.labelCombo, 0, 0, 1, 1)
-        self.submitDataBtn = QtGui.QPushButton(self.centralwidget)
-        self.submitDataBtn.setObjectName(_fromUtf8("submitDataBtn"))
-        self.gridLayout_2.addWidget(self.submitDataBtn, 2, 0, 1, 3)
-        self.gridLayout = QtGui.QGridLayout()
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.label = QtGui.QLabel(self.centralwidget)
-        self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.label_2 = QtGui.QLabel(self.centralwidget)
-        self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.gridLayout.addWidget(self.label_2, 0, 1, 1, 1)
-        self.label_3 = QtGui.QLabel(self.centralwidget)
-        self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.gridLayout.addWidget(self.label_3, 0, 2, 1, 1)
-        self.curLabel = QtGui.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.curLabel.setFont(font)
-        self.curLabel.setObjectName(_fromUtf8("curLabel"))
-        self.gridLayout.addWidget(self.curLabel, 1, 0, 1, 1)
-        self.iternum = QtGui.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.iternum.setFont(font)
-        self.iternum.setObjectName(_fromUtf8("iternum"))
-        self.gridLayout.addWidget(self.iternum, 1, 1, 1, 1)
-        self.timeleft = QtGui.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.timeleft.setFont(font)
-        self.timeleft.setObjectName(_fromUtf8("timeleft"))
-        self.gridLayout.addWidget(self.timeleft, 1, 2, 1, 1)
-        self.gridLayout_2.addLayout(self.gridLayout, 0, 2, 1, 1)
-        self.line = QtGui.QFrame(self.centralwidget)
-        self.line.setFrameShape(QtGui.QFrame.VLine)
-        self.line.setFrameShadow(QtGui.QFrame.Sunken)
-        self.line.setObjectName(_fromUtf8("line"))
-        self.gridLayout_2.addWidget(self.line, 0, 1, 1, 1)
-        self.verticalLayout.addLayout(self.gridLayout_2)
-        Asla_Expert.setCentralWidget(self.centralwidget)
-        self.statusbar = QtGui.QStatusBar(Asla_Expert)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        Asla_Expert.setStatusBar(self.statusbar)
-
-        self.retranslateUi(Asla_Expert)
-        QtCore.QMetaObject.connectSlotsByName(Asla_Expert)
-
-    def retranslateUi(self, Asla_Expert):
-        """repaints the ui on scaling and moving"""
-        Asla_Expert.setWindowTitle(_translate("Asla_Expert", "MainWindow", None))
-        self.labelCombo.setItemText(0, _translate("Asla_Expert", "Choose a Label to Train", None))
-        self.labelCombo.setItemText(1, _translate("Asla_Expert", "A", None))
-        self.labelCombo.setItemText(2, _translate("Asla_Expert", "B", None))
-        self.labelCombo.setItemText(3, _translate("Asla_Expert", "C", None))
-        self.labelCombo.setItemText(4, _translate("Asla_Expert", "D", None))
-        self.labelCombo.setItemText(5, _translate("Asla_Expert", "E", None))
-        self.labelCombo.setItemText(6, _translate("Asla_Expert", "F", None))
-        self.labelCombo.setItemText(7, _translate("Asla_Expert", "G", None))
-        self.labelCombo.setItemText(8, _translate("Asla_Expert", "H", None))
-        self.labelCombo.setItemText(9, _translate("Asla_Expert", "I", None))
-        self.labelCombo.setItemText(10, _translate("Asla_Expert", "J", None))
-        self.labelCombo.setItemText(11, _translate("Asla_Expert", "K", None))
-        self.labelCombo.setItemText(12, _translate("Asla_Expert", "L", None))
-        self.labelCombo.setItemText(13, _translate("Asla_Expert", "M", None))
-        self.labelCombo.setItemText(14, _translate("Asla_Expert", "N", None))
-        self.labelCombo.setItemText(15, _translate("Asla_Expert", "O", None))
-        self.labelCombo.setItemText(16, _translate("Asla_Expert", "P", None))
-        self.submitDataBtn.setText(_translate("Asla_Expert", "Submit Gesture Data to Server", None))
-        self.label.setText(_translate("Asla_Expert", "Label being Trained", None))
-        self.label_2.setText(_translate("Asla_Expert", "Iteration#", None))
-        self.label_3.setText(_translate("Asla_Expert", "Hold For", None))
-        self.curLabel.setText(_translate("Asla_Expert", "A", None))
-        self.iternum.setText(_translate("Asla_Expert", "1", None))
-        self.timeleft.setText(_translate("Asla_Expert", "5s", None))
+class ExpertMainWindow(Ui_MainWindow, QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+        self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
+        self.skeletonView.load(QUrl("http://htmlpreview.github.io/?https://github.com/leapmotion/leapjs/blob/master/examples/threejs-bones.html"))
 
     def submitDataBtn_clicked(self):
-         """ collects all the gesture data from expert and sends it to the server for training """
+        """ collects all the gesture data from expert and sends it to the server for training """
 
     def checkSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
+
     def ifLabelTrainingFin(self):
         """checks with the label training service if label traning is over fr particualar label"""
+
     def offerNextLabel(self):
         """ offers next label for traning if prev label is finised training"""
+
     def checkIfLabelSelected(self):
         """ does not allow expert to start traning if label is not selected """
+
     def updateTimeLeft(self):
         """ updates clock to let the expert know of time left to hold gesture"""
-from PyQt4 import QtWebKit
+    def spawn_gesture_prediction_service_thread(self):
+        """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
+        self.thread = threading.Thread(target=self.do_predict_label())
+        self.thread.start()
+
+    def kill_gesture_prediction_service_thread(self):
+        """ kills prediction service and cleans up"""
+        self.thread.join(1)
+        if self.thread.isAlive():
+            print 'why wouldnt you die thread!'
+            self.thread.join(1)
+
+    def do_predict_label(self):
+        while True:
+            self.predict_service.capture_gesture()
+            self.predicted_label = self.predict_service.predict_label()
+            time.sleep(0.05)
+
+    def doSpacebarpressed(self):
+        """checks if the user has pressed spacebar. toggles recording of gestures"""
+        if self.pred_serv_launch:
+            self.kill_gesture_prediction_service_thread()
+            self.pred_serv_launch = False
+        else:
+            self.spawn_gesture_prediction_service_thread()
+            self.pred_serv_launch = True
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Space:
+            self.doSpacebarpressed()
+        else:
+            pass
