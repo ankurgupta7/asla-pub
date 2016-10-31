@@ -11,12 +11,9 @@ class PredictService:
     def __init__(self, model_file, scaler_file):
         # type: (string, string)
         # do some path append to model_file and scalar_file
-        par_dir = os.path.dirname(os.path.dirname(__file__))
-        model = os.path.join(par_dir, 'models', model_file)
-        scaler = os.path.join(par_dir, 'models', scaler_file)
-        print model
-        self.model = joblib.load(model)
-        self.scaler = joblib.load(scaler)
+        print model_file
+        self.model = joblib.load(model_file)
+        self.scaler = joblib.load(scaler_file)
         self.to_predict = []
         pass
 
