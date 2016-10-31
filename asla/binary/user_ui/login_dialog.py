@@ -5,7 +5,7 @@ from PyQt4.QtGui import QMessageBox
 
 class LoginDialog(QtGui.QDialog, Ui_MainWindow):
     def __init__(self):
-        QtGui.QDialog.__init__()
+        QtGui.QDialog.__init__(self)
         self.setupUi(self)
 
         self.loginBtn.clicked.connect(self.loginBtn_clicked())

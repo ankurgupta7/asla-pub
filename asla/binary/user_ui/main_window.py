@@ -1,9 +1,10 @@
 
 from ui_main_window import Ui_MainWindow
-from PyQt4 import QtGui, QtCore
-# from asla..predict_service import PredictService
-from PyQt4.QtGui import QApplication
 from binary.ml_tools.predict_service import PredictService
+
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QUrl
 
 import threading
 import time
@@ -27,18 +28,24 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
 
-        self.predict_service = PredictService('','')
+        self.model_path = self.update_models()
+        self.predict_service = PredictService(self.model_path,self.model_path)
         self.predicted_label = None
-        self.thread = threading.Thread(target=self.do_predict_label())
 
-        self.applyBtn.clicked.connect(self.applyBtn_clicked())
+        self.thread = None
         self.pred_serv_launch = False
+
+        self.applyBtn.clicked.connect(self.applyBtn_clicked)
+
+    def update_models(self):
+        """ checks if the model is stale and updates it from remote"""
+        return '../models/filename.pickle'
 
     def applyBtn_clicked(self):
         """ collects data from input fields and sends it to server for authenctication """
+        print("Nice that you clicked Apply. nothing will happen though!")
 
-
-    def skeletonView_render(self, handCoords):
+    def skeleton_view_render(self, handCoords):
         """ does projections of hand coordinates on 3d space and renders bones on screen
             :param handCoords: hand coordinates for all fingers and thumbs
         """
@@ -47,10 +54,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def spawn_gesture_prediction_service_thread(self):
         """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
+        self.thread = threading.Thread(target=self.do_predict_label())
         self.thread.start()
 
     def kill_gesture_prediction_service_thread(self):
-        """ """
+        """ kills prediction service and cleans up"""
         self.thread.join(1)
         if self.thread.isAlive():
             print 'why wouldnt you die thread!'
