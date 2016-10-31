@@ -1,0 +1,33 @@
+{% extends "main_template.html" %}
+{% block content %}
+    <section id="login-form">
+        <div class="container">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="expert_token">Token:</label>
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="expert_token" placeholder="Token">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="static/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="static/js/creative.min.js"></script>
+{% endblock %}

@@ -1,12 +1,12 @@
-
 from sklearn.externals import joblib
 from gesture_collection import GestureCollection
+
 
 class PredictService:
 
     def __init__(self):
-        self.model = joblib.load('model_2.pkl')
-        self.scaler = joblib.load('scaler_2.pkl')
+        self.model = joblib.load('model.pkl')
+        self.scaler = joblib.load('scaler.pkl')
         self.to_predict = []
         pass
 
