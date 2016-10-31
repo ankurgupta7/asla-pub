@@ -16,9 +16,10 @@ if platform == "linux" or platform == "linux2":
 elif platform == "darwin":
     from lib import Leap
 elif platform == 'win32':
-    src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
-    arch_dir = './lib/win32/x64' if sys.maxsize > 2 ** 32 else './lib/win32/x86'
-    sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
+    if sys.maxsize > 2 ** 32:
+        from lib.win32.x64 import Leap
+    else:
+        from lib.win32.x86 import Leap
 
 
 class GestureCollection:
