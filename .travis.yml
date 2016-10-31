@@ -15,7 +15,7 @@ script : nosetests
 #notiifications management
 notifications:
   email: false
-  slack:
-    on_failure: always
-    rooms: 
-      - ooseproject:12QWBnU53gpfpzaCJtYuDYSd#self
+  #slack:
+    #on_failure: always
+    #rooms: 
+      #- ooseproject:12QWBnU53gpfpzaCJtYuDYSd#self
