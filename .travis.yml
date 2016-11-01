@@ -30,4 +30,4 @@ notifications:
   slack:
     on_success: always
     rooms: 
-      - ooseproject:12QWBnU53gpfpzaCJtYuDYSd#mr_travis
+      - ooseproject:Dhzkc5DvJVLHk7Y4azaEpKly#mr_travis
