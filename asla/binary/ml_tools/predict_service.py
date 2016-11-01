@@ -1,5 +1,5 @@
 from sklearn.externals import joblib
-from ..leap_tools.gesture_collection import GestureCollection
+from binary.leap_tools.gesture_collection import GestureCollection
 import os
 
 

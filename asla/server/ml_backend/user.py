@@ -1,5 +1,5 @@
 from profile import Profile
-from predict_service import PredictService
+from binary.ml_tools.predict_service import PredictService
 
 
 class User(Profile):

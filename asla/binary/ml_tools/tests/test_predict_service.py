@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from ..predict_service import PredictService
+from binary.ml_tools.predict_service import PredictService
 import os
 
 

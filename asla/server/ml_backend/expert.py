@@ -1,5 +1,5 @@
 from profile import Profile
-from training_service import TrainingService
+from binary.ml_tools.training_service import TrainingService
 
 
 class Expert(Profile):
