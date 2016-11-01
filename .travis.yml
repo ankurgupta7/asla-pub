@@ -10,7 +10,7 @@ before_install:
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
-script : /asla/binary/ml_tools/tests
+script : /asla/binary/ml_tools/tests/test_training_service.py
 
 #notiifications management
 notifications:
