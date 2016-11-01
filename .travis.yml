@@ -10,7 +10,8 @@ before_install:
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
-script : nosetests
+script : 
+  - python tests/test.py
 
 #notiifications management
 notifications:
