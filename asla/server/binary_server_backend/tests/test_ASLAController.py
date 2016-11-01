@@ -1,4 +1,4 @@
-import ASLAController
+from .. import ASLAController
 import unittest
 import logging
 
@@ -6,6 +6,7 @@ import logging
 class ASLAControllerTestCase(unittest.TestCase):
     def setUp(self):
         ASLAController.app.config['TESTING'] = True
+
         self.app = ASLAController.app.test_client()
         self.logger = logging.getLogger()
         self.logger.level = logging.DEBUG

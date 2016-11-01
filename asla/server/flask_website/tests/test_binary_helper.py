@@ -1,7 +1,7 @@
 import logging
 import unittest
 
-from binary_helper import BinaryService
+from ..binary_helper import BinaryService
 
 
 class BinaryServiceTestCase(unittest.TestCase):

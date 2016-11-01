@@ -1,4 +1,4 @@
-from global_model_service import GlobalModelService
+from ..global_model_service import GlobalModelService
 import unittest
 import logging
 
