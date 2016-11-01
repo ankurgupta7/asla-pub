@@ -1,7 +1,7 @@
 import logging
 import unittest
 
-from user_admin_service import UserAdminService
+from ..user_admin_service import UserAdminService
 
 
 class UserAdminServiceTestCase(unittest.TestCase):
