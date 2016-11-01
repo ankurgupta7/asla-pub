@@ -15,8 +15,14 @@ before_install:
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
-script :  
+script : 
+  - nosetests asla/binary/ml_tools/tests/test_predict_service.py
   - nosetests asla/binary/ml_tools/tests/test_training_service.py
+  - nosetests asla/server/binary_server_backend/tests/test_ASLAController.py
+  - nosetests asla/server/binary_server_backend/tests/test_global_model_service.py
+  - nosetests asla/server/flask_website/tests/test_binary_helper.py
+  - nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py
+  - nosetests asla/server/flask_website/tests/test_user_admin_service.py
 
 #notiifications management
 notifications:
