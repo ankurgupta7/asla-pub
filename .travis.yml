@@ -1,12 +1,17 @@
 language: python
 python:
   - "2.7"
-
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
 # command to install dependencies
 virtualenv:
   system_site_packages: true
 before_install:
- - sudo apt-get install -q python-numpy python-scipy python-sklearn libstdc++6 gcc g++
+ - sudo apt-get install -q python-numpy python-scipy python-sklearn libstdc++6
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
