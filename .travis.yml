@@ -11,7 +11,7 @@ install : "sudo pip install -U -r requirements.txt"
 
 # run tests
 script : 
-  - nosetests asla/binary/ml_tools/tests/test_travis.py
+  - nosetests asla/binary/ml_tools/tests/test_training_service.py
 
 #notiifications management
 notifications:
@@ -20,4 +20,3 @@ notifications:
     #on_failure: always
     #rooms: 
       #- ooseproject:12QWBnU53gpfpzaCJtYuDYSd#self
-
