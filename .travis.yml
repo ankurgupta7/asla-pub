@@ -6,7 +6,7 @@ python:
 virtualenv:
   system_site_packages: true
 before_install:
- - sudo apt-get install -qq python-numpy python-scipy python-sklearn ##libstdc++6
+ - sudo apt-get install -qq python-numpy python-scipy python-sklearn libstdc++6
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
