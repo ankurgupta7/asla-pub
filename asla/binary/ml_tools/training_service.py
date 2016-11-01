@@ -1,4 +1,4 @@
-from ..leap_tools.gesture_collection import GestureCollection
+from binary.leap_tools.gesture_collection import GestureCollection
 
 
 class TrainingService:

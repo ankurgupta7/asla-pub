@@ -1,7 +1,11 @@
+import os
+import sys
+root_path = os.path.dirname(os.path.abspath('../..'))
+sys.path.append(root_path)
+
 import unittest
 import numpy as np
 from ...ml_tools.predict_service import PredictService
-import os
 
 
 class TestPredictService(unittest.TestCase):
