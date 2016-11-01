@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'user_ui/user.ui'
+# Form implementation generated from reading ui file 'user.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
         self.predLabel.setObjectName(_fromUtf8("predLabel"))
         self.gridLayout.addWidget(self.predLabel, 0, 0, 1, 1)
         self.skeletonView = QtWebKit.QWebView(self.gestureTab)
-        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("http://htmlpreview.github.io/?https://github.com/leapmotion/leapjs/blob/master/examples/threejs-bones.html")))
+        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("file:///Perlich_Bones.html")))
         self.skeletonView.setObjectName(_fromUtf8("skeletonView"))
         self.gridLayout.addWidget(self.skeletonView, 1, 0, 1, 1)
         self.mainTabContainer.addTab(self.gestureTab, _fromUtf8(""))

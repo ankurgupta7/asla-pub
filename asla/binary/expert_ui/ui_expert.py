@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QtGui.QGridLayout()
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         self.skeletonView = QtWebKit.QWebView(self.centralwidget)
-        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("file:///Perlich_Bones.html")))
         self.skeletonView.setObjectName(_fromUtf8("skeletonView"))
         self.gridLayout_2.addWidget(self.skeletonView, 1, 0, 1, 3)
         self.labelCombo = QtGui.QComboBox(self.centralwidget)
