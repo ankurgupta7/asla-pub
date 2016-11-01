@@ -6,11 +6,11 @@ python:
 virtualenv:
   system_site_packages: true
 before_install:
- - sudo apt-get install -qq python-numpy python-scipy python-sklearn libstdc++6
+ - sudo apt-get install -q python-numpy python-scipy python-sklearn libstdc++6 gcc g++
 install : "sudo pip install -U -r requirements.txt"
 
 # run tests
-script : 
+script :  
   - nosetests asla/binary/ml_tools/tests/test_training_service.py
 
 #notiifications management
