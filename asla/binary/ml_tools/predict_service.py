@@ -1,6 +1,8 @@
 from sklearn.externals import joblib
-from binary.leap_tools.gesture_collection import GestureCollection
-import os
+import os, sys
+root_path = os.path.dirname(os.path.abspath('..'))
+sys.path.append(root_path)
+from ..leap_tools.gesture_collection import GestureCollection
 
 
 class PredictService:
