@@ -1,5 +1,5 @@
 import unittest
-from ..training_service import TrainingService
+from binary.ml_tools.training_service import TrainingService
 
 
 class TestTrainService(unittest.TestCase):
