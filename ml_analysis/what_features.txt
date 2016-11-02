@@ -1,4 +1,45 @@
-Draft on what features to select/extract
+# FINGERS
+extended_fingers - 5
+rel_finger_lengths - 5 (Currently only captured for extended fingers, by calculating dist from palm center and tip, can use distance_to)
+rel_inner_distances - 10
+mcp_length - 5
+rel_inner_mcp_distances - 10
+pip_length - 5
+rel_inner_pip_distances - 10
+dip_length - 5
+rel_inner_dip_distances - 10
+angles_between_tips - 10 (Vector.angle_to)
+finger_palm_angle - 5 (Angle between fingers and palm plane)
+
+# HAND
+palm_direction - 3
+palm_radius - 1 (sphere_radius)
+palm_grab - 1 (grab_strength)
+palm_pinch - 1 (pinch_strength)
+palm_normal - 3
+palm_velocity - 3 # Skeptical
+sphere_center - 3
+wrist_position - 3
+
+
+# Moving Gestures (calculated as difference between first and last frame):
+rotation_angle - 3 (need to specify frame(starting) and axis)
+translation - 3 (change in position in millimeters)
+extended_tip_pos_diff - 3 (from starting frame)
+
+
+# To Calibrate:
+finger_length
+max_mcp_length
+max_pip_length
+max_dip_length
+max_mcp_length
+# (Between thumb and little finger)
+inner_tip_distance
+inner_dip_distance
+inner_pip_distance
+inner_mcp_distance
+
 
 Features:
 
@@ -13,4 +54,5 @@ Features:
 Out:
 - relative tip positions (tip positions relative to palm center)
 
-
+Notes:
+If we are taking movements/gestures, then we need to tell the expert when to make the movement(Basically when we start capturing data)!
