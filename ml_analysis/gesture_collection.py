@@ -1,6 +1,4 @@
 from __future__ import division
-import inspect
-import os
 import sys
 import time
 from sys import platform
@@ -15,6 +13,7 @@ if platform == "linux" or platform == "linux2":
         from lib.x86 import Leap
 elif platform == "darwin":
     from lib import Leap
+
 
 class GestureCollection:
     """
@@ -77,15 +76,10 @@ class GestureCollection:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
+                            hand_center = hand.stabilized_palm_position
+                            self.set_hand_features(features, feat_index, hand)
                             pointables = frame.pointables
-                            # palm direction feature
-                            features.palm_direction[feat_index] = hand.direction.to_tuple()
-                            # palm sphere radius
-                            features.palm_radius[feat_index] = hand.sphere_radius
-                            # hand grab strength
-                            features.palm_grab[feat_index] = hand.grab_strength
-                            # hand pinch strength
-                            features.palm_pinch[feat_index] = hand.pinch_strength
+
                             # inner_distances features
                             combinations = list(itertools.combinations(pointables, 2))
                             for comb, position in zip(combinations, range(len(combinations))):
@@ -95,7 +89,7 @@ class GestureCollection:
                                 features.inner_distances[feat_index][position] = inner_tip
 
                         # Relative origin(used to calculate the relative distances)
-                            hand_center = hand.stabilized_palm_position
+
                             for pointable in pointables:
                                 finger = Leap.Finger(pointable)
                                 if finger.is_extended:
@@ -122,3 +116,14 @@ class GestureCollection:
                     printed = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time
+
+    @staticmethod
+    def set_hand_features(features, feat_index, hand):
+        # palm direction feature
+        features.palm_direction[feat_index] = hand.direction.to_tuple()
+        # palm sphere radius
+        features.palm_radius[feat_index] = hand.sphere_radius
+        # hand grab strength
+        features.palm_grab[feat_index] = hand.grab_strength
+        # hand pinch strength
+        features.palm_pinch[feat_index] = hand.pinch_strength
