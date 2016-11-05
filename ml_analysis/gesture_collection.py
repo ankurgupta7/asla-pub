@@ -147,4 +147,4 @@ class GestureCollection:
 
     @staticmethod
     def set_set_movement_features(first_frame, last_frame):
-        print 'huh'
+        print 'huh222'
