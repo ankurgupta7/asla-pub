@@ -60,6 +60,8 @@ class GestureCollection:
         features = Features(feat_len, reps)
         reps_completed = 0
         printed = False
+        first_frame = None
+        last_frame = None
         while self.controller.is_connected:
             if reps_completed == reps:
                 return features.final_feat
@@ -69,6 +71,8 @@ class GestureCollection:
                 if len(hands) == 0:
                     feat_index = 0
                     time_elapsed = 0
+                    first_frame = None
+                    last_frame = None
                     if not printed:
                         print 'Bring hand in view'
                         printed = True
@@ -76,6 +80,13 @@ class GestureCollection:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
+                            if not first_frame:
+                                print 'Capturing First Frame'
+                                first_frame = frame
+                            elif feat_index == feat_len - 1:
+                                last_frame = frame
+                                self.set_movement_features(first_frame, last_frame)
+
                             hand_center = hand.stabilized_palm_position
                             self.set_hand_features(features, feat_index, hand)
                             pointables = frame.pointables
@@ -127,3 +138,7 @@ class GestureCollection:
         features.palm_grab[feat_index] = hand.grab_strength
         # hand pinch strength
         features.palm_pinch[feat_index] = hand.pinch_strength
+
+    @staticmethod
+    def set_set_movement_features(first_frame, last_frame):
+        print 'huh'
