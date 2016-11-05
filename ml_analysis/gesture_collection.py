@@ -90,16 +90,8 @@ class GestureCollection:
                             hand_center = hand.stabilized_palm_position
                             self.set_hand_features(features, feat_index, hand)
                             pointables = frame.pointables
-
-                            # inner_distances features
-                            combinations = list(itertools.combinations(pointables, 2))
-                            for comb, position in zip(combinations, range(len(combinations))):
-                                finger1 = comb[0].stabilized_tip_position
-                                finger2 = comb[1].stabilized_tip_position
-                                inner_tip = (finger1 - finger2).magnitude
-                                features.inner_distances[feat_index][position] = inner_tip
-
-                        # Relative origin(used to calculate the relative distances)
+                            fingers = frame.fingers
+                            self.set_inner_distances(fingers, 3)
 
                             for pointable in pointables:
                                 finger = Leap.Finger(pointable)
@@ -127,6 +119,20 @@ class GestureCollection:
                     printed = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time
+
+    @staticmethod
+    def set_inner_distances(features, feat_index, listOfFingers, type):
+        boneList = []
+        for finger in listOfFingers:
+            boneList.append(finger.bone(type))
+        combinations = list(itertools.combinations(boneList, 2))
+        for comb, position in zip(combinations, range(len(combinations))):
+            finger1 = comb[position].next_joint
+            finger2 = comb[position].next_joint
+            inner = (finger1 - finger2).magnitude
+            features.inner_distances[feat_index][position] = inner
+
+            # Relative origin(used to calculate the relative distances)
 
     @staticmethod
     def set_hand_features(features, feat_index, hand):
