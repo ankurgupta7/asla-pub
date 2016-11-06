@@ -26,9 +26,9 @@ class Features:
         self.palm_grab = np.zeros((feat_len, 1))
         self.palm_pinch = np.zeros((feat_len, 1))
         self.palm_normal = np.zeros((feat_len, 3))
-        self.rotation_angle = np.zeros((feat_len, 3))
-        self.translation = np.zeros((feat_len, 3))
-        self.extended_tip_pos_diff = np.zeros((feat_len, 15))
+        self.rotation_angle = np.zeros(3)
+        self.translation = np.zeros(3)
+        self.extended_tip_pos_diff = np.zeros(15)
         # shape = reps, num of features + 1(for label)
         self.final_feat = np.zeros((reps, 111))
 
@@ -56,9 +56,9 @@ class Features:
         palm_grab = np.mean(self.palm_grab, axis=0)
         palm_pinch = np.mean(self.palm_pinch, axis=0)
         palm_normal = np.mean(self.palm_normal, axis=0)
-        rotation_angle = np.mean(self.rotation_angle, axis=0)
-        translation = np.mean(self.translation, axis=0)
-        extended_tip_pos_diff = np.mean(self.extended_tip_pos_diff, axis=0)
+        rotation_angle = self.rotation_angle
+        translation = self.translation
+        extended_tip_pos_diff = self.extended_tip_pos_diff
         self.final_feat[reps_completed][0] = curr_label
         self.final_feat[reps_completed][1:] = np.concatenate((extended_fingers, tip_length, tip_inner_distances,
                                                               mcp_length, mcp_inner_distances, pip_length,
