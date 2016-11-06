@@ -13,6 +13,7 @@ if platform == "linux" or platform == "linux2":
         from lib.x86 import Leap
 elif platform == "darwin":
     from lib import Leap
+    from lib.Leap import Vector
 
 
 class GestureCollection:
@@ -60,8 +61,7 @@ class GestureCollection:
         features = Features(feat_len, reps)
         reps_completed = 0
         printed = False
-        first_frame = None
-        last_frame = None
+        start_frame = None
         while self.controller.is_connected:
             if reps_completed == reps:
                 return features.final_feat
@@ -71,8 +71,7 @@ class GestureCollection:
                 if len(hands) == 0:
                     feat_index = 0
                     time_elapsed = 0
-                    first_frame = None
-                    last_frame = None
+                    start_frame = None
                     if not printed:
                         print 'Bring hand in view'
                         printed = True
@@ -80,18 +79,22 @@ class GestureCollection:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
-                            if not first_frame:
-                                print 'Capturing First Frame'
-                                first_frame = frame
-                            elif feat_index == feat_len - 1:
-                                last_frame = frame
-                                self.set_movement_features(first_frame, last_frame)
-
                             hand_center = hand.stabilized_palm_position
-                            self.set_hand_features(features, feat_index, hand)
                             pointables = frame.pointables
                             fingers = frame.fingers
+                            self.set_hand_features(features, feat_index, hand)
                             self.set_inner_distances(fingers, 3)
+
+                            # Movement features:
+                            if not start_frame:
+                                print 'Capturing First Frame'
+                                start_frame = frame
+                                printed = False
+                            elif feat_index == feat_len - 1:
+                                end_frame = frame
+                                self.set_movement_features(features, start_frame, end_frame)
+                                if print_feat:
+                                    self.print_dynamic_features(features)
 
                             for pointable in pointables:
                                 finger = Leap.Finger(pointable)
@@ -103,13 +106,7 @@ class GestureCollection:
                                     features.finger_lengths[feat_index][finger.type] = \
                                         relative_pos.magnitude/self.calibration.middle_len
                             if print_feat:
-                                print "Extended Fingers", features.extended_fingers[feat_index]
-                                print "Finger lengths", features.finger_lengths[feat_index]
-                                print "Inter distances between tips", features.inner_distances[feat_index]
-                                print "Palm direction", features.palm_direction[feat_index]
-                                print "Palm sphere radius", features.palm_radius[feat_index]
-                                print "Palm grab strength", features.palm_grab[feat_index]
-                                print "Palm pinch strength", features.palm_pinch[feat_index]
+                                self.print_static_features(features, feat_index)
                             feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
@@ -121,11 +118,11 @@ class GestureCollection:
                 time_elapsed += gap_time
 
     @staticmethod
-    def set_inner_distances(features, feat_index, listOfFingers, type):
-        boneList = []
-        for finger in listOfFingers:
-            boneList.append(finger.bone(type))
-        combinations = list(itertools.combinations(boneList, 2))
+    def set_inner_distances(features, feat_index, list_of_fingers, type):
+        bone_list = []
+        for finger in list_of_fingers:
+            bone_list.append(finger.bone(type))
+        combinations = list(itertools.combinations(bone_list, 2))
         for comb, position in zip(combinations, range(len(combinations))):
             finger1 = comb[position].next_joint
             finger2 = comb[position].next_joint
@@ -136,15 +133,54 @@ class GestureCollection:
 
     @staticmethod
     def set_hand_features(features, feat_index, hand):
-        # palm direction feature
         features.palm_direction[feat_index] = hand.direction.to_tuple()
-        # palm sphere radius
         features.palm_radius[feat_index] = hand.sphere_radius
-        # hand grab strength
         features.palm_grab[feat_index] = hand.grab_strength
-        # hand pinch strength
         features.palm_pinch[feat_index] = hand.pinch_strength
+        features.palm_normal[feat_index] = hand.palm_normal
 
     @staticmethod
-    def set_set_movement_features(first_frame, last_frame):
-        print 'huh'
+    def set_movement_features(features, start_frame, end_frame):
+        hand = end_frame.hand
+        features.rotation_angle = [hand.rotation_angle(start_frame, Vector.x_axis),
+                                   hand.rotation_angle(start_frame, Vector.y_axis),
+                                   hand.rotation_angle(start_frame, Vector.z_axis)]
+        features.translation = hand.translation(start_frame)
+        start_pointables = start_frame.pointables
+        end_pointables = end_frame.pointables
+        for s_p in start_pointables:
+            if s_p.is_extended:
+                start_pos = s_p.stabilized_tip_position
+                start_type = Leap.Finger(s_p).type
+                for e_p in end_pointables:
+                    if e_p.is_extended:
+                        if Leap.Finger(e_p).type == start_type:
+                            end_pos = e_p.stabilized_tip_position
+                            diff = end_pos - start_pos
+                            features.extended_tip_pos_diff[start_type*3: (start_type+1)*3] = diff
+
+    @staticmethod
+    def print_static_features(features, feat_index):
+        print "Extended Fingers", features.extended_fingers[feat_index]
+        print "Tip Length", features.tip_length[feat_index]
+        print "Tip inner distances", features.inner_distances[feat_index]
+        print "Mcp Length", features.mcp_length[feat_index]
+        print "Mcp inner distances", features.mcp_inner_distances[feat_index]
+        print "Pip Length", features.pip_inner_distances[feat_index]
+        print "Pip inner distances", features.pip_length[feat_index]
+        print "Dip Length", features.dip_length[feat_index]
+        print "Dip inner distances", features.dip_inner_distances[feat_index]
+        print "Angle between tips", features.angle_between_tips[feat_index]
+        print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
+
+        print "Palm direction", features.palm_direction[feat_index]
+        print "Palm sphere radius", features.palm_radius[feat_index]
+        print "Palm grab strength", features.palm_grab[feat_index]
+        print "Palm pinch strength", features.palm_pinch[feat_index]
+        print "Palm normal", features.palm_normal[feat_index]
+
+    @staticmethod
+    def print_dynamic_features(features):
+        print "Rotation Angle", features.rotation_angle
+        print "Translation", features.translation
+        print "Extended Tip Pos Diff", features.extended_tip_pos_diff
