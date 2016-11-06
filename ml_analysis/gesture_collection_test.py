@@ -82,6 +82,7 @@ class GestureCollection:
                 if len(hands) == 0:
                     feat_index = 0
                     time_elapsed = 0
+                    first_frame = None
                     if not printed:
                         print 'Bring hand in view'
                         printed = True
@@ -92,6 +93,7 @@ class GestureCollection:
                             if not first_frame:
                                 print 'Capturing First Frame'
                                 first_frame = frame
+                                printed = False
                             pointables = frame.pointables
                             # palm direction feature
                             features.palm_direction[feat_index] = hand.direction.to_tuple()
@@ -102,12 +104,12 @@ class GestureCollection:
                             # hand pinch strength
                             features.palm_pinch[feat_index] = hand.pinch_strength
                             # inner_distances features
-                            combinations = list(itertools.combinations(pointables, 2))
-                            for comb, position in zip(combinations, range(len(combinations))):
-                                finger1 = comb[0].stabilized_tip_position
-                                finger2 = comb[1].stabilized_tip_position
-                                inner_tip = (finger1 - finger2).magnitude
-                                features.inner_distances[feat_index][position] = inner_tip
+                            # combinations = list(itertools.combinations(pointables, 2))
+                            # for comb, position in zip(combinations, range(len(combinations))):
+                            #     finger1 = comb[0].stabilized_tip_position
+                            #     finger2 = comb[1].stabilized_tip_position
+                            #     inner_tip = (finger1 - finger2).magnitude
+                            #     features.inner_distances[feat_index][position] = inner_tip
 
                         # Relative origin(used to calculate the relative distances)
                             hand_center = hand.stabilized_palm_position
@@ -136,16 +138,16 @@ class GestureCollection:
                                     pointable_pos = pointable.stabilized_tip_position
                                     relative_pos = pointable_pos - hand_center
                                     # Scaling the lengths of fingers to the length of middle finger (cal_param)
-                                    features.finger_lengths[feat_index][finger.type] = \
-                                        relative_pos.magnitude# /self.calibration.middle_len
-                            if print_feat:
-                                print "Extended Fingers", features.extended_fingers[feat_index]
-                                print "Finger lengths", features.finger_lengths[feat_index]
-                                print "Inter distances between tips", features.inner_distances[feat_index]
-                                print "Palm direction", features.palm_direction[feat_index]
-                                print "Palm sphere radius", features.palm_radius[feat_index]
-                                print "Palm grab strength", features.palm_grab[feat_index]
-                                print "Palm pinch strength", features.palm_pinch[feat_index]
+                                    # features.finger_lengths[feat_index][finger.type] = \
+                                     #   relative_pos.magnitude# /self.calibration.middle_len
+                            # if print_feat:
+                                # print "Extended Fingers", features.extended_fingers[feat_index]
+                                # print "Finger lengths", features.finger_lengths[feat_index]
+                                # print "Inter distances between tips", features.inner_distances[feat_index]
+                                # print "Palm direction", features.palm_direction[feat_index]
+                                # print "Palm sphere radius", features.palm_radius[feat_index]
+                                # print "Palm grab strength", features.palm_grab[feat_index]
+                                # print "Palm pinch strength", features.palm_pinch[feat_index]
                                 # print "PALM WIDTH", hand.palm_width
                             feat_index += 1
                 elif feat_index == feat_len:
@@ -153,6 +155,19 @@ class GestureCollection:
                     # print "Rotation Angle y ", hand.rotation_angle(first_frame, Vector.y_axis)
                     # print "Rotation Angle x ", hand.rotation_angle(first_frame, Vector.x_axis)
                     # print "Rotation Angle z ", hand.rotation_angle(first_frame, Vector.z_axis)
+                    print "Translation ", hand.translation(first_frame)
+                    start_pointables = first_frame.pointables
+                    end_pointables = frame.pointables
+                    for p in start_pointables:
+                        start_pos = p.stabilized_tip_position
+                        type1 = Leap.Finger(p).type
+                        print type1
+                        print 3*type1, 3*type1 + 1, 3*type1 + 2
+                        for p1 in end_pointables:
+                            if Leap.Finger(p1).type == type1:
+                                end_pos = p1.stabilized_tip_position
+                                diff = end_pos - start_pos
+                                print diff
                     feat_index += 1
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
@@ -163,5 +178,6 @@ class GestureCollection:
 
 if __name__ == "__main__":
     gc = GestureCollection()
+    print "waiting for connection"
     gc.wait_for_connection()
     gc.extract_features()
