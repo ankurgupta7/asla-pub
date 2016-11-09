@@ -11,20 +11,20 @@ sip.setapi("QString", 1)
 if __name__ == "__main__":
     a = QApplication(sys.argv)
 
-    # loginDialog = LoginDialog()
+    loginDialog = LoginDialog()
 
-    # isAuth = False
-    # result = -1
+    isAuth = False
+    result = -1
     # while not isAuth:
-    #     result = loginDialog.exec_()
-    #     if result == LoginDialog.Success or result == LoginDialog.Rejected:
-    #         isAuth = True
-    #     else:
-    #         isAuth = False
+    loginDialog.exec_()
+        # if result == loginDialog.Success or result == loginDialog.Rejected:
+        #     isAuth = True
+        # else:
+        #     isAuth = False
+    isAuth = loginDialog.Success
 
-
-    # if result == LoginDialog.Success:
-    w = MainWindow()
-    w.show()
-    a.exec_()
+    if isAuth == True:
+        w = MainWindow()
+        w.show()
+        a.exec_()
     exit(0)

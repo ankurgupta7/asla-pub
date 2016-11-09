@@ -23,14 +23,16 @@ class TrainingService:
         :param label: Label for current gesture being collected
         :type label: String
         """
-        exp_ges = GestureCollection(label)
-        exp_ges.wait_for_connection()
-        if not exp_ges.is_calibrated():
-            exp_ges.calibration.calibrate()
-        self.data_collected.extend(exp_ges.extract_features())
+        self.exp_ges = GestureCollection(label)
+        self.exp_ges.wait_for_connection()
+        if not self.exp_ges.is_calibrated():
+            self.exp_ges.calibration.calibrate()
+        self.data_collected.extend(self.exp_ges.extract_features())
 
     def send_to_server(self):
         """
         Sends the data to Controller(Server)
         """
         return None
+    def set_status_bar(self, s):
+        self.exp_ges.setStatusBar(s)

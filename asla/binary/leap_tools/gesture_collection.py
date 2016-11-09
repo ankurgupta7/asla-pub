@@ -30,8 +30,17 @@ class GestureCollection:
         self.label = label
         self.controller = Leap.Controller()
         self.calibration = Calibration(self.controller)
+        self.status = None
+        self.status_bar = None
         pass
-
+    def setStatus(self, text):
+        self.status = text
+        self.status_bar.showMessage(text)
+    def getStatus(self):
+        return self.status
+    def setStatusBar(self, s):
+        self.status_bar = s
+        self.calibration.setStatusbar(s)
     def is_calibrated(self):
         """
         Checks if the sensor is calibrated
@@ -78,6 +87,7 @@ class GestureCollection:
                     time_elapsed = 0
                     if not printed:
                         print 'Bring hand in view'
+                        self.setStatus('Bring hand in view')
                         printed = True
                 elif feat_index < feat_len:
                     for hand in hands:
@@ -125,6 +135,7 @@ class GestureCollection:
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
                     print "Remove hand from view"
+                    self.setStatus("Remove hand from view")
                     printed = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time

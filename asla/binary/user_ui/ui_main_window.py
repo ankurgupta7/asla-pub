@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtWebKit import QWebSettings
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -55,7 +56,8 @@ class Ui_MainWindow(object):
         self.predLabel.setObjectName(_fromUtf8("predLabel"))
         self.gridLayout.addWidget(self.predLabel, 0, 0, 1, 1)
         self.skeletonView = QtWebKit.QWebView(self.gestureTab)
-        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("file:///Perlich_Bones.html")))
+        self.skeletonView.setUrl(QtCore.QUrl(_fromUtf8("http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html")))
+        self.skeletonView.setZoomFactor(0.25)
         self.skeletonView.setObjectName(_fromUtf8("skeletonView"))
         self.gridLayout.addWidget(self.skeletonView, 1, 0, 1, 1)
         self.mainTabContainer.addTab(self.gestureTab, _fromUtf8(""))

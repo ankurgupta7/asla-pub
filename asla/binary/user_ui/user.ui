@@ -75,7 +75,7 @@
          <widget class="QWebView" name="skeletonView">
           <property name="url">
            <url>
-            <string>file:///Perlich_Bones.html</string>
+            <string>http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html</string>
            </url>
           </property>
          </widget>
