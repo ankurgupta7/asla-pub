@@ -53,9 +53,15 @@ def login():
     :return:
     """
     if request.method == "GET":
-        return render_template('login.html')
+        return render_template('login.html'), 200
     elif request.method == "POST":
-        return render_template('login.html')
+        #print(request.form['email'], file=sys.stderr)
+        if not admin_service.authenticate_user(request.form['email'], request.form['pwd']):
+            flash('Invalid Credentials', category='error')
+            return render_template('login.html'), 200
+        else:
+            flash("Thank you for logging in!", category='success')
+            return render_template('login.html'), 200
 
 
 @app.route('/login_expert', methods=['GET'])

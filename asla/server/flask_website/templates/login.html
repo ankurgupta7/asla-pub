@@ -2,33 +2,49 @@
 {% block content %}
     <section id="login-form">
         <div class="container">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="POST" action="login" >
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Email:</label>
                     <div class="col-sm-5">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        <input type="email" class="form-control" name="email" placeholder="Enter email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="pwd">Password:</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                        <input type="password" class="form-control" name="pwd" placeholder="Enter password">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Remember me</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary" value="Send">Login</button>
                     </div>
                 </div>
             </form>
         </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+          {% if messages %}            
+            {% for category, message in messages %}
+            <script>
+                var cat = "{{ category|safe }}"
+                var mess = "{{ message|safe }}"
+                var mess_tag;
+                if (cat == "error") {
+                    mess_tag = "Oops!";
+                } else {
+                    mess_tag = "Yay!";
+                }
+                swal({ title: mess_tag,   text: mess,   type: cat, confirmButtonColor: "#F05F40",   confirmButtonText: "Okay",   closeOnConfirm: true }, 
+                    function(){
+                        if (cat == "success") {
+                            window.location.href = "/";
+                        }
+                    });
+            </script>
+            {% endfor %}            
+          {% endif %}
+        {% endwith %}
     </section>
     <!-- jQuery -->
     <script src="static/vendor/jquery/jquery.min.js"></script>
