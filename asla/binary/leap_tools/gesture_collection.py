@@ -93,7 +93,7 @@ class GestureCollection:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
-                            pointables = frame.pointables
+                            pointables = hand.pointables
                             # palm direction feature
                             features.palm_direction[feat_index] = hand.direction.to_tuple()
                             # palm sphere radius
