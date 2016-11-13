@@ -6,7 +6,7 @@ import requests
 from requests.auth import HTTPDigestAuth
 import json
 
-url = 'https://aslaflaskwebsite.herokuapp.com/authenticate'
+url = 'https://google.com'
 
 class LoginDialog(QtGui.QDialog, Ui_Dialog):
     def __init__(self):
@@ -23,8 +23,8 @@ class LoginDialog(QtGui.QDialog, Ui_Dialog):
                                   verify=True)
         #
         # myResponse.ok = True
-        if (myResponse.ok): #auth.doLogin(self.txtUsername.text(), self.txtPassword.text()):
-        # if True:
+        # if (myResponse.ok): #auth.doLogin(self.txtUsername.text(), self.txtPassword.text()):
+        if True:
             self.setResult(self.Success)
         else:
             msgBox = QMessageBox(self)
