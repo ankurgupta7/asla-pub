@@ -131,19 +131,9 @@ class GestureCollection:
                                 printed = False
                             elif feat_index == feat_len - 1:
                                 end_frame = frame
-                                self.set_movement_features(features, start_frame, end_frame)
+                                self.set_movement_features(features, start_frame, end_frame, hand)
                                 if print_feat:
                                     self.print_dynamic_features(features)
-
-                            '''for pointable in pointables:
-                                finger = Leap.Finger(pointable)
-                                if finger.is_extended:
-                                    features.extended_fingers[feat_index][finger.type] = 1.0
-                                    pointable_pos = pointable.stabilized_tip_position
-                                    relative_pos = pointable_pos - hand_center
-                                    # Scaling the lengths of fingers to the length of middle finger (cal_param)
-                                    features.finger_lengths[feat_index][finger.type] = \
-                                        relative_pos.magnitude/self.calibration.middle_len'''
                             if print_feat:
                                 self.print_static_features(features, feat_index)
                             feat_index += 1
@@ -155,7 +145,6 @@ class GestureCollection:
                     printed = False
                 time.sleep(gap_time)
                 time_elapsed += gap_time
-
 
     @staticmethod
     def set_extended_fingers(features, feat_index, list_of_fingers):
@@ -223,9 +212,7 @@ class GestureCollection:
         features.palm_normal[feat_index] = hand.palm_normal.to_tuple()
 
     @staticmethod
-    def set_movement_features(features, start_frame, end_frame):
-        hand = end_frame.hand
-        print "BUBUBUUB", hand.rotation_angle(start_frame, Vector.x_axis)
+    def set_movement_features(features, start_frame, end_frame, hand):
         features.rotation_angle = [hand.rotation_angle(start_frame, Vector.x_axis),
                                    hand.rotation_angle(start_frame, Vector.y_axis),
                                    hand.rotation_angle(start_frame, Vector.z_axis)]
@@ -241,7 +228,7 @@ class GestureCollection:
                         if Leap.Finger(e_p).type == start_type:
                             end_pos = e_p.stabilized_tip_position
                             diff = end_pos - start_pos
-                            features.extended_tip_pos_diff[start_type*3: (start_type+1)*3] = diff
+                            features.extended_tip_pos_diff[start_type*3 : (start_type+1)*3] = diff.to_float_array()
 
     @staticmethod
     def print_static_features(features, feat_index):
