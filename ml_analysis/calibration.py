@@ -5,6 +5,7 @@ import time
 from sys import platform
 import numpy as np
 import io
+import itertools
 
 if platform == "linux" or platform == "linux2":
     if sys.maxsize > 2 ** 32:
@@ -19,25 +20,36 @@ elif platform == "darwin":
 class Calibration:
     def __init__(self, controller):
         self.controller = controller
-        self.middle_len = 1
-        self.max_inner_dist = 1
+        self.middle_fingers_params = []
+        self.max_inner_distances = []
         pass
 
-    def calibrate(self, reps=3, skip_time=2, hold_time=5, gap_time=0.25):
+    def enum(self, **enums):
+        return type('Enum', (), enums)
+
+    def calibrate(self, reps=2, skip_time=1, hold_time=2, gap_time=0.25):
+
+        BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE=2, TYPE_PROXIMAL=1, TYPE_METACARPAL=0)
+
         feat_len = int(hold_time / gap_time)
         features = Features(feat_len, reps)
         reps_completed = 0
         printed = False
         extended = True
-        index_middle_finger = 2
         # array of middle finger averages of lengths. size is equal to number of reps
-        middle_len = []
         time_elapsed = 0
         feat_index = 0
         while self.controller.is_connected:
             if reps_completed == reps:
                 print "Calibration is finished!"
-                self.middle_len = np.mean(middle_len)
+                self.middle_fingers_params.append(np.mean(features.mcp_length, axis = 0)[2])
+                self.middle_fingers_params.append(np.mean(features.pip_length, axis = 0)[2])
+                self.middle_fingers_params.append(np.mean(features.dip_length, axis = 0)[2])
+                self.middle_fingers_params.append(np.mean(features.tip_length, axis = 0)[2])
+                self.max_inner_distances.append(np.mean(features.mcp_inner_distances, axis = 0)[3])
+                self.max_inner_distances.append(np.mean(features.pip_inner_distances, axis = 0)[3])
+                self.max_inner_distances.append(np.mean(features.dip_inner_distances, axis = 0)[3])
+                self.max_inner_distances.append(np.mean(features.tip_inner_distances, axis = 0)[3])
                 self.write_calibration()
                 return
             else:
@@ -54,7 +66,8 @@ class Calibration:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
-                            pointables = frame.pointables
+                            ordered_finger_list = []
+                            pointables = hand.pointables
                             if len(pointables.extended()) != 5:
                                 print "Please extend all the fingers for calibration"
                                 extended = True
@@ -64,17 +77,23 @@ class Calibration:
                                     time.sleep(10 * gap_time)
                                     extended = False
                                 # Relative origin(used to calculate the relative distances)
-                                hand_center = hand.stabilized_palm_position
                                 for pointable in pointables:
                                     finger = Leap.Finger(pointable)
-                                    pointable_pos = pointable.stabilized_tip_position
-                                    relative_pos = pointable_pos - hand_center
-                                    features.finger_lengths[feat_index][finger.type] = relative_pos.magnitude
-                                print "Finger lengths", features.finger_lengths[feat_index]
+                                    ordered_finger_list.insert(finger.type, finger)
+
+                                self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_DISTAL)
+                                self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_INTERMEDIATE)
+                                self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_PROXIMAL)
+                                self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_METACARPAL)
+
+                                self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_DISTAL)
+                                self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_INTERMEDIATE)
+                                self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_PROXIMAL)
+                                self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_METACARPAL)
+
                                 feat_index += 1
                 elif feat_index == feat_len:
                     feat_index += 1
-                    middle_len.append(np.mean(features.finger_lengths, axis=0)[index_middle_finger])
                     reps_completed += 1
                     print "Remove hand from view"
                     printed = False
@@ -84,4 +103,41 @@ class Calibration:
 
     def write_calibration(self):
         with io.FileIO("calibration_data.txt", "w") as cal_file:
-            cal_file.write("middle_len " + str(self.middle_len))
+            cal_file.write("middle finger parameters: " +
+                           str(self.middle_fingers_params) +"\n" +
+                           "inner distances parameters: " + str(self.max_inner_distances))
+
+    @staticmethod
+    def set_inner_distances(features, feat_index, list_of_fingers, type):
+        bone_list = []
+        for finger in list_of_fingers:
+            bone_list.append(finger.bone(type))
+        combinations = list(itertools.combinations(bone_list, 2))
+        for comb, position in zip(combinations, range(len(combinations))):
+            finger1 = comb[0].next_joint
+            finger2 = comb[1].next_joint
+            inner = (finger1 - finger2).magnitude
+            if type == 3:
+                features.tip_inner_distances[feat_index][position] = inner
+            elif type == 2:
+                features.dip_inner_distances[feat_index][position] = inner
+            elif type == 1:
+                features.pip_inner_distances[feat_index][position] = inner
+            elif type == 0:
+                features.mcp_inner_distances[feat_index][position] = inner
+
+    @staticmethod
+    def set_lengths(features, feat_index, list_of_fingers, hand, type):
+        palm_center = hand.stabilized_palm_position
+        bone_list = []
+        for finger in list_of_fingers:
+            bone_list.append(finger.bone(type))
+        for bone, finger in zip(bone_list, list_of_fingers):
+            if type == 3:
+                features.tip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 2:
+                features.dip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 1:
+                features.pip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 0:
+                features.mcp_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude

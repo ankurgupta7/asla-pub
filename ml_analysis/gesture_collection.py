@@ -6,6 +6,7 @@ import itertools
 from features import Features
 from calibration import Calibration
 import math
+import numpy as np
 
 if platform == "linux" or platform == "linux2":
     if sys.maxsize > 2 ** 32:
@@ -38,9 +39,14 @@ class GestureCollection:
         try:
             in_file = open('calibration_data.txt', 'r')
             lines = in_file.readlines()
-            for line in lines:
-                field_name, field_val = line.rstrip('\n').split()
-                self.calibration.middle_len = float(field_val)
+            for index in range(len(lines)):
+                field_name, field_val = lines[index].split(":")
+                field_val = field_val.strip(' []\n')
+                field_val = map(float, field_val.split(','))
+                if index == 0:
+                    self.calibration.middle_fingers_params= np.asarray(field_val)
+                if index == 1:
+                    self.calibration.max_inner_distances = np.asarray(field_val)
             return True
         except IOError:
             return False
@@ -63,7 +69,7 @@ class GestureCollection:
         :rtype: list
         """
 
-        BoneType = self.enum(TYPE_DISTAL = 3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0);
+        BoneType = self.enum(TYPE_DISTAL = 3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0)
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
@@ -152,8 +158,7 @@ class GestureCollection:
             if finger.is_extended:
                 features.extended_fingers[feat_index][finger.type] = 1.0
 
-    @staticmethod
-    def set_inner_distances(features, feat_index, list_of_fingers, type):
+    def set_inner_distances(self, features, feat_index, list_of_fingers, type):
         bone_list = []
         for finger in list_of_fingers:
             bone_list.append(finger.bone(type))
@@ -163,13 +168,13 @@ class GestureCollection:
             finger2 = comb[1].next_joint
             inner = (finger1 - finger2).magnitude
             if type == 3:
-                features.tip_inner_distances[feat_index][position] = inner
+                features.tip_inner_distances[feat_index][position] = inner/self.calibration.max_inner_distances[type]
             elif type == 2:
-                features.dip_inner_distances[feat_index][position] = inner
+                features.dip_inner_distances[feat_index][position] = inner/self.calibration.max_inner_distances[type]
             elif type == 1:
-                features.pip_inner_distances[feat_index][position] = inner
+                features.pip_inner_distances[feat_index][position] = inner/self.calibration.max_inner_distances[type]
             elif type == 0:
-                features.mcp_inner_distances[feat_index][position] = inner
+                features.mcp_inner_distances[feat_index][position] = inner/self.calibration.max_inner_distances[type]
 
     @staticmethod
     def set_angle_between_tips(features, feat_index, list_of_fingers):
@@ -187,21 +192,24 @@ class GestureCollection:
             features.angle_between_finger_palm[feat_index][finger.type] = \
                 finger.direction.angle_to(palm_normal) * 180/math.pi
 
-    @staticmethod
-    def set_lengths(features, feat_index, list_of_fingers,hand, type):
+    def set_lengths(self, features, feat_index, list_of_fingers,hand, type):
         palm_center = hand.stabilized_palm_position
         bone_list = []
         for finger in list_of_fingers:
             bone_list.append(finger.bone(type))
         for bone, finger in zip(bone_list, list_of_fingers):
             if type == 3:
-                features.tip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+                features.tip_length[feat_index][finger.type] =\
+                    (bone.next_joint - palm_center).magnitude/self.calibration.middle_fingers_params[type]
             elif type == 2:
-                features.dip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+                features.dip_length[feat_index][finger.type] = \
+                    (bone.next_joint - palm_center).magnitude/self.calibration.middle_fingers_params[type]
             elif type == 1:
-                features.pip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+                features.pip_length[feat_index][finger.type] = \
+                    (bone.next_joint - palm_center).magnitude/self.calibration.middle_fingers_params[type]
             elif type == 0:
-                features.mcp_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+                features.mcp_length[feat_index][finger.type] = \
+                    (bone.next_joint - palm_center).magnitude/self.calibration.middle_fingers_params[type]
 
     @staticmethod
     def set_hand_features(features, feat_index, hand):

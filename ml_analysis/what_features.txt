@@ -29,11 +29,10 @@ extended_tip_pos_diff - 3 (from starting frame)
 
 
 # To Calibrate:
-finger_length
+max_tip_length
 max_mcp_length
 max_pip_length
 max_dip_length
-max_mcp_length
 # (Between thumb and little finger)
 inner_tip_distance
 inner_dip_distance
