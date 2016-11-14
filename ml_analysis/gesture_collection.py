@@ -5,12 +5,15 @@ from sys import platform
 import itertools
 from features import Features
 from calibration import Calibration
+import math
 
 if platform == "linux" or platform == "linux2":
     if sys.maxsize > 2 ** 32:
         from lib.x64 import Leap
+        from lib.x64.Leap import Vector
     else:
         from lib.x86 import Leap
+        from lib.x86.Leap import Vector
 elif platform == "darwin":
     from lib import Leap
     from lib.Leap import Vector
@@ -50,11 +53,17 @@ class GestureCollection:
             pass
         print 'Controller CONNECTED'
 
+    # enums for bone types
+    def enum(self, **enums):
+        return type('Enum', (), enums)
+
     def extract_features(self, reps=5, skip_time=2, hold_time=5, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list
         """
+
+        BoneType = self.enum(TYPE_DISTAL = 3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0);
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
@@ -79,11 +88,41 @@ class GestureCollection:
                     for hand in hands:
                         # only for right hand as of now
                         if hand.is_right and time_elapsed > skip_time:
+                            ordered_finger_list = []
+                            ordered_pointable_list = []
                             hand_center = hand.stabilized_palm_position
-                            pointables = frame.pointables
-                            fingers = frame.fingers
+                            pointables = hand.pointables
+                            for pointable in pointables:
+                                finger = Leap.Finger(pointable)
+                                ordered_finger_list.insert(finger.type, finger)
+                                ordered_pointable_list.insert(finger.type, pointable)
+
+                            # setting up features related to hand only
                             self.set_hand_features(features, feat_index, hand)
-                            self.set_inner_distances(fingers, 3)
+
+                            # setting up the boolean vector of extended fingers
+                            self.set_extended_fingers(features, feat_index, ordered_finger_list)
+
+                            # setting up the lengths of bones
+                            # needs to be refactored
+                            self.set_lengths(features, feat_index, ordered_finger_list,hand,  BoneType.TYPE_DISTAL)
+                            self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_INTERMEDIATE)
+                            self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_PROXIMAL)
+                            self.set_lengths(features, feat_index, ordered_finger_list, hand, BoneType.TYPE_METACARPAL)
+
+                            # setting up the inner distances between all types of bones
+                            # needs to be refactored in feature (too long list of same parameters)
+                            self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_DISTAL)
+                            self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_INTERMEDIATE)
+                            self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_PROXIMAL)
+                            self.set_inner_distances(features, feat_index, ordered_finger_list, BoneType.TYPE_METACARPAL)
+
+                            # setting up the angles between the fingers (degrees)
+                            self.set_angle_between_tips(features, feat_index, ordered_finger_list)
+
+                            # settin up the angles between the fingers and palm plane (degrees)
+                            self.set_angle_between_fingers_and_palm(features, feat_index, ordered_finger_list, hand)
+
 
                             # Movement features:
                             if not start_frame:
@@ -96,7 +135,7 @@ class GestureCollection:
                                 if print_feat:
                                     self.print_dynamic_features(features)
 
-                            for pointable in pointables:
+                            '''for pointable in pointables:
                                 finger = Leap.Finger(pointable)
                                 if finger.is_extended:
                                     features.extended_fingers[feat_index][finger.type] = 1.0
@@ -104,7 +143,7 @@ class GestureCollection:
                                     relative_pos = pointable_pos - hand_center
                                     # Scaling the lengths of fingers to the length of middle finger (cal_param)
                                     features.finger_lengths[feat_index][finger.type] = \
-                                        relative_pos.magnitude/self.calibration.middle_len
+                                        relative_pos.magnitude/self.calibration.middle_len'''
                             if print_feat:
                                 self.print_static_features(features, feat_index)
                             feat_index += 1
@@ -117,6 +156,13 @@ class GestureCollection:
                 time.sleep(gap_time)
                 time_elapsed += gap_time
 
+
+    @staticmethod
+    def set_extended_fingers(features, feat_index, list_of_fingers):
+        for finger in list_of_fingers:
+            if finger.is_extended:
+                features.extended_fingers[feat_index][finger.type] = 1.0
+
     @staticmethod
     def set_inner_distances(features, feat_index, list_of_fingers, type):
         bone_list = []
@@ -124,12 +170,49 @@ class GestureCollection:
             bone_list.append(finger.bone(type))
         combinations = list(itertools.combinations(bone_list, 2))
         for comb, position in zip(combinations, range(len(combinations))):
-            finger1 = comb[position].next_joint
-            finger2 = comb[position].next_joint
+            finger1 = comb[0].next_joint
+            finger2 = comb[1].next_joint
             inner = (finger1 - finger2).magnitude
-            features.inner_distances[feat_index][position] = inner
+            if type == 3:
+                features.tip_inner_distances[feat_index][position] = inner
+            elif type == 2:
+                features.dip_inner_distances[feat_index][position] = inner
+            elif type == 1:
+                features.pip_inner_distances[feat_index][position] = inner
+            elif type == 0:
+                features.mcp_inner_distances[feat_index][position] = inner
 
-            # Relative origin(used to calculate the relative distances)
+    @staticmethod
+    def set_angle_between_tips(features, feat_index, list_of_fingers):
+        combinations = list(itertools.combinations(list_of_fingers, 2))
+        for comb, position in zip(combinations, range(len(combinations))):
+            finger1 = comb[0]
+            finger2 = comb[1]
+            inner_angle = (finger1.direction.angle_to(finger2.direction))
+            features.angle_between_tips[feat_index][position] = inner_angle * 180/math.pi;
+
+    @staticmethod
+    def set_angle_between_fingers_and_palm(features, feat_index, list_of_fingers, hand):
+        palm_normal = hand.palm_normal
+        for finger in list_of_fingers:
+            features.angle_between_finger_palm[feat_index][finger.type] = \
+                finger.direction.angle_to(palm_normal) * 180/math.pi
+
+    @staticmethod
+    def set_lengths(features, feat_index, list_of_fingers,hand, type):
+        palm_center = hand.stabilized_palm_position
+        bone_list = []
+        for finger in list_of_fingers:
+            bone_list.append(finger.bone(type))
+        for bone, finger in zip(bone_list, list_of_fingers):
+            if type == 3:
+                features.tip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 2:
+                features.dip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 1:
+                features.pip_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
+            elif type == 0:
+                features.mcp_length[feat_index][finger.type] = (bone.next_joint - palm_center).magnitude
 
     @staticmethod
     def set_hand_features(features, feat_index, hand):
@@ -137,11 +220,12 @@ class GestureCollection:
         features.palm_radius[feat_index] = hand.sphere_radius
         features.palm_grab[feat_index] = hand.grab_strength
         features.palm_pinch[feat_index] = hand.pinch_strength
-        features.palm_normal[feat_index] = hand.palm_normal
+        features.palm_normal[feat_index] = hand.palm_normal.to_tuple()
 
     @staticmethod
     def set_movement_features(features, start_frame, end_frame):
         hand = end_frame.hand
+        print "BUBUBUUB", hand.rotation_angle(start_frame, Vector.x_axis)
         features.rotation_angle = [hand.rotation_angle(start_frame, Vector.x_axis),
                                    hand.rotation_angle(start_frame, Vector.y_axis),
                                    hand.rotation_angle(start_frame, Vector.z_axis)]
@@ -163,13 +247,13 @@ class GestureCollection:
     def print_static_features(features, feat_index):
         print "Extended Fingers", features.extended_fingers[feat_index]
         print "Tip Length", features.tip_length[feat_index]
-        print "Tip inner distances", features.inner_distances[feat_index]
-        print "Mcp Length", features.mcp_length[feat_index]
-        print "Mcp inner distances", features.mcp_inner_distances[feat_index]
-        print "Pip Length", features.pip_inner_distances[feat_index]
-        print "Pip inner distances", features.pip_length[feat_index]
+        print "Tip inner distances", features.tip_inner_distances[feat_index]
         print "Dip Length", features.dip_length[feat_index]
         print "Dip inner distances", features.dip_inner_distances[feat_index]
+        print "Pip Length", features.pip_length[feat_index]
+        print "Pip inner distances", features.pip_inner_distances[feat_index]
+        print "Mcp Length", features.mcp_length[feat_index]
+        print "Mcp inner distances", features.mcp_inner_distances[feat_index]
         print "Angle between tips", features.angle_between_tips[feat_index]
         print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
 
