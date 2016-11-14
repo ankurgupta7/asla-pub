@@ -12,15 +12,16 @@ class UserAdminService:
         :return: nothing
         """
         self.mongo_client = MongoClient("mongodb://asla-website:asla@ds139277.mlab.com:39277/asla-users")
-        self.database = self.mongo_client['asla-users']
-        self.users = self.database['users']
+        self.user_database = self.mongo_client['asla-users']
+        self.users = self.user_database['users']
+        self.expert_database = self.mongo_client['asla-users']
+        self.experts = self.expert_database['experts']
 
-    
     def make_new_user(self, form):
         """
         Makes a new user and puts him in the database
         :return:
-        """                
+        """
         if self.users.find_one({"email": form['email']}) is None:
             # No such user exists, make him now
             user = {
@@ -33,24 +34,27 @@ class UserAdminService:
         else:
             # Someone already exists, deny creation
             return False
-        
-    
+
     def update_user(self):
         """
         Updates a user's data
         :return:
         """
         return None
-    
+
     def authenticate_user(self, email, password):
         """
         Authenticates a user or login
-        :return:
+        :return: True/False based on 
         """
-        print "here"
         if self.users.find_one({"email": email, "pwd": password}):
-            print "here 2"
             return True
         else:
-            return False            
+            return False
+
+    def authenticate_expert(self, okey):
+        """
+        Authenticates an Expert's OAuth Key
+        :return
+        """
         return None

@@ -1,5 +1,5 @@
 from __future__ import print_function
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session
 from flask_bootstrap import Bootstrap
 from user_admin_service import UserAdminService
 import os
@@ -49,13 +49,12 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Allows for login
+    Allows for login.
     :return:
     """
     if request.method == "GET":
         return render_template('login.html'), 200
-    elif request.method == "POST":
-        #print(request.form['email'], file=sys.stderr)
+    elif request.method == "POST":        
         if not admin_service.authenticate_user(request.form['email'], request.form['pwd']):
             flash('Invalid Credentials', category='error')
             return render_template('login.html'), 200
@@ -67,7 +66,7 @@ def login():
 @app.route('/login_expert', methods=['GET'])
 def login_expert():
     """
-    Allows for login
+    Allows for login for expert
     :return:
     """
     return render_template('login_expert.html')

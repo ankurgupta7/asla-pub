@@ -1,6 +1,10 @@
 from ...flask_website import FlaskWebsiteBackend
 import unittest
 import logging
+import random, string
+
+def randomword(length):
+    return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
 class FlaskWebsiteBackendTestCase(unittest.TestCase):
@@ -31,9 +35,9 @@ class FlaskWebsiteBackendTestCase(unittest.TestCase):
         assert 'Update' in result.data
 
     def test_authenticate(self):
-        result = self.app.post("/authenticate")
+        result = self.app.post("/authenticate", data=dict(email=randomword(5), pwd=randomword(5)))
         self.logger.debug(result.data)
-        assert 'Authenticate' in result.data
+        assert 'Invalid credentials' in result.data
 
 
 if __name__ == '__main__':
