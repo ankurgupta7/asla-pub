@@ -57,7 +57,7 @@ class GestureCollection:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def extract_features(self, reps=5, skip_time=2, hold_time=5, gap_time=0.25, print_feat=True):
+    def extract_features(self, reps=5, skip_time=1, hold_time=2, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list
@@ -216,7 +216,7 @@ class GestureCollection:
         features.rotation_angle = [hand.rotation_angle(start_frame, Vector.x_axis),
                                    hand.rotation_angle(start_frame, Vector.y_axis),
                                    hand.rotation_angle(start_frame, Vector.z_axis)]
-        features.translation = hand.translation(start_frame)
+        features.translation = [hand.translation(start_frame).x, hand.translation(start_frame).y, hand.translation(start_frame).z]
         start_pointables = start_frame.pointables
         end_pointables = end_frame.pointables
         for s_p in start_pointables:
@@ -228,7 +228,7 @@ class GestureCollection:
                         if Leap.Finger(e_p).type == start_type:
                             end_pos = e_p.stabilized_tip_position
                             diff = end_pos - start_pos
-                            features.extended_tip_pos_diff[start_type*3 : (start_type+1)*3] = diff.to_float_array()
+                            features.extended_tip_pos_diff[start_type*3: (start_type+1)*3] = diff.to_float_array()
 
     @staticmethod
     def print_static_features(features, feat_index):
