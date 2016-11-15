@@ -84,8 +84,6 @@ class GestureCollection:
                 frame = self.controller.frame()
                 hands = frame.hands
                 if len(hands) == 0:
-                    del features
-                    features = Features(feat_len, reps)
                     feat_index = 0
                     time_elapsed = 0
                     start_frame = None
@@ -159,6 +157,8 @@ class GestureCollection:
         for finger in list_of_fingers:
             if finger.is_extended:
                 features.extended_fingers[feat_index][finger.type] = 1.0
+            else:
+                features.extended_fingers[feat_index][finger.type] = 0
 
     def set_inner_distances(self, features, feat_index, list_of_fingers, type):
         bone_list = []
