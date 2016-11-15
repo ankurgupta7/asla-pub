@@ -63,7 +63,7 @@ class GestureCollection:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def extract_features(self, reps=5, skip_time=1, hold_time=2, gap_time=0.25, print_feat=True):
+    def extract_features(self, reps=1, skip_time=1, hold_time=2, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list
@@ -84,6 +84,8 @@ class GestureCollection:
                 frame = self.controller.frame()
                 hands = frame.hands
                 if len(hands) == 0:
+                    del features
+                    features = Features(feat_len, reps)
                     feat_index = 0
                     time_elapsed = 0
                     start_frame = None
@@ -149,8 +151,9 @@ class GestureCollection:
                     reps_completed += 1
                     print "Remove hand from view"
                     printed = False
-                time.sleep(gap_time)
-                time_elapsed += gap_time
+                if len(hands) != 0:
+                    time.sleep(gap_time)
+                    time_elapsed += gap_time
 
     @staticmethod
     def set_extended_fingers(features, feat_index, list_of_fingers):
@@ -241,25 +244,25 @@ class GestureCollection:
     @staticmethod
     def print_static_features(features, feat_index):
         print "Extended Fingers", features.extended_fingers[feat_index]
-        print "Tip Length", features.tip_length[feat_index]
-        print "Tip inner distances", features.tip_inner_distances[feat_index]
-        print "Dip Length", features.dip_length[feat_index]
-        print "Dip inner distances", features.dip_inner_distances[feat_index]
-        print "Pip Length", features.pip_length[feat_index]
-        print "Pip inner distances", features.pip_inner_distances[feat_index]
-        print "Mcp Length", features.mcp_length[feat_index]
-        print "Mcp inner distances", features.mcp_inner_distances[feat_index]
-        print "Angle between tips", features.angle_between_tips[feat_index]
-        print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
+        # print "Tip Length", features.tip_length[feat_index]
+        # print "Tip inner distances", features.tip_inner_distances[feat_index]
+        # print "Dip Length", features.dip_length[feat_index]
+        # print "Dip inner distances", features.dip_inner_distances[feat_index]
+        # print "Pip Length", features.pip_length[feat_index]
+        # print "Pip inner distances", features.pip_inner_distances[feat_index]
+        # print "Mcp Length", features.mcp_length[feat_index]
+        # print "Mcp inner distances", features.mcp_inner_distances[feat_index]
+        # print "Angle between tips", features.angle_between_tips[feat_index]
+        # print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
 
-        print "Palm direction", features.palm_direction[feat_index]
-        print "Palm sphere radius", features.palm_radius[feat_index]
-        print "Palm grab strength", features.palm_grab[feat_index]
-        print "Palm pinch strength", features.palm_pinch[feat_index]
-        print "Palm normal", features.palm_normal[feat_index]
+        # print "Palm direction", features.palm_direction[feat_index]
+        # print "Palm sphere radius", features.palm_radius[feat_index]
+        # print "Palm grab strength", features.palm_grab[feat_index]
+        # print "Palm pinch strength", features.palm_pinch[feat_index]
+        # print "Palm normal", features.palm_normal[feat_index]
 
     @staticmethod
     def print_dynamic_features(features):
         print "Rotation Angle", features.rotation_angle
-        print "Translation", features.translation
-        print "Extended Tip Pos Diff", features.extended_tip_pos_diff
+        # print "Translation", features.translation
+        # print "Extended Tip Pos Diff", features.extended_tip_pos_diff
