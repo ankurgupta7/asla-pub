@@ -14,7 +14,7 @@ def main():
     elif user_input == 'n':
         add_gesture = False
     while add_gesture:
-        print "Enter Label(Int 1 to 5): "
+        print "Enter Label(Int A to Z): "
         label = raw_input()
         if label:
             update_service.capture_gesture(label)

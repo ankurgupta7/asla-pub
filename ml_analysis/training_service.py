@@ -8,6 +8,7 @@ Todo:
 from gesture_collection import GestureCollection
 import numpy as np
 import time
+import csv
 
 
 class TrainingService:
@@ -26,6 +27,13 @@ class TrainingService:
         self.data_collected.extend(exp_ges.extract_features())
 
     def save_collected_data(self):
-        to_save = np.array(self.data_collected)
+        # to_save = np.array(self.data_collected)
+        with open('headers.csv', 'rb') as headers_file:
+            reader = csv.reader(headers_file)
+            headers = next(reader)
         filename = ''.join(['data-', time.strftime("%Y%m%d-%H%M%S"), '.csv'])
-        np.savetxt(filename, to_save, delimiter=',', fmt='%1.3f')
+        with open(filename, "wb") as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(self.data_collected)
+        # np.savetxt(filename, to_save, delimiter=',', fmt='%1.3f')

@@ -24,8 +24,8 @@ class GestureCollection:
     """
     Extracting the features from captured gesture
     """
-    def __init__(self, label=-1):
-        self.label = label
+    def __init__(self, label):
+        self.label = ord(label.upper()) - 64
         self.controller = Leap.Controller()
         self.calibration = Calibration(self.controller)
         pass
@@ -69,7 +69,7 @@ class GestureCollection:
         :rtype: list
         """
 
-        BoneType = self.enum(TYPE_DISTAL = 3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0)
+        BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0)
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
