@@ -63,7 +63,7 @@ class GestureCollection:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def extract_features(self, reps=3, skip_time=0.5, hold_time=2, gap_time=0.25, print_feat=True):
+    def extract_features(self, reps=30, skip_time=0.5, hold_time=2, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list
@@ -147,6 +147,7 @@ class GestureCollection:
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
                     print "Remove hand from view"
+                    print "just", reps - reps_completed, " to go"
                     printed = False
                 if len(hands) != 0:
                     time.sleep(gap_time)
