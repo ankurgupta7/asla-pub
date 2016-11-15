@@ -12,6 +12,7 @@ def main():
     user_input = raw_input()
     if user_input == 'y':
         count += 1
+        print "Gesture number" , count
         add_gesture = True
     elif user_input == 'n':
         add_gesture = False
@@ -25,6 +26,7 @@ def main():
             if user_input == 'y':
                 add_gesture = True
                 count += 1
+                print "Gesture number", count
             elif user_input == 'n':
                 update_service.save_collected_data()
                 add_gesture = False
