@@ -98,7 +98,6 @@ class GestureCollection:
                         if hand.is_right and time_elapsed > skip_time:
                             ordered_finger_list = []
                             ordered_pointable_list = []
-                            hand_center = hand.stabilized_palm_position
                             pointables = hand.pointables
                             for pointable in pointables:
                                 finger = Leap.Finger(pointable)
@@ -244,25 +243,25 @@ class GestureCollection:
     @staticmethod
     def print_static_features(features, feat_index):
         print "Extended Fingers", features.extended_fingers[feat_index]
-        # print "Tip Length", features.tip_length[feat_index]
-        # print "Tip inner distances", features.tip_inner_distances[feat_index]
-        # print "Dip Length", features.dip_length[feat_index]
-        # print "Dip inner distances", features.dip_inner_distances[feat_index]
-        # print "Pip Length", features.pip_length[feat_index]
-        # print "Pip inner distances", features.pip_inner_distances[feat_index]
-        # print "Mcp Length", features.mcp_length[feat_index]
-        # print "Mcp inner distances", features.mcp_inner_distances[feat_index]
-        # print "Angle between tips", features.angle_between_tips[feat_index]
-        # print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
+        print "Tip Length", features.tip_length[feat_index]
+        print "Tip inner distances", features.tip_inner_distances[feat_index]
+        print "Dip Length", features.dip_length[feat_index]
+        print "Dip inner distances", features.dip_inner_distances[feat_index]
+        print "Pip Length", features.pip_length[feat_index]
+        print "Pip inner distances", features.pip_inner_distances[feat_index]
+        print "Mcp Length", features.mcp_length[feat_index]
+        print "Mcp inner distances", features.mcp_inner_distances[feat_index]
+        print "Angle between tips", features.angle_between_tips[feat_index]
+        print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
 
-        # print "Palm direction", features.palm_direction[feat_index]
-        # print "Palm sphere radius", features.palm_radius[feat_index]
-        # print "Palm grab strength", features.palm_grab[feat_index]
-        # print "Palm pinch strength", features.palm_pinch[feat_index]
-        # print "Palm normal", features.palm_normal[feat_index]
+        print "Palm direction", features.palm_direction[feat_index]
+        print "Palm sphere radius", features.palm_radius[feat_index]
+        print "Palm grab strength", features.palm_grab[feat_index]
+        print "Palm pinch strength", features.palm_pinch[feat_index]
+        print "Palm normal", features.palm_normal[feat_index]
 
     @staticmethod
     def print_dynamic_features(features):
         print "Rotation Angle", features.rotation_angle
-        # print "Translation", features.translation
-        # print "Extended Tip Pos Diff", features.extended_tip_pos_diff
+        print "Translation", features.translation
+        print "Extended Tip Pos Diff", features.extended_tip_pos_diff
