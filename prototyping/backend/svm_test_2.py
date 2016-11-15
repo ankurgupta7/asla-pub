@@ -39,10 +39,11 @@ x_train_scaled = scaler.transform(x_train)
 #x_train = x_train.as_matrix()
 
 scores = []
-svc = svm.SVC(C=10, kernel='rbf')
-for train, valid in KFold(x_train_scaled.shape[0], 10,shuffle = True):
-    scores.append(svc.fit(x_train_scaled[train],y_train[train]).score(x_train_scaled[valid],y_train[valid]))
-print ("CV accuracy: %0.2f (+/- %0.2f)" %(np.mean(scores), np.std(scores)**2))
+for i in range(1,20):
+    svc = svm.SVC(C=2*i, kernel='rbf')
+    for train, valid in KFold(x_train_scaled.shape[0], 10,shuffle = True):
+        scores.append(svc.fit(x_train_scaled[train],y_train[train]).score(x_train_scaled[valid],y_train[valid]))
+    print ("CV accuracy: %0.2f (+/- %0.2f)" %(np.mean(scores), np.std(scores)**2)), 2*i
 
 
 

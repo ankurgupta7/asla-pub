@@ -28,14 +28,19 @@ def main():
             x_train = np.vstack((x_train, data[:, 1:]))
     scaler = preprocessing.StandardScaler().fit(x_train)
     x_train_scaled = scaler.transform(x_train)
-    svc = svm.SVC(C=1, kernel='linear')
 
-    kf = KFold(n_splits=10, random_state=0, shuffle=True)
-    for train_index, test_index in kf.split(x_train_scaled):
-        svc.fit(x_train_scaled[train_index], y_train[train_index])
-        y_pred = svc.predict(x_train_scaled[test_index])
-        print metrics.classification_report(y_train[test_index], y_pred)
-        print metrics.confusion_matrix(y_train[test_index], y_pred)
+    C = [1, 5, 10, 15, 20, 25, 30]
+    for param in C:
+        svc = svm.SVC(C=param, kernel='linear')
+        scores = []
+        kf = KFold(n_splits=10, random_state=0, shuffle=True)
+        for train_index, test_index in kf.split(x_train_scaled):
+            svc.fit(x_train_scaled[train_index], y_train[train_index])
+            y_pred = svc.predict(x_train_scaled[test_index])
+            scores.append(svc.fit(x_train_scaled[train_index], y_train[train_index]).score(x_train_scaled[test_index], y_train[test_index]))
+            #print metrics.classification_report(y_train[test_index], y_pred)
+            #print metrics.confusion_matrix(y_train[test_index], y_pred)
+        print ("CV accuracy: %0.7f (+/- %0.7f)" % (np.mean(scores), np.std(scores) ** 2)), param
     fin_model = svc.fit(x_train_scaled, y_train)
     # joblib.dump(fin_model, '6am_model.pkl')
     # joblib.dump(scaler, '6am_scaler.pkl')
