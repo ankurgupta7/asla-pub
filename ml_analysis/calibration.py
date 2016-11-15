@@ -27,7 +27,7 @@ class Calibration:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def calibrate(self, reps=2, skip_time=1, hold_time=2, gap_time=0.25):
+    def calibrate(self, reps=3, skip_time=2, hold_time=5, gap_time=0.25):
 
         BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE=2, TYPE_PROXIMAL=1, TYPE_METACARPAL=0)
 

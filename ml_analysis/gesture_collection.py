@@ -63,7 +63,7 @@ class GestureCollection:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def extract_features(self, reps=1, skip_time=1, hold_time=2, gap_time=0.25, print_feat=True):
+    def extract_features(self, reps=3, skip_time=0.5, hold_time=2, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list
