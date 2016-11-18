@@ -1,6 +1,7 @@
 from ui_login_dialog import Ui_Dialog
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import QMessageBox
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QMessageBox, QDialog
+
 
 import requests
 from requests.auth import HTTPDigestAuth
@@ -8,9 +9,9 @@ import json
 
 url = 'https://google.com'
 
-class LoginDialog(QtGui.QDialog, Ui_Dialog):
+class LoginDialog(QDialog, Ui_Dialog):
     def __init__(self):
-        QtGui.QDialog.__init__(self)
+        QDialog.__init__(self)
         self.setupUi(self)
 
         self.loginBtn.clicked.connect(self.loginBtn_clicked)

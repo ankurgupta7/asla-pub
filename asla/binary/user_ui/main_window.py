@@ -1,10 +1,12 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QUrl
-from PyQt4.QtWebKit import QWebSettings
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebKit import QWebSettings
+from PyQt5.QtWebKitWidgets import QWebView
+from PyQt5.QtWidgets import QMainWindow
 import threading
 import time
 import glob
@@ -25,9 +27,9 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig)
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QMainWindow.__init__(self)
         self.setupUi(self)
 
         [self.model_path, self.scaler_path] = self.update_models()
