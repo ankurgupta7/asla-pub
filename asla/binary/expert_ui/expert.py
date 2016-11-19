@@ -29,8 +29,9 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
-        self.thread = TrainingThread()
+        self.thread = TrainingThread(self)
         self.train_serv_launch = False
+        self.statusbar.show()
 
     def submitDataBtn_clicked(self):
         """ collects all the gesture data from expert and sends it to the server for training """
@@ -66,11 +67,13 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
             pass
 
 class TrainingThread():
-    def __init__(self):
+    def __init__(self, main_window):
         self.thread = None
         self.stop = True
 
         self.train_service = TrainingService()
+        self.train_service.setStatusbar(main_window.statusbar)
+
         self.trained_label = None
 
     def do_train_label(self, cur_label):

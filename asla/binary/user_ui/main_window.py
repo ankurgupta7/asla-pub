@@ -1,14 +1,17 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QUrl
-
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebKit import QWebSettings
+from PyQt5.QtWebKitWidgets import QWebView
+from PyQt5.QtWidgets import QMainWindow
 import threading
 import time
 import glob
 import os
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -24,15 +27,16 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig)
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QMainWindow.__init__(self)
         self.setupUi(self)
 
         [self.model_path, self.scaler_path] = self.update_models()
-        self.thread = PredictionThread(self.model_path, self.scaler_path)
+        self.thread = PredictionThread(self, self.model_path, self.scaler_path)
         self.pred_serv_launch = False
-
+        QWebSettings.globalSettings().setAttribute(QWebSettings.AcceleratedCompositingEnabled, True)
+        QWebSettings.globalSettings().setAttribute(QWebSettings.WebGLEnabled, True)
         self.applyBtn.clicked.connect(self.applyBtn_clicked)
 
     def update_models(self):
@@ -85,18 +89,21 @@ def asla_unused(a):
 
 
 class PredictionThread():
-    def __init__(self, model_path, scaler_path):
+    def __init__(self, main_window, model_path, scaler_path):
         self.thread = None
         self.stop = True
 
         self.predict_service = PredictService(model_path, scaler_path)
+        self.predict_service.setStatusbar(main_window.statusbar)
         self.predicted_label = None
+        self.main_window = main_window
 
     def do_predict_label(self):
         print 'in predict label. mainwindow. thread functioning'
         while True:
             self.predict_service.capture_gesture()
             self.predicted_label = self.predict_service.predict_label()
+            self.main_window.predLabel.setText(self.predicted_label)
             if self.stop == True:
                 break
 
