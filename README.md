@@ -23,9 +23,6 @@ Connect the Leap Motion <br/>
 `nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py` <br/>
 `nosetests asla/server/flask_website/tests/test_user_admin_service.py` <br/>
 ## Steps to Run UI (may not work fully)
-Connect the Leap Motion Device <br/>
-`ASLAROOT=<project_root>/asla` <br/>
-Open `$ASLAROOT` in PyCharm <br/>
-Set `$ASLAROOT` as source directory in PyCharm <br/>
-Run `$ASLAROOT/binary/user_ui/main.py` for user ui <br/>
-Run `$ASLAROOT/binary/expert_ui/main.py` for expert ui <br/>
+* Connect the Leap Motion Device <br/>
+* Run asla.exe
+* OR Run asla-expert.exe if you are an ASL expert and want to train our network.
