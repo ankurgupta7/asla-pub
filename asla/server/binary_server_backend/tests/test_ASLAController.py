@@ -17,7 +17,7 @@ class ASLAControllerTestCase(unittest.TestCase):
         assert 'getmodel' in result.data
 
     def test_make_model(self):
-        result = self.app.post("/makemodel")
+        result = self.app.post("/train")
         self.logger.debug(result.data)
         assert 'makemodel' in result.data
 

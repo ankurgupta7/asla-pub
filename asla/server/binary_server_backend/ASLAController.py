@@ -5,7 +5,7 @@ import global_model_service
 app = Flask(__name__)
 
 
-@app.route('/makemodel', methods=['POST'])
+@app.route('/train', methods=['POST'])
 def make_model():
     """
     Given an Expert user's data dump send this data to the ModelService.
