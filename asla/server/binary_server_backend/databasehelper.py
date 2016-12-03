@@ -1,4 +1,4 @@
-from pymongo import Mongoclient  # for interfacing with the mongodb
+from pymongo import MongoClient  # for interfacing with the mongodb
 
 
 class databasehelper:
@@ -11,7 +11,7 @@ class databasehelper:
         constructor that will init the database connections
         :return: nothing
         """
-        self.mongo_client = Mongoclient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
+        self.mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
         self.db = self.mongo_client['trainingdata']
         self.model_data = self.db['globalmodeldata']
         self.model = self.db['globalmodel']
