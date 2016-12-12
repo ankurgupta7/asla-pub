@@ -61,7 +61,7 @@ class GestureCollection:
         """
         Wait for Controller to be connected to the device.
         """
-        while not self.controller.is_connected:
+        if not self.controller.is_connected:
             pass
         print 'Controller CONNECTED'
 

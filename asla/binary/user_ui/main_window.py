@@ -11,7 +11,8 @@ import threading
 import time
 import glob
 import os
-
+import requests
+import json
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -42,10 +43,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_models(self):
         """ checks if the model is stale and updates it from remote
         returns the filepath for the latest model file"""
-        model_files = glob.glob("../models/model*pkl")
-        latest_model = os.path.abspath(max(model_files))
-        scaler_files =  glob.glob("../models/scaler*pkl")
-        latest_scaler = os.path.abspath(max(scaler_files))
+        # model_files = glob.glob("../models/model*pkl")
+        # scaler_files =  glob.glob("../models/scaler*pkl")
+        model_fname = 'model.pkl'
+        scaler_fname = 'scaler.pkl'
+        try:
+            model_json = requests.get("http://asla.heroku.com/models")
+            model_url = json.load(model_json)['url']
+            r = requests.get(model_url)
+            with open(model_fname, 'wb') as fd:
+                for chunk in r.iter_content(chunk_size=128):
+                    fd.write(chunk)
+            scaler_json = requests.get("http://asla.heroku.com/scalers")
+            scaler_url = json.load(model_json)['url']
+            r = requests.get(scaler_url)
+            with open(scaler_fname, 'wb') as fd:
+                for chunk in r.iter_content(chunk_size=128):
+                    fd.write(chunk)
+        except Exception as e:
+            latest_model = os.path.abspath(model_fname)
+            latest_scaler = os.path.abspath(scaler_fname)
 
         return (latest_model, latest_scaler)
 
