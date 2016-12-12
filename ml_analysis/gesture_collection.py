@@ -37,7 +37,7 @@ class GestureCollection:
         :rtype: boolean
         """
         try:
-            in_file = open('calibration_data.txt', 'r')
+            in_file = open('calibration_data_damian.txt', 'r')
             lines = in_file.readlines()
             for index in range(len(lines)):
                 field_name, field_val = lines[index].split(":")
@@ -63,7 +63,7 @@ class GestureCollection:
     def enum(self, **enums):
         return type('Enum', (), enums)
 
-    def extract_features(self, reps=30, skip_time=0.5, hold_time=2, gap_time=0.25, print_feat=True):
+    def extract_features(self, reps=3, skip_time=1.5, hold_time=2, gap_time=0.25, print_feat=True):
         """Method to extract features
         :return: final feature list
         :rtype: list

@@ -13,7 +13,6 @@ class PredictService:
     def __init__(self, model_file, scaler_file):
         # type: (string, string)
         # do some path append to model_file and scalar_file
-        print model_file
         self.model = joblib.load(model_file)
         self.scaler = joblib.load(scaler_file)
         self.to_predict = []

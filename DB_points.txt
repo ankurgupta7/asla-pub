@@ -1,0 +1,4 @@
+1) App Server checks for new data in DB server every day. This is implemented with new column in training data 'is_trained' : yes or no
+2) The format of data file would be converted to JSON with feature name as fields and values as list of numbers corresponding to gesture data
+3) The format of model should also be converted to JSON
+4) 

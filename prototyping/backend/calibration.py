@@ -65,7 +65,7 @@ class Calibration:
                             else:
                                 if extended:
                                     print "Good! Calibration is starting. Do NOT move the hand..."
-                                    time.sleep(10 * gap_time)
+                                    #time.sleep(10 * gap_time)
                                     extended = False
                                 # Relative origin(used to calculate the relative distances)
                                 hand_center = hand.stabilized_palm_position
@@ -87,5 +87,5 @@ class Calibration:
                 time_elapsed += gap_time
 
     def write_calibration(self):
-        with io.FileIO("calibration_data.txt", "w") as cal_file:
+        with io.FileIO("calibration_data_damian.txt", "w") as cal_file:
             cal_file.write("middle_len " + str(self.middle_len))
