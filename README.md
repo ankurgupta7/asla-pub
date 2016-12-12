@@ -2,19 +2,21 @@
 [![Build Status](https://travis-ci.com/jhu-oose/2016-group-15.svg?token=WPwURECkpN4xsLzZYqVc&branch=master)](https://travis-ci.com/jhu-oose/2016-group-15)
 
 ## Installing Dependencies
+### Python and Packages
+`sudo apt-get install python-pip python2.7-dev libxext-dev python-qt4 qt4-dev-tools build-essential` <br/>
+`sudo pip install -U -r requirements.txt` <br/>
 ### libs
 `sudo add-apt-repository ppa:ubuntu-toolchain-r/test` <br/>
 `sudo apt-get update` <br/>
 `sudo apt-get install libstdc++-4.9-dev` <br/>
 `sudo apt-get install -q python-numpy python-scipy python-sklearn libstdc++6`
-### Python Packages
+
+## Cloning the repo
 `git clone git@github.com:jhu-oose/2016-group-15.git` <br/>
-`sudo pip install -U -r requirements.txt` <br/>
-`sudo apt-get install python-pip python2.7-dev libxext-dev python-qt4 qt4-dev-tools build-essential` <br/>
+
 ## Running Tests
 Connect the Leap Motion <br/>
-`ASLAROOT=<project_root>/asla` <br/>
-`cd $ASLAROOT` <br/>
+`cd 2016-group-15` <br/>
 `nosetests asla/binary/ml_tools/tests/test_predict_service.py` <br/>
 `nosetests asla/binary/ml_tools/tests/test_training_service.py` <br/>
 `nosetests asla/server/binary_server_backend/tests/test_ASLAController.py` <br/>
