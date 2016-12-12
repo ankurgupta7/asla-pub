@@ -37,7 +37,7 @@ class LoginDialog(QDialog, Ui_Dialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
                 # print('db not setup. Enjoy.. EEHAAHA!!')
-            msgBox.setWindowTitle(QtCore.QString("Failed Login"))
+            msgBox.setWindowTitle("Failed Login")
             msgBox.setText("Either incorrect username and/or password. Try again!")
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_()

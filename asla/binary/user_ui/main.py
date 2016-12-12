@@ -21,10 +21,10 @@ if __name__ == "__main__":
         #     isAuth = True
         # else:
         #     isAuth = False
-    # isAuth = loginDialog.Success
+    isAuth = loginDialog.Success
 
-    # if isAuth == True:
-    w = MainWindow()
-    w.show()
-    a.exec_()
+    if isAuth == True:
+        w = MainWindow()
+        w.show()
+        a.exec_()
     # exit(0)
