@@ -51,8 +51,8 @@ Connect the Leap Motion <br/>
 `nosetests asla/server/flask_website/tests/test_binary_helper.py` <br/>
 `nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py` <br/>
 `nosetests asla/server/flask_website/tests/test_user_admin_service.py` <br/>
-## Steps to Run UI (may not work fully)
-* run install_dependencies.sh
+## Steps to Run UI 
 * Connect the Leap Motion Device <br/>
-* Run asla.sh
-* OR Run asla-expert.sh if you are an ASL expert and want to train our network.
+* cd 2016-group-15/asla
+* chmod u+x main.sh
+* ./main.sh
