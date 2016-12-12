@@ -3,6 +3,9 @@
 
 ## Installing Dependencies
 ### Python and Packages
+`sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7`<br/>
+`sudo apt-get update `<br/>
+`sudo apt-get install python2.7`<br/>
 `sudo apt-get install python-pip python2.7-dev libxext-dev python-qt4 qt4-dev-tools build-essential` <br/>
 `sudo pip install -U -r requirements.txt` <br/>
 ### libs
@@ -25,6 +28,7 @@ Connect the Leap Motion <br/>
 `nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py` <br/>
 `nosetests asla/server/flask_website/tests/test_user_admin_service.py` <br/>
 ## Steps to Run UI (may not work fully)
+* run install_dependencies.sh
 * Connect the Leap Motion Device <br/>
-* Run asla.exe
-* OR Run asla-expert.exe if you are an ASL expert and want to train our network.
+* Run asla.sh
+* OR Run asla-expert.sh if you are an ASL expert and want to train our network.
