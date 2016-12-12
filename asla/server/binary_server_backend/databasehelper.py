@@ -40,6 +40,16 @@ class databasehelper:
         latest_model = self.model.find().skip(self.model.count() - 1)
         return latest_model
 
+    def putmodel(self, new_model):
+        """
+        Makes the new model.
+        :param new_model: the new trained model
+        :return: nothing
+        """
+        self.model.delete_many({})  # remove all previous models
+        self.model.insert_one(new_model)
+        return True
+
 
 dbh = databasehelper()
 dbh.check_and_fetch()
