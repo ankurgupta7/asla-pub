@@ -38,8 +38,8 @@ class TrainingService:
         """
         Sends the captured gestures to the database server
         """
-        rel_path = 'ml_tools/headers.csv'
-        headers_file = os.path.join(root_path, rel_path)
+        rel_path = os.path.dirname(os.path.realpath(__file__))
+        headers_file = os.path.join(rel_path, 'headers.csv')
         header_string = open(headers_file)
         headers = header_string.read().split(',')
         for row in self.data_collected:

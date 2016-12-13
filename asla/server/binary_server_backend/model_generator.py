@@ -29,9 +29,8 @@ class ModelGenerator:
         x_train = []
         try:
             training_data = self.db_helper.check_and_fetch(True)
-            root_path = os.path.dirname(os.path.abspath('..'))
-            rel_path = 'binary_server_backend/headers.csv'
-            headers_file = os.path.join(root_path, rel_path)
+            rel_path = os.path.dirname(os.path.realpath(__file__))
+            headers_file = os.path.join(rel_path, 'headers.csv')
             print headers_file
             header_string = open(headers_file)
             headers = header_string.read().split(',')
