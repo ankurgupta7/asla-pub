@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 from model_generator import ModelGenerator
-from server.binary_server_backend.classifier import SVM
+from classifier import SVM
 from databasehelper import DatabaseHelper
 import time
 import os
