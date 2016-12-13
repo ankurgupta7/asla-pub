@@ -3,7 +3,7 @@
 
 ## Installing Dependencies including PyQt5
 
-sudo asla/setup.sh
+`sudo asla/setup.sh` <br/>
 ## Cloning the repo
 `git clone git@github.com:jhu-oose/2016-group-15.git` <br/>
 
