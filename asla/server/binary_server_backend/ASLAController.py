@@ -14,11 +14,16 @@ app.secret_key = "1234"
 def make_model():
     """
     Given an Expert user's data dump send this data to the ModelService.
+    The POST body should contain the flag for storing the data.
+    eg:
+    {"store":True}
     :return:
     """
     classifier = SVM()
     model_gen = ModelGenerator(classifier)
     model_gen.train()
+    if request.form['store'] == 'True':
+        model_gen.store_model()
     return "makemodel"
 
 
@@ -26,6 +31,9 @@ def make_model():
 def get_model():
     """
     Retrieves the global model and sends it back over the HTTP response
+    The POST body should contain the user_model_time.
+    eg:
+    {"time":20161213-010905;}
     :return:
     """
     user_time = time.strptime(request.form['time'], "%Y%m%d-%H%M%S")
