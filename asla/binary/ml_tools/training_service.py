@@ -4,6 +4,7 @@ sys.path.append(root_path)
 from ..leap_tools.gesture_collection import GestureCollection
 from pymongo import MongoClient
 
+
 class TrainingService:
     """
     Expert user invokes this service.
@@ -44,6 +45,7 @@ class TrainingService:
             for i, header in enumerate(headers):
                 data_to_send[header] = row[i]
             self.model_data.insert_one(data_to_send)
+        return True
 
     def set_status_bar(self, s):
         self.exp_ges.setStatusBar(s)
