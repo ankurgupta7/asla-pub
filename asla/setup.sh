@@ -37,20 +37,3 @@ python configure.py --qmake ~/Qt5.3.1/5.3/gcc_64/bin/qmake --sip-incdir ../sip-4
 sudo ln -s /usr/include/python2.7 /usr/local/include/python2.7
 make
 sudo make install
-
-#Clone the repo
-git clone git@github.com:jhu-oose/2016-group-15.git
-
-#Running Tests
-cd 2016-group-15 
-nosetests asla/binary/ml_tools/tests/test_predict_service.py 
-nosetests asla/binary/ml_tools/tests/test_training_service.py 
-nosetests asla/server/binary_server_backend/tests/test_ASLAController.py 
-nosetests asla/server/binary_server_backend/tests/test_model_generator.py 
-nosetests asla/server/flask_website/tests/test_binary_helper.py 
-nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py 
-nosetests asla/server/flask_website/tests/test_user_admin_service.py 
-
-#make executable
-cd asla
-chmod u+x main.sh
