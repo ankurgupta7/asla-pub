@@ -35,7 +35,7 @@ class TrainingService:
         self.data_collected.extend(self.exp_ges.extract_features())
 
     def send_to_server(self):
-        #data_to_send = {"training_data" : self.data_collected}
+        # data_to_send = {"training_data" : self.data_collected}
         header_string = open('headers.csv')
         column_labels = header_string.read().split(',')
         data = open('data-20161208-131001_damian.csv')
@@ -46,5 +46,6 @@ class TrainingService:
             for j in column_labels:
                 data_to_send[j] = values_per_line[j]
             self.model_data.insert_one(data_to_send)
+
     def set_status_bar(self, s):
         self.exp_ges.setStatusBar(s)

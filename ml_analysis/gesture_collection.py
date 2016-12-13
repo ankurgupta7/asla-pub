@@ -57,7 +57,7 @@ class GestureCollection:
         """
         while not self.controller.is_connected:
             pass
-        print 'Controller CONNECTED'
+        # print 'Controller CONNECTED'
 
     # enums for bone types
     def enum(self, **enums):
@@ -88,6 +88,7 @@ class GestureCollection:
                     time_elapsed = 0
                     start_frame = None
                     if not printed:
+                        print
                         print 'Bring hand in view'
                         printed = True
                 elif feat_index < feat_len:
@@ -146,8 +147,8 @@ class GestureCollection:
                     feat_index += 1
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
-                    print "Remove hand from view"
-                    print "just", reps - reps_completed, " to go"
+                    # print "Remove hand from view"
+                    # print "just", reps - reps_completed, " to go"
                     printed = False
                 if len(hands) != 0:
                     time.sleep(gap_time)

@@ -1,11 +1,14 @@
-from flask import Flask, request
-from flask import Response
-import numpy as np
+from flask import Flask
+from flask import request
+from model_generator import ModelGenerator
+from server.binary_server_backend.classifier import SVM
+from databasehelper import DatabaseHelper
+import time
 import os
-from sklearn.linear_model import LinearRegression
 
 app = Flask(__name__)
 app.secret_key = "1234"
+
 
 @app.route('/train', methods=['POST'])
 def make_model():
@@ -13,18 +16,28 @@ def make_model():
     Given an Expert user's data dump send this data to the ModelService.
     :return:
     """
-    a = np.array([[1, 2], [3, 4]])
-    return str(np.mean(a))
+    classifier = SVM()
+    model_gen = ModelGenerator(classifier)
+    model_gen.train()
+    return "makemodel"
 
 
-@app.route('/getmodel', methods=['POST'])
+@app.route('/getmodel', methods=["POST"])
 def get_model():
     """
     Retrieves the global model and sends it back over the HTTP response
     :return:
     """
-    if request.method == "POST":
-        return request.form["time"]
+    user_time = time.strptime(request.form['time'], "%Y%m%d-%H%M%S")
+    db_helper = DatabaseHelper()
+    latest_global_model = db_helper.get_latest_model()
+    for model in latest_global_model:
+        model_time = time.strptime(model['time'], "%Y%m%d-%H%M%S")
+        if model_time > user_time:
+            return "YES"
+        else:
+            return "NO "
+    return "getmodel"
 
 
 if __name__ == '__main__':
