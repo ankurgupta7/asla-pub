@@ -3,7 +3,6 @@ root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
 from ..leap_tools.gesture_collection import GestureCollection
 from pymongo import MongoClient
-import csv
 
 class TrainingService:
     """
@@ -35,16 +34,15 @@ class TrainingService:
         self.data_collected.extend(self.exp_ges.extract_features())
 
     def send_to_server(self):
-        # data_to_send = {"training_data" : self.data_collected}
+        """
+        Sends the captured gestures to the database server
+        """
         header_string = open('headers.csv')
-        column_labels = header_string.read().split(',')
-        data = open('data-20161208-131001_damian.csv')
-        lines = data.readlines()[1:]
-        for line in lines:
+        headers = header_string.read().split(',')
+        for row in self.data_collected:
             data_to_send = {}
-            values_per_line = line.split(',')
-            for j in column_labels:
-                data_to_send[j] = values_per_line[j]
+            for i, header in enumerate(headers):
+                data_to_send[header] = row[i]
             self.model_data.insert_one(data_to_send)
 
     def set_status_bar(self, s):
