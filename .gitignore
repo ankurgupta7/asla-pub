@@ -24,3 +24,6 @@ calibration_data.txt
 *.bine
 
 *.un~
+
+#Coverage files
+.coverage
