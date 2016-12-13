@@ -12,12 +12,16 @@ class ASLAControllerTestCase(unittest.TestCase):
         self.logger.level = logging.DEBUG
 
     def test_get_model(self):
-        result = self.app.get("/getmodel")
+        result = self.app.post("/getmodel", data=dict(
+            time='20161213-010905'
+        ))
         self.logger.debug(result.data)
-        assert 'getmodel' in result.data
+        assert 'YES' in result.data
 
     def test_make_model(self):
-        result = self.app.post("/train")
+        result = self.app.post("/train", data=dict(
+            store='False'
+        ))
         self.logger.debug(result.data)
         assert 'makemodel' in result.data
 
