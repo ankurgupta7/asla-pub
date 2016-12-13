@@ -16,9 +16,8 @@ class PredictService:
         self.model = joblib.load(model_file)
         self.scaler = joblib.load(scaler_file)
         self.to_predict = []
-        self.user_ges = GestureCollection()
+        self.user_ges = GestureCollection('@')
         pass
-
 
     def capture_gesture(self):
         """
@@ -36,6 +35,7 @@ class PredictService:
         """
         self.to_predict = self.to_predict[0][1:].reshape(1, -1)
         to_predict_scaled = self.scaler.transform(self.to_predict)
-        return str(self.model.predict(to_predict_scaled)[0])
+        return chr(64 + int(self.model.predict(to_predict_scaled)[0]))
+
     def setStatusbar(self, s):
         self.user_ges.setStatusBar(s)
