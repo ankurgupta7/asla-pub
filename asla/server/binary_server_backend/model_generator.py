@@ -1,5 +1,6 @@
 from databasehelper import DatabaseHelper
 import pickle
+import os
 
 
 class ModelGenerator:
@@ -28,7 +29,11 @@ class ModelGenerator:
         x_train = []
         try:
             training_data = self.db_helper.check_and_fetch(True)
-            header_string = open('headers.csv')
+            root_path = os.path.dirname(os.path.abspath('..'))
+            rel_path = 'binary_server_backend/headers.csv'
+            headers_file = os.path.join(root_path, rel_path)
+            print headers_file
+            header_string = open(headers_file)
             headers = header_string.read().split(',')
             for datum in training_data:
                 x_train_row = []
