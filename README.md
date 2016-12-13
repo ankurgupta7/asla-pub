@@ -47,7 +47,7 @@ Connect the Leap Motion <br/>
 `nosetests asla/binary/ml_tools/tests/test_predict_service.py` <br/>
 `nosetests asla/binary/ml_tools/tests/test_training_service.py` <br/>
 `nosetests asla/server/binary_server_backend/tests/test_ASLAController.py` <br/>
-`nosetests asla/server/binary_server_backend/tests/test_global_model_service.py` <br/>
+`nosetests asla/server/binary_server_backend/tests/test_model_generator.py` <br/>
 `nosetests asla/server/flask_website/tests/test_binary_helper.py` <br/>
 `nosetests asla/server/flask_website/tests/test_FlaskWebsiteBackend.py` <br/>
 `nosetests asla/server/flask_website/tests/test_user_admin_service.py` <br/>
