@@ -13,12 +13,11 @@ class TrainingService:
     """
     def __init__(self):
         # this is the final data set that is sent to the server
-        # for now, this will be stored locally in a csv file
         self.mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
         self.db = self.mongo_client['trainingdata']
         self.model_data = self.db['globalmodeldata']
         self.data_collected = []
-        self.exp_ges = GestureCollection('')
+        self.exp_ges = GestureCollection('@')
         pass
 
     def capture_gesture(self, label):
@@ -28,7 +27,7 @@ class TrainingService:
         :param label: Label for current gesture being collected
         :type label: String
         """
-        self.exp_ges.label = label
+        self.exp_ges.label = ord(label.upper()) - 64
         self.exp_ges.wait_for_connection()
         if not self.exp_ges.is_calibrated():
             self.exp_ges.calibration.calibrate()
