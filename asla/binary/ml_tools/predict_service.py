@@ -16,7 +16,7 @@ class PredictService:
         self.model = joblib.load(model_file)
         self.scaler = joblib.load(scaler_file)
         self.to_predict = []
-        self.user_ges = GestureCollection()
+        self.user_ges = GestureCollection('a')
         pass
 
 
