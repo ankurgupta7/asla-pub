@@ -7,8 +7,9 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class Classifier:
-    """Parent class for a classifier object"""
-
+    """Parent class for a classifier.
+    Allows for more classifiers to be added at a later stage.
+    """
     def __init__(self):
         self.x_train_scaled = None
         self.scaler = None
