@@ -37,7 +37,8 @@ class Calibration:
         self.status_bar = s
 
     def setStatus(self, text):
-        self.status_bar.showMessage(text)
+        # self.status_bar.showMessage(text)
+        return 0
 
     def calibrate(self, reps=3, skip_time=2, hold_time=5, gap_time=0.25):
         """

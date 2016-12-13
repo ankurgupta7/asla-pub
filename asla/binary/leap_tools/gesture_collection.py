@@ -35,7 +35,7 @@ class GestureCollection:
         pass
     def setStatus(self, text):
         self.status = text
-        self.status_bar.showMessage(text)
+        # self.status_bar.showMessage(text)
     def getStatus(self):
         return self.status
     def setStatusBar(self, s):
