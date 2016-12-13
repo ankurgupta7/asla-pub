@@ -79,14 +79,14 @@ class TrainingThread():
         self.stop = True
 
         self.train_service = TrainingService()
-        self.train_service.set_status_bar(main_window.statusbar)
-
+        self.main_window = main_window
         self.trained_label = None
 
     def do_train_label(self, cur_label):
         print 'in train label. MainWindow. thread functioning'
         while True:
             self.train_service.capture_gesture(label=cur_label)
+            self.train_service.set_status_bar(self.main_window.statusbar)
             if self.stop == True:
                 break
 
