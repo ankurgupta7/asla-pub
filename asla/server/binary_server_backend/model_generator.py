@@ -20,9 +20,7 @@ class ModelGenerator:
         Stores the model and the scaler in the database
         """
         x, y = self.get_data()
-        # Classify
         self.model, self.scaler = self.classifier.create_model(x, y)
-        self.store_model()
 
     def get_data(self):
         """Returns the features(x) and the labels(y) to train on"""
