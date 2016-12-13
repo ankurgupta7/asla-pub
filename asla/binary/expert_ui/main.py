@@ -1,4 +1,4 @@
-from PyQt4.QtGui import QApplication
+from PyQt5.QtWidgets import QApplication
 from expert import ExpertMainWindow
 
 import sip
@@ -9,7 +9,7 @@ sip.setapi("QString", 1)
 
 if __name__ == "__main__":
     a = QApplication(sys.argv)
-
+    a.setStyle("fusion")
     # loginDialog = LoginDialog()
 
     # isAuth = False

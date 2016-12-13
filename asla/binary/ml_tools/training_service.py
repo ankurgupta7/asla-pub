@@ -18,6 +18,7 @@ class TrainingService:
         self.db = self.mongo_client['trainingdata']
         self.model_data = self.db['globalmodeldata']
         self.data_collected = []
+        self.exp_ges = GestureCollection('')
         pass
 
     def capture_gesture(self, label):
@@ -27,7 +28,7 @@ class TrainingService:
         :param label: Label for current gesture being collected
         :type label: String
         """
-        self.exp_ges = GestureCollection(label)
+        self.exp_ges.label = label
         self.exp_ges.wait_for_connection()
         if not self.exp_ges.is_calibrated():
             self.exp_ges.calibration.calibrate()

@@ -1,10 +1,12 @@
-from PyQt4.QtGui import QMainWindow
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl
 from ui_expert import Ui_MainWindow
 from binary.ml_tools.training_service import TrainingService
-
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QMainWindow
+# from PyQt4 import QtGui, QtCore
+# from PyQt4.QtGui import QApplication
+# from PyQt4.QtCore import QUrl
 
 import threading
 import time
@@ -17,6 +19,8 @@ except AttributeError:
 
 try:
     _encoding = QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
@@ -28,6 +32,8 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.skeletonView.setUrl(QtCore.QUrl(
+            "http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html"))
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
         self.thread = TrainingThread(self)
         self.train_serv_launch = False
@@ -65,6 +71,7 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
             self.doSpacebarpressed()
         else:
             pass
+
 
 class TrainingThread():
     def __init__(self, main_window):
