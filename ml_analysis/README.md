@@ -1,7 +1,9 @@
 ## Analysis of Machine Learning Aspect of the project
 
 This is mainly a '*repo*' for all the code used for our machine learning analysis.
-All training/test data used for analysis will be stored in data folder.
+asla will use the classifier and configurations that performs best, based on the cross-validation error
+The cross validation error is calculated using leave one group out. Group here signifies a single persons data.
+All training/test data used for analysis will be stored in data folder. 
 
 ### Features
 
