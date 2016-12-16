@@ -14,7 +14,7 @@ sudo apt-get install libstdc++-4.9-dev
 sudo apt-get install -q python-numpy python-scipy python-sklearn libstdc++6
 
 #installing PyQt5
-wget " http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz"
+wget "http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz"
 wget "http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz"
 wget "http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.3.2/PyQt-gpl-5.3.2.tar.gz/download"
 
