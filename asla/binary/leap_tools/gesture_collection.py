@@ -1,10 +1,13 @@
 from __future__ import division
+
+from features import Features
+from calibration import Calibration
+
+from PyQt5 import QtCore
 import sys
 import time
 from sys import platform
 import itertools
-from features import Features
-from calibration import Calibration
 import math
 import numpy as np
 
@@ -27,24 +30,41 @@ elif platform == 'win32':
         from lib.win32.x86.Leap import Vector
 
 
-class GestureCollection:
+class GestureCollection(QtCore.QObject):
     """
     Extracting the features from captured gesture
     """
+    msg_ready_signal = QtCore.pyqtSignal(str) # sorry for the ugliness. thats how qt works
     def __init__(self, label):
+        QtCore.QObject.__init__(self)
         self.label = ord(label.upper()) - 64
         self.controller = Leap.Controller()
         self.calibration = Calibration(self.controller)
         self.status = None
         self.status_bar = None
+        self.status_mutex = False
+
+        # self.GUISingleton =
         pass
 
     def setStatus(self, text):
+        self.msg_ready_signal.emit(text)
+        # while(self.status_mutex):
+        #     print 'waiting for lock/ set status'
+        #     continue
+        self.status_mutex = True
         self.status = text
+        self.status_mutex = False
         # self.status_bar.showMessage(text)
 
     def getStatus(self):
-        return self.status
+        # while (self.status_mutex):
+        #     print 'waiting for lock/ get status'
+        #     continue
+        self.status_mutex = True
+        b = (self.status + '.')[:-1] # creating a deep copy of string. the neatest way to do that sadly.
+        self.status_mutex = False
+        return b
 
     def setStatusBar(self, s):
         self.status_bar = s
@@ -58,6 +78,7 @@ class GestureCollection:
         """
         try:
             in_file = open('calibration_data_damian.txt', 'r')
+            self.setStatus('test. will crash if not handled properly')
             lines = in_file.readlines()
             for index in range(len(lines)):
                 field_name, field_val = lines[index].split(":")
@@ -69,6 +90,10 @@ class GestureCollection:
                     self.calibration.max_inner_distances = np.asarray(field_val)
             return True
         except IOError:
+            self.setStatus('calibration file not found. will start calibration now')
+            return False
+        except ValueError:
+            self.setStatus('something weird with the calibration data happened')
             return False
 
     def wait_for_connection(self):

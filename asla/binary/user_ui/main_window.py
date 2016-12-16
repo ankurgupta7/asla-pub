@@ -35,11 +35,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         [self.model_path, self.scaler_path] = self.update_models()
         self.thread = PredictionThread(self, self.model_path, self.scaler_path)
+        self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
         self.pred_serv_launch = False
         QWebSettings.globalSettings().setAttribute(QWebSettings.AcceleratedCompositingEnabled, True)
         QWebSettings.globalSettings().setAttribute(QWebSettings.WebGLEnabled, True)
         self.applyBtn.clicked.connect(self.applyBtn_clicked)
 
+    def status_ready(self, txt):
+        self.statusbar.showMessage(txt)
     def update_models(self):
         """ checks if the model is stale and updates it from remote
         returns the filepath for the latest model file"""
@@ -77,13 +80,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         asla_unused(handCoords)
         self.skeletonView.setUrl('file:///../resources/Perlich_Bones.html')
 
-    # def do_predict_label(self):
-    #     while True:
-    #         print 'in predict label. mainwindow. thread functioning'
-    #         # self.predict_service.capture_gesture()
-    #         # self.predicted_label = self.predict_service.predict_label()
-    #         time.sleep(0.500)
-
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
         if self.pred_serv_launch:
@@ -102,6 +98,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 def asla_unused(a):
+    a
     return None
 
 
@@ -111,9 +108,11 @@ class PredictionThread():
         self.stop = True
 
         self.predict_service = PredictService(model_path, scaler_path)
-        self.predict_service.setStatusbar(main_window.statusbar)
+        # self.predict_service.setStatusbar(main_window.statusbar)
+        self.status_bar = main_window.statusbar
         self.predicted_label = None
         self.main_window = main_window
+
 
     def do_predict_label(self):
         print 'in predict label. mainwindow. thread functioning'
@@ -131,11 +130,15 @@ class PredictionThread():
         self.thread = threading.Thread(target=self.do_predict_label)
         self.stop = False
         self.thread.start()
-
+        self.readMessageThread = threading.Thread(target=self.do_read_msg)
+    def do_read_msg(self):
+        msg = self.predict_service.user_ges.getStatus()
+        self.status_bar.showMessage(msg)
     def kill_gesture_prediction_service_thread(self):
         """ kills prediction service and cleans up"""
         self.stop = True
         self.thread.join(1)
-        while self.thread.isAlive():
+        # self.readMessageThread.join(1);
+        while self.thread.isAlive() or self.readMessageThread.isAlive():
             print 'why wouldnt you die thread!'
             self.thread.join(1)
