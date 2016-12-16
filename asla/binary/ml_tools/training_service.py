@@ -1,7 +1,14 @@
 import os, sys
 root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
-from ..leap_tools.gesture_collection import GestureCollection
+try:
+    if (os.environ["NOQT"] == "1"):
+        print 'gesture collection which needs qt, not being imported'
+    else:
+        from ..leap_tools.gesture_collection import GestureCollection
+except KeyError:
+    from ..leap_tools.gesture_collection import GestureCollection
+
 from pymongo import MongoClient
 
 

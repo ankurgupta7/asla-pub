@@ -4,6 +4,8 @@ root_path = os.path.dirname(os.path.abspath('../..'))
 sys.path.append(root_path)
 
 import unittest
+os.environ["NOQT"] = "1"
+
 from ...ml_tools.training_service import TrainingService
 
 
