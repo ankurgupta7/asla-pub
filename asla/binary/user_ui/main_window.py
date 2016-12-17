@@ -82,6 +82,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
+        # connecting pyqt threadsafe
+
         if self.pred_serv_launch:
             self.thread.kill_gesture_prediction_service_thread()
             self.pred_serv_launch = False
@@ -108,6 +110,7 @@ class PredictionThread():
         self.stop = True
 
         self.predict_service = PredictService(model_path, scaler_path)
+        self.predict_service.make_gesture_obj()
         # self.predict_service.setStatusbar(main_window.statusbar)
         self.status_bar = main_window.statusbar
         self.predicted_label = None

@@ -5,6 +5,9 @@ sys.path.append(root_path)
 
 import unittest
 import numpy as np
+
+os.environ["NOQT"] = "1"
+
 from ...ml_tools.predict_service import PredictService
 
 

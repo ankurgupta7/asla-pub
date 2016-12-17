@@ -2,8 +2,14 @@ from sklearn.externals import joblib
 import os, sys
 root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
-from ..leap_tools.gesture_collection import GestureCollection
 
+try:
+    if (os.environ["NOQT"] == "1"):
+        print 'gesture collection which needs qt, not being imported'
+    else:
+        from ..leap_tools.gesture_collection import GestureCollection
+except KeyError:
+    from ..leap_tools.gesture_collection import GestureCollection
 
 class PredictService:
     """
@@ -16,15 +22,16 @@ class PredictService:
         self.model = joblib.load(model_file)
         self.scaler = joblib.load(scaler_file)
         self.to_predict = []
-        self.user_ges = GestureCollection('a')
         pass
 
+    def make_gesture_obj(self):
+        ## trivial but needs a separate method for template design pattern
+        self.user_ges = GestureCollection('@')
 
     def capture_gesture(self):
         """
         Captures user's gesture
         """
-
         self.user_ges.wait_for_connection()
         if not self.user_ges.is_calibrated():
             self.user_ges.calibration.calibrate()
