@@ -77,7 +77,7 @@ class GestureCollection(QtCore.QObject):
         :rtype: boolean
         """
         try:
-            in_file = open('calibration_data_damian.txt', 'r')
+            in_file = open('calibration_data.txt', 'r')
             self.setStatus('test. will crash if not handled properly')
             lines = in_file.readlines()
             for index in range(len(lines)):
