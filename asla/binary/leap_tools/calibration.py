@@ -134,7 +134,7 @@ class Calibration:
         """
         Writes calibration parameters to file
         """
-        with io.FileIO("calibration_data_damian.txt", "w") as cal_file:
+        with io.FileIO("calibration_data.txt", "w") as cal_file:
             cal_file.write("middle finger parameters: " +
                            str(self.middle_fingers_params) +"\n" +
                            "inner distances parameters: " + str(self.max_inner_distances))
