@@ -6,6 +6,7 @@ from sys import platform
 import numpy as np
 import io
 import itertools
+# from binary.leap_tools.leap import
 
 if platform == "linux" or platform == "linux2":
     if sys.maxsize > 2 ** 32:
@@ -61,6 +62,7 @@ class Calibration:
         # array of middle finger averages of lengths. size is equal to number of reps
         time_elapsed = 0
         feat_index = 0
+        BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE=2, TYPE_PROXIMAL=1, TYPE_METACARPAL=0)
         while self.controller.is_connected:
             if reps_completed == reps:
                 print "Calibration is finished!"
