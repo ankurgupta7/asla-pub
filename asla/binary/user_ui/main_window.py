@@ -1,6 +1,8 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
+from pygame import mixer
+from gtts import gTTS
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
@@ -106,7 +108,7 @@ class PredictionThread():
     def __init__(self, main_window, model_path, scaler_path):
         self.thread = None
         self.stop = True
-
+        mixer.init()
         self.predict_service = PredictService(model_path, scaler_path)
         # self.predict_service.setStatusbar(main_window.statusbar)
         self.status_bar = main_window.statusbar
@@ -119,6 +121,10 @@ class PredictionThread():
         while True:
             self.predict_service.capture_gesture()
             self.predicted_label = self.predict_service.predict_label()
+            tts = gTTS(text=str(self.predicted_label), lang='en')
+            tts.save("prediction.mp3")
+            mixer.music.load("prediction.mp3")
+            mixer.music.play()
             self.main_window.predLabel.setText(self.predicted_label)
             if self.stop == True:
                 break
