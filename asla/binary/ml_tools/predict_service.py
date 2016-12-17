@@ -11,6 +11,7 @@ try:
 except KeyError:
     from ..leap_tools.gesture_collection import GestureCollection
 
+
 class PredictService:
     """
     Service for predicting gestures for users
@@ -22,11 +23,13 @@ class PredictService:
         self.model = joblib.load(model_file)
         self.scaler = joblib.load(scaler_file)
         self.to_predict = []
+        self.user_ges = None
         pass
 
     def make_gesture_obj(self):
-        ## trivial but needs a separate method for template design pattern
+        # trivial but needs a separate method for template design pattern
         self.user_ges = GestureCollection('@')
+
     def capture_gesture(self):
         """
         Captures user's gesture

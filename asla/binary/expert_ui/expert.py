@@ -36,6 +36,7 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
             "http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html"))
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
         self.thread = TrainingThread(self)
+        self.thread.train_service.make_gesture_obj()
         self.train_serv_launch = False
         self.statusbar.show()
 

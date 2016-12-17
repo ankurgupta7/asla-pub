@@ -24,8 +24,11 @@ class TrainingService:
         self.db = self.mongo_client['trainingdata']
         self.model_data = self.db['globalmodeldata']
         self.data_collected = []
-        self.exp_ges = GestureCollection('@')
+        self.exp_ges = None
         pass
+
+    def make_gesture_obj(self):
+        self.exp_ges = GestureCollection('@')
 
     def capture_gesture(self, label):
         """
