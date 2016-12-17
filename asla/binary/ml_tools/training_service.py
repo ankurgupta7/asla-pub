@@ -28,6 +28,7 @@ class TrainingService:
         :type label: String
         """
         self.exp_ges.label = ord(label.upper()) - 64
+        # self.exp_ges.label = label
         self.exp_ges.wait_for_connection()
         if not self.exp_ges.is_calibrated():
             self.exp_ges.calibration.calibrate()
