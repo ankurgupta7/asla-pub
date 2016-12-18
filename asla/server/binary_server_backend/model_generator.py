@@ -28,7 +28,7 @@ class ModelGenerator:
         y_train = []
         x_train = []
         try:
-            training_data = self.db_helper.check_and_fetch(True)
+            training_data = self.db_helper.check_and_fetch(False)
             rel_path = os.path.dirname(os.path.realpath(__file__))
             headers_file = os.path.join(rel_path, 'headers.csv')
             print headers_file
