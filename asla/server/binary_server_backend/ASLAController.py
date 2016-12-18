@@ -43,7 +43,7 @@ def get_model():
     latest_global_scaler = db_helper.get_latest_scaler()
     for model, scaler in zip(latest_global_model, latest_global_scaler):
         model_time = time.strptime(model['time'], "%Y%m%d-%H%M%S")
-        if model_time >= user_time:
+        if model_time > user_time:
             ret_val = {}
             ret_val["time"] = model["time"]
             ret_val["model"] = model["model"]

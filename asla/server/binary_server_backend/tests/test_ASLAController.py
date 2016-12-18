@@ -14,7 +14,6 @@ class ASLAControllerTestCase(unittest.TestCase):
     def test_get_model(self):
         result = self.app.post("/getmodel", data=dict(
             time='20161213-010905',
-            store='False'
         ))
         self.logger.debug(result.data)
         assert result.data is not None
