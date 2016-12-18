@@ -78,7 +78,7 @@ class GestureCollection(QtCore.QObject):
         """
         try:
             in_file = open('calibration_data.txt', 'r')
-            self.setStatus('test. will crash if not handled properly')
+            # self.setStatus('test. will crash if not handled properly')
             lines = in_file.readlines()
             for index in range(len(lines)):
                 field_name, field_val = lines[index].split(":")

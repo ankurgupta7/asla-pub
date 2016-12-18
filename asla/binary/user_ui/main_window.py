@@ -1,8 +1,8 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
-from pygame import mixer
-from gtts import gTTS
+# from pygame import mixer
+# from gtts import gTTS
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
@@ -38,7 +38,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         [self.model_path, self.scaler_path] = self.update_models()
-        self.thread = PredictionThread(self, self.model_path, self.scaler_path)
+        self.thread = PredictionThread(self, os.path.abspath(self.model_path), os.path.abspath(self.scaler_path))
         self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
         self.pred_serv_launch = False
         QWebSettings.globalSettings().setAttribute(QWebSettings.AcceleratedCompositingEnabled, True)
@@ -58,10 +58,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ## time = get time from file name
         model_files = glob.glob("model*pkl")
         scaler_files =  glob.glob("scaler*pkl")
-        time = model_files[0][5:-4]
+        if model_files.__len__() == 0:
+            time = "20161211-010905"
+        elif max(model_files).__len__() < 10:
+            time = "20161211-010905"
+        else:
+            time = max(model_files)[5:-4]
 
-        model_json = requests.post("https://aslaserver.herokuapp.com/getmodel", {"time": time})
-        if model_json.content is not "NO":
+        model_json = requests.post("https://aslaserver.herokuapp.com/getmodel", {"time":time})
+        if not model_json.content ==  "NO":
 
             model_json = json.loads(str(model_json.text))
             time_new = model_json['time']
@@ -72,7 +77,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             scaler_pkl = pickle.loads(model_json['scaler'])
             latest_scaler = 'scaler'+time_new+'.pkl'
-            joblib.dump(scaler_pkl, latest_model)
+            joblib.dump(scaler_pkl, latest_scaler )
+            for old_file in model_files:
+                os.remove(old_file)
+            for old_file in scaler_files:
+                os.remove(old_file)
         else:
             latest_model = model_files[0]
             latest_scaler = scaler_files[0]
@@ -118,7 +127,7 @@ class PredictionThread():
     def __init__(self, main_window, model_path, scaler_path):
         self.thread = None
         self.stop = True
-        mixer.init()
+        # mixer.init()
         self.predict_service = PredictService(model_path, scaler_path)
         self.predict_service.make_gesture_obj()
         # self.predict_service.setStatusbar(main_window.statusbar)
@@ -132,10 +141,10 @@ class PredictionThread():
         while True:
             self.predict_service.capture_gesture()
             self.predicted_label = self.predict_service.predict_label()
-            tts = gTTS(text=str(self.predicted_label), lang='en')
-            tts.save("prediction.mp3")
-            mixer.music.load("prediction.mp3")
-            mixer.music.play()
+            # tts = gTTS(text=str(self.predicted_label), lang='en')
+            # tts.save("prediction.mp3")
+            # mixer.music.load("prediction.mp3")
+            # mixer.music.play()
             self.main_window.predLabel.setText(self.predicted_label)
             if self.stop == True:
                 break
