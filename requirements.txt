@@ -1,0 +1,6 @@
+scikit-learn
+Flask
+flask_bootstrap
+pymongo
+pygame
+gTTS
