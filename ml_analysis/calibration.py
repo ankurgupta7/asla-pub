@@ -102,7 +102,7 @@ class Calibration:
                 time_elapsed += gap_time
 
     def write_calibration(self):
-        with io.FileIO("calibration_data_damian.txt", "w") as cal_file:
+        with io.FileIO("calibration_data_ankur.txt", "w") as cal_file:
             cal_file.write("middle finger parameters: " +
                            str(self.middle_fingers_params) +"\n" +
                            "inner distances parameters: " + str(self.max_inner_distances))

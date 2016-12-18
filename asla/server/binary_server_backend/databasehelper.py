@@ -31,6 +31,7 @@ class DatabaseHelper:
         else:
             for datum in all_data:
                 if datum["is_trained"] == "N":
+                    self.model_data.update_many({}, {"is_trained": "Y"})
                     return all_data
             raise Exception("No new data to train with")
 

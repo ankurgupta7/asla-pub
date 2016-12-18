@@ -6,8 +6,8 @@ import numpy as np
 class PredictService:
 
     def __init__(self):
-        self.model = joblib.load('1117pm_model.pkl')
-        self.scaler = joblib.load('1117pm_scaler.pkl')
+        self.model = joblib.load('527pm_model.pkl')
+        self.scaler = joblib.load('527pm_scaler.pkl')
         self.to_predict = []
         pass
 

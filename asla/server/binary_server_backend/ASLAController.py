@@ -41,11 +41,10 @@ def get_model():
     latest_global_model = db_helper.get_latest_model()
     for model in latest_global_model:
         model_time = time.strptime(model['time'], "%Y%m%d-%H%M%S")
-        if model_time > user_time:
-            return "YES"
+        if model_time >= user_time:
+            return str(model)
         else:
-            return "NO "
-    return "getmodel"
+            return "NO"
 
 
 if __name__ == '__main__':
