@@ -15,6 +15,8 @@ import glob
 import os
 import requests
 import json
+import pickle
+from sklearn.externals import joblib
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -50,24 +52,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         returns the filepath for the latest model file"""
         # model_files = glob.glob("../models/model*pkl")
         # scaler_files =  glob.glob("../models/scaler*pkl")
-        model_fname = 'model.pkl'
-        scaler_fname = 'scaler.pkl'
-        try:
-            model_json = requests.get("http://asla.heroku.com/models")
-            model_url = json.load(model_json)['url']
-            r = requests.get(model_url)
-            with open(model_fname, 'wb') as fd:
-                for chunk in r.iter_content(chunk_size=128):
-                    fd.write(chunk)
-            scaler_json = requests.get("http://asla.heroku.com/scalers")
-            scaler_url = json.load(model_json)['url']
-            r = requests.get(scaler_url)
-            with open(scaler_fname, 'wb') as fd:
-                for chunk in r.iter_content(chunk_size=128):
-                    fd.write(chunk)
-        except Exception as e:
-            latest_model = os.path.abspath(model_fname)
-            latest_scaler = os.path.abspath(scaler_fname)
+        # try:
+        # model_fname = 'model.pkl'
+        # scaler_fname = 'scaler.pkl'
+        ## time = get time from file name
+        model_files = glob.glob("model*pkl")
+        scaler_files =  glob.glob("scaler*pkl")
+        time = model_files[0][5:-4]
+
+        model_json = requests.post("https://aslaserver.herokuapp.com/getmodel", {"time": time})
+        if model_json.content is not "NO":
+
+            model_json = json.loads(str(model_json.text))
+            time_new = model_json['time']
+
+            model_pkl = pickle.loads(model_json['model'])
+            latest_model =  'model'+time_new+'.pkl'
+            joblib.dump(model_pkl,latest_model)
+
+            scaler_pkl = pickle.loads(model_json['scaler'])
+            latest_scaler = 'scaler'+time_new+'.pkl'
+            joblib.dump(scaler_pkl, latest_model)
+        else:
+            latest_model = model_files[0]
+            latest_scaler = scaler_files[0]
 
         return (latest_model, latest_scaler)
 
