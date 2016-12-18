@@ -44,10 +44,7 @@ def get_model():
     for model, scaler in zip(latest_global_model, latest_global_scaler):
         model_time = time.strptime(model['time'], "%Y%m%d-%H%M%S")
         if model_time > user_time:
-            ret_val = {}
-            ret_val["time"] = model["time"]
-            ret_val["model"] = model["model"]
-            ret_val["scaler"] = scaler["scaler"]
+            ret_val = {"time": model["time"], "model": model["model"], "scaler": scaler["scaler"]}
             return jsonify(**ret_val)
         else:
             return "NO"
