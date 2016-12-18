@@ -31,7 +31,7 @@ class TrainingService:
         with open('headers.csv', 'rb') as headers_file:
             reader = csv.reader(headers_file)
             headers = next(reader)
-        filename = ''.join(['data-', time.strftime("%Y%m%d-%H%M%S"), '.csv'])
+        filename = ''.join(['data-sri-', time.strftime("%Y%m%d-%H%M%S"), '.csv'])
         with open(filename, "wb") as f:
             writer = csv.writer(f)
             writer.writerow(headers)
