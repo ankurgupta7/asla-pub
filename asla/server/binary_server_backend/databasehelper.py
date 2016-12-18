@@ -30,7 +30,7 @@ class DatabaseHelper:
             return all_data
         else:
             for datum in all_data:
-                if datum["isTrained"] == "N":
+                if datum["is_trained"] == "N":
                     return all_data
             raise Exception("No new data to train with")
 

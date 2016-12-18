@@ -56,6 +56,7 @@ class TrainingService:
             data_to_send = {}
             for i, header in enumerate(headers):
                 data_to_send[header] = row[i]
+            data_to_send['is_trained'] = 'N'
             self.model_data.insert_one(data_to_send)
         return True
 
