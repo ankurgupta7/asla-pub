@@ -1,10 +1,11 @@
 from flask import Flask
-from flask import request
+from flask import request, jsonify
 from model_generator import ModelGenerator
 from classifier import SVM
 from databasehelper import DatabaseHelper
 import time
 import os
+import json
 
 app = Flask(__name__)
 app.secret_key = "1234"
@@ -42,7 +43,10 @@ def get_model():
     for model in latest_global_model:
         model_time = time.strptime(model['time'], "%Y%m%d-%H%M%S")
         if model_time >= user_time:
-            return str(model)
+            ret_val = {}
+            ret_val["time"] = model["time"]
+            ret_val["model"] = model["model"]
+            return jsonify(**ret_val)
         else:
             return "NO"
 
