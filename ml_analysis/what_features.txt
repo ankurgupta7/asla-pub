@@ -42,9 +42,9 @@ inner_mcp_distance
 
 Features:
 
-- extended fingers - 5d vector(boolean, 0-not extended,1- extended) 
+- extended fingers - 5d vector(boolean, 0-not extended,1- extended)
 - scaled tip distance, 5d vector (this would mean to add calibration to record scale factor(mostly middle finger)
-- inner tip distance, 10d vector ( distance between all fingers) 
+- inner tip distance, 10d vector ( distance between all fingers)
 - palm direction
 - palm sphere radius
 - grab strength
