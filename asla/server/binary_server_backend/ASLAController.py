@@ -18,6 +18,7 @@ def make_model():
     The POST body should contain the flag for storing the data.
     eg:
     {"store":True}
+    The classifier to be used for training is specified in this method.
     :return:
     """
     classifier = SVM()

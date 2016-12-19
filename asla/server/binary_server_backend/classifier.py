@@ -7,7 +7,8 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class Classifier:
-    """Parent class for a classifier.
+    """Parent class for the classifier.
+    A classifier object is used to train and generate a new model for prediction.
     Allows for more classifiers to be added at a later stage.
     """
     def __init__(self):
@@ -18,6 +19,15 @@ class Classifier:
 
     @abstractmethod
     def create_model(self, x, y):
+        """
+
+        :param x: Features of data to be trained on
+        :type x: 2D numpy array, 2d list, or a data frame
+        :param y: Labels of the corresponding features
+        :type y: 1D numpy array or list
+        :return: model and scaler
+        :rtype: object
+        """
         self.scaler = preprocessing.StandardScaler().fit(x)
         self.x_train_scaled = self.scaler.transform(x)
 
