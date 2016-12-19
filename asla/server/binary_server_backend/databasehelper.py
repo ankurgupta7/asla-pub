@@ -27,10 +27,12 @@ class DatabaseHelper:
         """
         all_data = self.model_data.find()
         if force:
+            self.model_data.update_many({"is_trained": "N"}, {"$set": {"is_trained": "Y"}})
             return all_data
         else:
             for datum in all_data:
                 if datum["is_trained"] == "N":
+                    self.model_data.update_many({"is_trained": "N"}, {"$set": {"is_trained": "Y"}})
                     return all_data
             raise Exception("No new data to train with")
 

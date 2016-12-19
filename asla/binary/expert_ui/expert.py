@@ -42,6 +42,8 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
 
     def submitDataBtn_clicked(self):
         """ collects all the gesture data from expert and sends it to the server for training """
+        self.thread.train_service.send_to_server()
+        print "success"
 
     def checkSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
@@ -85,12 +87,12 @@ class TrainingThread():
 
     def do_train_label(self, cur_label):
         print 'in train label. MainWindow. thread functioning'
-        while True:
+        if True:
             self.train_service.capture_gesture(label=cur_label)
             self.train_service.set_status_bar(self.main_window.statusbar)
             if self.stop == True:
-                break
-
+                # break
+                pass
             time.sleep(0.05)
 
     def spawn_gesture_trainion_service_thread(self, cur_label):

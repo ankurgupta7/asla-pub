@@ -37,7 +37,7 @@ class GestureCollection:
         :rtype: boolean
         """
         try:
-            in_file = open('calibration_data_damian.txt', 'r')
+            in_file = open('calibration_data_ankur.txt', 'r')
             lines = in_file.readlines()
             for index in range(len(lines)):
                 field_name, field_val = lines[index].split(":")

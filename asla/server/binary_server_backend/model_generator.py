@@ -21,14 +21,15 @@ class ModelGenerator:
         Stores the model and the scaler in the database
         """
         x, y = self.get_data()
-        self.model, self.scaler = self.classifier.create_model(x, y)
+        if x and y:
+            self.model, self.scaler = self.classifier.create_model(x, y)
 
     def get_data(self):
         """Returns the features(x) and the labels(y) to train on"""
         y_train = []
         x_train = []
         try:
-            training_data = self.db_helper.check_and_fetch(True)
+            training_data = self.db_helper.check_and_fetch(False)
             rel_path = os.path.dirname(os.path.realpath(__file__))
             headers_file = os.path.join(rel_path, 'headers.csv')
             print headers_file
