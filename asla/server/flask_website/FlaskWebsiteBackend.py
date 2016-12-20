@@ -1,5 +1,5 @@
 from __future__ import print_function
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, session, redirect
 from flask_bootstrap import Bootstrap
 from user_admin_service import UserAdminService
 import os
@@ -8,6 +8,7 @@ import sys
 app = Flask(__name__)
 app.secret_key = "1234"
 admin_service = UserAdminService()
+
 
 def create_app():
     """
@@ -37,7 +38,7 @@ def signup():
     if request.method == "GET":
         return render_template('signup.html'), 200
     elif request.method == "POST":
-        #print(request.form['email'], file=sys.stderr)
+        # print(request.form['email'], file=sys.stderr)
         if not admin_service.make_new_user(request.form):
             flash('It appears you are already with us, try logging in instead!', category='error')
             return render_template('signup.html'), 200
@@ -54,42 +55,48 @@ def login():
     """
     if request.method == "GET":
         return render_template('login.html'), 200
-    elif request.method == "POST":        
+    elif request.method == "POST":
         if not admin_service.authenticate_user(request.form['email'], request.form['pwd']):
             flash('Invalid Credentials', category='error')
             return render_template('login.html'), 200
         else:
-            flash("Thank you for logging in!", category='success')
+            flash("Thank you for logging in! We will redirect you to the download page now", category='success')
             return render_template('login.html'), 200
 
 
-@app.route('/login_expert', methods=['GET'])
-def login_expert():
-    """
-    Allows for login for expert
-    :return:
-    """
-    return render_template('login_expert.html')
-
-
-@app.route('/update', methods=['POST'])
-def update():
+@app.route('/Ev09Zi5aBtA1teFYWNZI', methods=['GET'])
+def get_expert_binary():
     """
     updates a user
     :return:
     """
-    return "Update"
+    return redirect("https://dl.dropboxusercontent.com/u/88017022/Photos.zip")
+
+
+@app.route('/oQvu3XhahXegwk6qeqvz', methods=['GET'])
+def get_user_binary():
+    """
+    updates a user
+    :return:
+    """
+    return render_template('download.html'), 200
 
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
     """
     Authenticates a user's credentials'
-    """    
-    if admin_service.authenticate_user(request.form['email'], request.form['pwd']):
-        return "Valid User", 200
+    """
+    if request.form["key"] is not None:
+        if admin_service.authenticate_expert(request.form["key"]):
+            return "Valid User", 200
+        else:
+            return "Invalid credentials", 404
     else:
-        return "Invalid credentials", 404
+        if admin_service.authenticate_user(request.form['email'], request.form['pwd']):
+            return "Valid User", 200
+        else:
+            return "Invalid credentials", 404
 
 
 if __name__ == '__main__':

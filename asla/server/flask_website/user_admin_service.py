@@ -13,9 +13,8 @@ class UserAdminService:
         """
         self.mongo_client = MongoClient("mongodb://asla-website:asla@ds139277.mlab.com:39277/asla-users")
         self.user_database = self.mongo_client['asla-users']
-        self.users = self.user_database['users']
-        self.expert_database = self.mongo_client['asla-users']
-        self.experts = self.expert_database['experts']
+        self.users= self.user_database['users']
+        self.experts = self.user_database['experts']
 
     def make_new_user(self, form):
         """
@@ -52,9 +51,12 @@ class UserAdminService:
         else:
             return False
 
-    def authenticate_expert(self, okey):
+    def authenticate_expert(self, oauthkey):
         """
         Authenticates an Expert's OAuth Key
         :return
         """
-        return None
+        if self.users.find_one({"key": oauthkey}):
+            return True
+        else:
+            return False
