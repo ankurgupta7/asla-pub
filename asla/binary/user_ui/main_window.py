@@ -135,6 +135,7 @@ class PredictionThread():
         # mixer.init()
         self.predict_service = PredictService(model_path, scaler_path)
         self.predict_service.make_gesture_obj()
+        self.predict_service.user_ges.set_stop_thread_flag(False)
         # self.predict_service.setStatusbar(main_window.statusbar)
         self.status_bar = main_window.statusbar
         self.predicted_label = None
