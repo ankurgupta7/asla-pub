@@ -36,16 +36,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
-
+        self.predLabel.setText("Welcome")
+        self.status_ready("Connect Leap and Press Spacebar to start")
         [self.model_path, self.scaler_path] = self.update_models()
         self.thread = PredictionThread(self, os.path.abspath(self.model_path), os.path.abspath(self.scaler_path))
         self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
+        self.thread.predict_service.user_ges.calibration.msg_ready_signal.connect(self.cal_train_msg_slot)
         self.pred_serv_launch = False
         QWebSettings.globalSettings().setAttribute(QWebSettings.AcceleratedCompositingEnabled, True)
         QWebSettings.globalSettings().setAttribute(QWebSettings.WebGLEnabled, True)
         self.applyBtn.clicked.connect(self.applyBtn_clicked)
 
+    def cal_train_msg_slot(self, msg, reps, iter):
+        text = msg + '. repititions = ' + iter +'/' + reps
+        self.statusbar.showMessage(text)
+
     def status_ready(self, txt):
+        if txt == "Remove hand from view":
+            txt = ""
         self.statusbar.showMessage(txt)
     def update_models(self):
         """ checks if the model is stale and updates it from remote
@@ -105,7 +113,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if self.pred_serv_launch:
             self.thread.kill_gesture_prediction_service_thread()
+            self.thread.predict_service.user_ges.set_stop_thread_flag(False)
             self.pred_serv_launch = False
+            self.status_ready("Prediction Stopped. Press Spacebar to continue Prediction")
         else:
             self.thread.spawn_gesture_prediction_service_thread()
             self.pred_serv_launch = True
@@ -117,6 +127,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             pass
 
+    def closeEvent(self, *args, **kwargs):
+        self.thread.kill_gesture_prediction_service_thread()
 
 def asla_unused(a):
     a
@@ -130,6 +142,7 @@ class PredictionThread():
         mixer.init()
         self.predict_service = PredictService(model_path, scaler_path)
         self.predict_service.make_gesture_obj()
+        self.predict_service.user_ges.set_stop_thread_flag(False)
         # self.predict_service.setStatusbar(main_window.statusbar)
         self.status_bar = main_window.statusbar
         self.predicted_label = None
@@ -139,16 +152,17 @@ class PredictionThread():
     def do_predict_label(self):
         print 'in predict label. mainwindow. thread functioning'
         while True:
-            self.predict_service.capture_gesture()
-            self.predicted_label = self.predict_service.predict_label()
-            tts = gTTS(text=str(self.predicted_label), lang='en')
-            tts.save("prediction.mp3")
-            mixer.music.load("prediction.mp3")
-            mixer.music.play()
-            self.main_window.predLabel.setText(self.predicted_label)
+            if (self.predict_service.capture_gesture()):
+                self.predicted_label = self.predict_service.predict_label()
+                tts = gTTS(text=str(self.predicted_label), lang='en')
+                tts.save("prediction.mp3")
+                mixer.music.load("prediction.mp3")
+                mixer.music.play()
+                
+                self.main_window.predLabel.setText(self.predicted_label)
+
             if self.stop == True:
                 break
-
             time.sleep(0.05)
 
     def spawn_gesture_prediction_service_thread(self):
@@ -166,5 +180,6 @@ class PredictionThread():
         self.thread.join(1)
         # self.readMessageThread.join(1);
         while self.thread.isAlive() or self.readMessageThread.isAlive():
+            self.predict_service.user_ges.set_stop_thread_flag(True)
             print 'why wouldnt you die thread!'
             self.thread.join(1)

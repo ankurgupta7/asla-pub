@@ -32,18 +32,47 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        # self.status_ready("Connect Leap and Press Spacebar to start")
         self.skeletonView.setUrl(QtCore.QUrl(
             "http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html"))
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
-        self.thread = TrainingThread(self)
-        self.thread.train_service.make_gesture_obj()
+        self.labelCombo.currentIndexChanged.connect(self.label_combo_changed)
+        self.label_3.setText("Repetitions per Label")
+        # self.timeleft.setText("3")
+        # self.iternum.setText("0")
+        self.cal_train_msg_slot("Connect Leap and Press Spacebar to start", "3", "0")
+        self.new_train_thread()
+        letters = ['Q' ,'R' ,'S' ,'T' ,'U' ,'V' ,'W' ,'X' ,'Y' ,'Z']
+        self.labelCombo.addItems(letters)
         self.train_serv_launch = False
         self.statusbar.show()
 
+    def label_combo_changed(self):
+        self.curLabel.setText(self.labelCombo.currentText())
+
+    def new_train_thread(self):
+        self.thread = TrainingThread(self)
+        self.thread.train_service.exp_ges.msg_ready_signal.connect(self.status_ready)
+        self.thread.train_service.exp_ges.iter_rep_signal.connect(self.cal_train_msg_slot)
+        self.thread.train_service.exp_ges.calibration.msg_ready_signal.connect(self.cal_train_msg_slot)
+
     def submitDataBtn_clicked(self):
         """ collects all the gesture data from expert and sends it to the server for training """
-        self.thread.train_service.send_to_server()
-        print "success"
+        if (self.thread.train_service.send_to_server() == True):
+            self.new_train_thread()
+            self.cal_train_msg_slot("Data Uploaded. Select a new Label", "3", "0")
+        else:
+            self.status_ready("Error: Data NOT uploaded. Network TimeOut.")
+    def cal_train_msg_slot(self, msg, reps, iter):
+        # text = msg + '. repetitions = ' + iter +'/' + reps
+        self.statusbar.showMessage(msg)
+        self.iternum.setText( iter )
+        self.timeleft.setText(reps)
+
+
+
+    def status_ready(self, txt):
+        self.statusbar.showMessage(txt)
 
     def checkSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
@@ -60,14 +89,22 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def updateTimeLeft(self):
         """ updates clock to let the expert know of time left to hold gesture"""
 
+
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
         if self.train_serv_launch:
             self.thread.kill_gesture_trainion_service_thread()
+            self.thread.train_service.exp_ges.set_stop_thread_flag(False)
             self.train_serv_launch = False
+            self.status_ready("Training Stopped. Press Spacebar to continue Training")
         else:
+            if self.labelCombo.currentIndex() == 0:
+                self.status_ready("Choose a Label from the Label Dropdown above")
+                return
             self.thread.spawn_gesture_trainion_service_thread(self.labelCombo.currentText())
             self.train_serv_launch = True
+    def closeEvent(self, *args, **kwargs):
+        self.thread.kill_gesture_trainion_service_thread()
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Space:
@@ -83,13 +120,20 @@ class TrainingThread():
 
         self.train_service = TrainingService()
         self.main_window = main_window
+        self.train_service.make_gesture_obj()
+
+        self.train_service.exp_ges.set_stop_thread_flag(False)
+        # self.predict_service.setStatusbar(main_window.statusbar)
+        self.status_bar = main_window.statusbar
+
         self.trained_label = None
 
     def do_train_label(self, cur_label):
         print 'in train label. MainWindow. thread functioning'
         if True:
             self.train_service.capture_gesture(label=cur_label)
-            self.train_service.set_status_bar(self.main_window.statusbar)
+            # self.train_service.set_status_bar(self.main_window.statusbar)
+
             if self.stop == True:
                 # break
                 pass
@@ -97,7 +141,7 @@ class TrainingThread():
 
     def spawn_gesture_trainion_service_thread(self, cur_label):
         """ spawns a thread and calls on gesture predticiton service every few miliseconds"""
-        self.thread = threading.Thread(target=self.do_train_label, args=(cur_label))
+        self.thread = threading.Thread(target=self.do_train_label, args=cur_label)
         self.stop = False
         self.thread.start()
 
@@ -106,5 +150,6 @@ class TrainingThread():
         self.stop = True
         self.thread.join(1)
         while self.thread.isAlive():
+            self.train_service.exp_ges.set_stop_thread_flag(True)
             print 'why wouldnt you die thread!'
             self.thread.join(1)

@@ -20,9 +20,7 @@ class TrainingService:
     """
     def __init__(self):
         # this is the final data set that is sent to the server
-        self.mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
-        self.db = self.mongo_client['trainingdata']
-        self.model_data = self.db['globalmodeldata']
+
         self.data_collected = []
         self.exp_ges = None
         pass
@@ -40,26 +38,37 @@ class TrainingService:
         self.exp_ges.label = ord(label.upper()) - 64
         print "LABEL", label
         # self.exp_ges.label = label
-        self.exp_ges.wait_for_connection()
+        if (self.exp_ges.wait_for_connection() == False):
+            return False
         if not self.exp_ges.is_calibrated():
             self.exp_ges.calibration.calibrate()
         self.data_collected.extend(self.exp_ges.extract_features())
+        return True
 
     def send_to_server(self):
         """
         Sends the captured gestures to the database server
         """
-        rel_path = os.path.dirname(os.path.realpath(__file__))
-        headers_file = os.path.join(rel_path, 'headers.csv')
-        header_string = open(headers_file)
-        headers = header_string.read().split(',')
-        for row in self.data_collected:
-            data_to_send = {}
-            for i, header in enumerate(headers):
-                data_to_send[header] = row[i]
-            data_to_send['is_trained'] = 'N'
-            self.model_data.insert_one(data_to_send)
-        return True
+        try:
+            self.mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
+
+            self.db = self.mongo_client['trainingdata']
+            self.model_data = self.db['globalmodeldata']
+
+            rel_path = os.path.dirname(os.path.realpath(__file__))
+            headers_file = os.path.join(rel_path, 'headers.csv')
+            header_string = open(headers_file)
+            headers = header_string.read().split(',')
+            for row in self.data_collected:
+                data_to_send = {}
+                for i, header in enumerate(headers):
+                    data_to_send[header] = row[i]
+                data_to_send['is_trained'] = 'N'
+                self.model_data.insert_one(data_to_send)
+            return True
+        except Exception as e:
+            return False
+
 
     def set_status_bar(self, s):
         self.exp_ges.setStatusBar(s)
