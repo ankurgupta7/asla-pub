@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import LeaveOneGroupOut
 from sklearn import preprocessing, metrics
+import matplotlib.pyplot as plt
 
 
 import glob
@@ -18,7 +19,7 @@ classifiers = [
     KNeighborsClassifier(10),
     SVC(kernel="linear", C=0.04),
     DecisionTreeClassifier(max_depth=3000),
-    RandomForestClassifier(max_depth=50, n_estimators=60, max_features=15)]
+    RandomForestClassifier(max_depth=800, n_estimators=800, max_features='auto', n_jobs=8)]
 
 
 user_data = {}
@@ -49,6 +50,7 @@ for in_folder in glob.glob(train_path):
 scaler = preprocessing.StandardScaler().fit(x_train)
 x_train_scaled = scaler.transform(x_train)
 logo = LeaveOneGroupOut()
+accuracy = {}
 
 for name, clf in zip(names, classifiers):
     scores = []
@@ -62,3 +64,27 @@ for name, clf in zip(names, classifiers):
         # print metrics.classification_report(y_train[test], y_predicted)
     print scores
     print("CV Accuracy: %0.2f (+/- %0.2f)" % (np.mean(scores), np.std(scores) * 2))
+    accuracy[name] = [np.mean(scores), np.std(scores) * 2]
+
+bar_width = 0.2
+opacity = 0.6
+error_config = {'ecolor': '0.3'}
+fig, ax = plt.subplots()
+index = 0
+colors = ['r', 'g', 'b', 'y']
+for key, value in accuracy.items():
+    rects1 = plt.bar(index + bar_width, value[0], bar_width,
+                     alpha=opacity,
+                     color=colors[index],
+                     yerr=value[1],
+                     error_kw=error_config,
+                     label=key)
+    index +=1
+    print key, value
+
+index = np.arange(4)
+plt.ylabel('Scores')
+plt.title('Scores by Classifiers')
+plt.xticks(index + bar_width, ('RF', 'SVM', 'kNN', 'DT'), rotation=70)
+plt.tight_layout()
+plt.show()
