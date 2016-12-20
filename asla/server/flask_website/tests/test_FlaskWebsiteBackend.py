@@ -29,11 +29,6 @@ class FlaskWebsiteBackendTestCase(unittest.TestCase):
         self.logger.debug(result.data)
         self.assertEqual(result.status_code, 200)
 
-    def test_update(self):
-        result = self.app.post("/update")
-        self.logger.debug(result.data)
-        assert 'Update' in result.data
-
     def test_authenticate(self):
         result = self.app.post("/authenticate", data=dict(email=randomword(5), pwd=randomword(5)))
         self.logger.debug(result.data)
