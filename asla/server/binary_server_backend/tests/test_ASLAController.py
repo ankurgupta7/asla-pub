@@ -18,12 +18,12 @@ class ASLAControllerTestCase(unittest.TestCase):
         self.logger.debug(result.data)
         assert result.data is not None
 
-    def test_make_model(self):
-        result = self.app.post("/train", data=dict(
-            store='False'
-        ))
-        self.logger.debug(result.data)
-        assert 'makemodel' in result.data
+    # def test_make_model(self):
+    #     result = self.app.post("/train", data=dict(
+    #         store='False'
+    #     ))
+    #     self.logger.debug(result.data)
+    #     assert 'makemodel' in result.data
 
 if __name__ == '__main__':
     unittest.main()
