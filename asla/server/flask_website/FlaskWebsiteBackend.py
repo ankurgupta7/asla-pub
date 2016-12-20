@@ -70,7 +70,7 @@ def get_expert_binary():
     updates a user
     :return:
     """
-    return redirect("https://dl.dropboxusercontent.com/u/88017022/Photos.zip")
+    return redirect("https://dl.dropboxusercontent.com/u/88017022/expert.zip")
 
 
 @app.route('/oQvu3XhahXegwk6qeqvz', methods=['GET'])
