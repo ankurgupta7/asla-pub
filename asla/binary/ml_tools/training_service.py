@@ -51,7 +51,7 @@ class TrainingService:
         """
         try:
             self.mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
-
+            self.mongo_client.admin.command('ismaster')
             self.db = self.mongo_client['trainingdata']
             self.model_data = self.db['globalmodeldata']
 

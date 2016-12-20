@@ -211,6 +211,7 @@ class GestureCollection(QtCore.QObject):
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
                     print "Remove hand from view"
+                    self.setStatus("Remove hand from view")
                     self.send_iter_rep_to_process("Remove hand from view", str(reps), str(reps_completed))
                     printed = False
                 if len(hands) != 0:

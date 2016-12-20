@@ -1,8 +1,8 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
-from pygame import mixer
-from gtts import gTTS
+# from pygame import mixer
+# from gtts import gTTS
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
@@ -36,7 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
-        self.predLabel.setText("Welcome")
+        self.predLabel.setText("Ola")
         self.status_ready("Connect Leap and Press Spacebar to start")
         [self.model_path, self.scaler_path] = self.update_models()
         self.thread = PredictionThread(self, os.path.abspath(self.model_path), os.path.abspath(self.scaler_path))
@@ -139,7 +139,7 @@ class PredictionThread():
     def __init__(self, main_window, model_path, scaler_path):
         self.thread = None
         self.stop = True
-        mixer.init()
+        # mixer.init()
         self.predict_service = PredictService(model_path, scaler_path)
         self.predict_service.make_gesture_obj()
         self.predict_service.user_ges.set_stop_thread_flag(False)
@@ -154,11 +154,11 @@ class PredictionThread():
         while True:
             if (self.predict_service.capture_gesture()):
                 self.predicted_label = self.predict_service.predict_label()
-                tts = gTTS(text=str(self.predicted_label), lang='en')
-                tts.save("prediction.mp3")
-                mixer.music.load("prediction.mp3")
-                mixer.music.play()
-                
+                # tts = gTTS(text=str(self.predicted_label), lang='en')
+                # tts.save("prediction.mp3")
+                # mixer.music.load("prediction.mp3")
+                # mixer.music.play()
+                #
                 self.main_window.predLabel.setText(self.predicted_label)
 
             if self.stop == True:
