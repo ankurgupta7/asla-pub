@@ -4,7 +4,7 @@ import time
 
 class DatabaseHelper:
     """
-    this class will help the classifier decide if there is new data that necessitates training.
+    Class that talks to the database.
     """
 
     def __init__(self):
@@ -20,7 +20,7 @@ class DatabaseHelper:
 
     def check_and_fetch(self, force=False):
         """
-        Checks if the are untrained datums in the db, if there are it fetches
+        This method helps the classifier decide if there is new data that necessitates training.
         :param force: force it to fetch all data regardless
         :return: A mongo db cursor with all the data
         :raises: An exception if there is no new data to train with
@@ -38,7 +38,7 @@ class DatabaseHelper:
 
     def get_latest_model(self):
         """
-        Fetches the latest global model from the db
+        Fetches the latest global model from the database
         :return: a mongo dbcursor with the latest model
         """
         latest_model = self.model.find().skip(self.model.count() - 1)
@@ -46,7 +46,7 @@ class DatabaseHelper:
 
     def get_latest_scaler(self):
         """
-        Fetches the latest global model from the db
+        Fetches the latest global model from the database
         :return: a mongo dbcursor with the latest model
         """
         latest_scaler = self.scaler.find().skip(self.scaler.count() - 1)
@@ -54,7 +54,7 @@ class DatabaseHelper:
 
     def put_model(self, new_model, new_scaler):
         """
-        Makes the new model.
+        Inserts the model and the scaler in the database.
         :param new_model: the new trained model
         :return: nothing
         """

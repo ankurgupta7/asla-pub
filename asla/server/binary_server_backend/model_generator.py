@@ -5,7 +5,7 @@ import os
 
 class ModelGenerator:
     """
-    The classifier class that will invoke the classifier on some data
+    The class responsible for training the data and generating a model for a given classifier
     """
 
     def __init__(self, classifier):
