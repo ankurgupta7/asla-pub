@@ -32,11 +32,15 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.statusbar.setMessage("Connect Leap and Press Spacebar to start")
         self.skeletonView.setUrl(QtCore.QUrl(
             "http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html"))
         self.submitDataBtn.clicked.connect(self.submitDataBtn_clicked)
         self.thread = TrainingThread(self)
+        self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
+        self.thread.predict_service.user_ges.calibration.msg_ready_signal.connect(self.cal_train_msg_slot)
         self.thread.train_service.make_gesture_obj()
+
         self.train_serv_launch = False
         self.statusbar.show()
 
@@ -44,6 +48,13 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
         """ collects all the gesture data from expert and sends it to the server for training """
         self.thread.train_service.send_to_server()
         print "success"
+
+    def cal_train_msg_slot(self, msg, reps, iter):
+        text = msg + '. repititions = ' + iter +'/' + reps
+        self.statusbar.showMessage(text)
+
+    def status_ready(self, txt):
+        self.statusbar.showMessage(txt)
 
     def checkSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""

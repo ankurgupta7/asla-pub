@@ -36,7 +36,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
-
+        self.predLabel.setText("Welcome")
+        self.status_ready("Connect Leap and Press Spacebar to start")
         [self.model_path, self.scaler_path] = self.update_models()
         self.thread = PredictionThread(self, os.path.abspath(self.model_path), os.path.abspath(self.scaler_path))
         self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
@@ -111,6 +112,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.pred_serv_launch:
             self.thread.kill_gesture_prediction_service_thread()
             self.pred_serv_launch = False
+            self.statusbar.setMessage("")
         else:
             self.thread.spawn_gesture_prediction_service_thread()
             self.pred_serv_launch = True
@@ -122,6 +124,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             pass
 
+    def closeEvent(self, *args, **kwargs):
+        self.thread.kill_gesture_prediction_service_thread()
 
 def asla_unused(a):
     a

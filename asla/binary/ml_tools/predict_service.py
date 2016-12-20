@@ -37,7 +37,7 @@ class PredictService:
         self.user_ges.wait_for_connection()
         if not self.user_ges.is_calibrated():
             self.user_ges.calibration.calibrate()
-        self.to_predict = self.user_ges.extract_features(reps=1, skip_time=0.25, hold_time=1, print_feat=False)
+        self.to_predict = self.user_ges.extract_features(reps=1, skip_time=0.25, hold_time=0.5 , print_feat=False)
 
     def predict_label(self):
         """
