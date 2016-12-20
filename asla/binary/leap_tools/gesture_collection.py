@@ -132,9 +132,10 @@ class GestureCollection(QtCore.QObject):
         reps_completed = 0
         printed = False
         start_frame = None
+
         while self.controller.is_connected:
-            # if (self.get_stop_thread_flag() == True):
-            #     break
+            if (self.get_stop_thread_flag() == True):
+                return features.final_feat
             if reps_completed == reps:
                 return features.final_feat
             else:
