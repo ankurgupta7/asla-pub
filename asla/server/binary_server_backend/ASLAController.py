@@ -14,7 +14,7 @@ app.secret_key = "1234"
 @app.route('/train', methods=['POST'])
 def make_model():
     """
-    Given an Expert user's data dump send this data to the ModelService.
+    Trains the global model.
     The POST body should contain the flag for storing the data.
     eg:
     {"store":True}
