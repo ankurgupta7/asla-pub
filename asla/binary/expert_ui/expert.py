@@ -59,8 +59,10 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def submitDataBtn_clicked(self):
         """ collects all the gesture data from expert and sends it to the server for training """
         if (self.thread.train_service.send_to_server() == True):
+            self.doSpacebarpressed()
             self.new_train_thread()
-            self.cal_train_msg_slot("Data Uploaded. Select a new Label", "3", "0")
+            self.cal_train_msg_slot("Data Uploaded. Select a new Label and Press Spacebar to Continue", "3", "0")
+            # self.doSpacebarpressed()
         else:
             self.status_ready("Error: Data NOT uploaded. Network TimeOut.")
     def cal_train_msg_slot(self, msg, reps, iter):
@@ -93,10 +95,10 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
         if self.train_serv_launch:
-            self.thread.kill_gesture_trainion_service_thread()
             self.thread.train_service.exp_ges.set_stop_thread_flag(False)
+            self.thread.kill_gesture_trainion_service_thread()
             self.train_serv_launch = False
-            self.status_ready("Training Stopped. Press Spacebar to continue Training")
+            self.status_ready("Training Stopped. Press Spacebar to continue Training or Click Upload Data")
         else:
             if self.labelCombo.currentIndex() == 0:
                 self.status_ready("Choose a Label from the Label Dropdown above")
@@ -148,6 +150,8 @@ class TrainingThread():
     def kill_gesture_trainion_service_thread(self):
         """ kills trainion service and cleans up"""
         self.stop = True
+        if self.thread == None:
+            return
         self.thread.join(1)
         while self.thread.isAlive():
             self.train_service.exp_ges.set_stop_thread_flag(True)
