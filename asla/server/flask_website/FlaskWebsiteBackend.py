@@ -87,16 +87,18 @@ def authenticate():
     """
     Authenticates a user's credentials'
     """
-    if request.form["key"] is not None:
-        if admin_service.authenticate_expert(request.form["key"]):
-            return "Valid User", 200
-        else:
-            return "Invalid credentials", 404
+    if admin_service.authenticate_user(request.form['email'], request.form['pwd']):
+        return "Valid User", 200
     else:
-        if admin_service.authenticate_user(request.form['email'], request.form['pwd']):
-            return "Valid User", 200
-        else:
-            return "Invalid credentials", 404
+        return "Invalid credentials", 404
+
+
+@app.route('/authenticate_expert', methods=["POST"])
+def authenticate_expert():
+    if admin_service.authenticate_expert(request.form["key"]):
+        return "Valid User", 200
+    else:
+        return "Invalid credentials", 404
 
 
 if __name__ == '__main__':
