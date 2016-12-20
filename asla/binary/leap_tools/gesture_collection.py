@@ -43,9 +43,19 @@ class GestureCollection(QtCore.QObject):
         self.status = None
         self.status_bar = None
         self.status_mutex = False
+        self.stop_thread_flag = False
+        self.stop_thread_mutex = False
 
-        # self.GUISingleton =
-        pass
+    def set_stop_thread_flag(self, stop = True):
+        while(self.stop_thread_mutex):
+            continue
+        self.stop_thread_mutex = True
+        self.stop_thread_flag = stop
+        self.stop_thread_mutex = False
+    def get_stop_thread_flag(self):
+        while (self.stop_thread_mutex):
+            continue
+        return self.stop_thread_flag
 
     def setStatus(self, text):
         self.msg_ready_signal.emit(text)
@@ -123,6 +133,8 @@ class GestureCollection(QtCore.QObject):
         printed = False
         start_frame = None
         while self.controller.is_connected:
+            # if (self.get_stop_thread_flag() == True):
+            #     break
             if reps_completed == reps:
                 return features.final_feat
             else:

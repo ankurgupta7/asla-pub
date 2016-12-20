@@ -40,10 +40,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         [self.model_path, self.scaler_path] = self.update_models()
         self.thread = PredictionThread(self, os.path.abspath(self.model_path), os.path.abspath(self.scaler_path))
         self.thread.predict_service.user_ges.msg_ready_signal.connect(self.status_ready)
+        self.thread.predict_service.user_ges.calibration.msg_ready_signal.connect(self.cal_train_msg_slot)
         self.pred_serv_launch = False
         QWebSettings.globalSettings().setAttribute(QWebSettings.AcceleratedCompositingEnabled, True)
         QWebSettings.globalSettings().setAttribute(QWebSettings.WebGLEnabled, True)
         self.applyBtn.clicked.connect(self.applyBtn_clicked)
+
+    def cal_train_msg_slot(self, msg, reps, iter):
+        text = msg + '. repititions = ' + iter +'/' + reps
+        self.statusbar.showMessage(text)
 
     def status_ready(self, txt):
         self.statusbar.showMessage(txt)
@@ -166,5 +171,6 @@ class PredictionThread():
         self.thread.join(1)
         # self.readMessageThread.join(1);
         while self.thread.isAlive() or self.readMessageThread.isAlive():
+            self.predict_service.user_ges.set_stop_thread_flag(True)
             print 'why wouldnt you die thread!'
             self.thread.join(1)

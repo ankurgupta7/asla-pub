@@ -30,7 +30,7 @@ class LoginDialog(QDialog, Ui_Dialog):
         #myResponse.ok = True
         if (myResponse.status_code == 200): #auth.doLogin(self.txtUsername.text(), self.txtPassword.text()):
             # if True:
-            self.setResult(self.Success)
+            # self.setResult(self.Success)
             self.Success = True
             self.close()
         else:
@@ -41,7 +41,7 @@ class LoginDialog(QDialog, Ui_Dialog):
             msgBox.setText("Either incorrect username and/or password. Try again!")
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_()
-            self.setResult(self.Failed)
+            # self.setResult(self.)
 
 
     def loginBtn_clicked(self):

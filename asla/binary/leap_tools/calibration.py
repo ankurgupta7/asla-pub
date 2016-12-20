@@ -1,5 +1,8 @@
 from __future__ import division
+
+from PyQt5 import QtCore
 from features import Features
+
 import sys
 import time
 from sys import platform
@@ -22,22 +25,25 @@ elif platform == 'win32':
         from lib.win32.x86 import Leap
 
 
-class Calibration:
+class Calibration(QtCore.QObject):
     """
     Class to calibrate the sensor
     """
+    msg_ready_signal = QtCore.pyqtSignal(str,str,str) # sorry for the ugliness. thats how qt works
 
     def __init__(self, controller):
+        QtCore.QObject.__init__(self)
         self.controller = controller
         self.middle_fingers_params = []
         self.max_inner_distances = []
-        pass
 
     def setStatusbar(self, s):
         self.status_bar = s
 
-    def setStatus(self, text):
+    def setStatus(self, msg, rep, cur_iter):
         # self.status_bar.showMessage(text)
+        self.msg_ready_signal.emit(msg, rep, cur_iter)
+
         return 0
 
     def enum(self, **enums):
@@ -66,7 +72,7 @@ class Calibration:
         while self.controller.is_connected:
             if reps_completed == reps:
                 print "Calibration is finished!"
-                self.setStatus("Calibration is finished!")
+                self.setStatus("Calibration is finished!", str(reps), str(reps_completed))
                 self.middle_fingers_params.append(np.mean(features.mcp_length, axis = 0)[2])
                 self.middle_fingers_params.append(np.mean(features.pip_length, axis = 0)[2])
                 self.middle_fingers_params.append(np.mean(features.dip_length, axis = 0)[2])
@@ -85,7 +91,7 @@ class Calibration:
                     time_elapsed = 0
                     if not printed:
                         print 'Bring hand in view and extend all the fingers'
-                        self.setStatus('Bring hand in view and extend all the fingers')
+                        self.setStatus('Bring hand in view and extend all the fingers', str(reps), str(reps_completed))
                         printed = True
                         extended = True
                 elif feat_index < feat_len:
@@ -95,12 +101,12 @@ class Calibration:
                             ordered_finger_list = []
                             pointables = hand.pointables
                             if len(pointables.extended()) != 5:
-                                self.setStatus("Please extend all the fingers for calibration")
+                                self.setStatus("Please extend all the fingers for calibration", str(reps), str(reps_completed))
                                 print "Please extend all the fingers for calibration"
                                 extended = True
                             else:
                                 if extended:
-                                    self.setStatus("Good! Calibration is starting. Do NOT move the hand...")
+                                    self.setStatus("Good! Calibration is starting. Do NOT move the hand...", str(reps), str(reps_completed))
                                     print "Good! Calibration is starting. Do NOT move the hand..."
                                     time.sleep(10 * gap_time)
                                     extended = False
@@ -123,7 +129,7 @@ class Calibration:
                 elif feat_index == feat_len:
                     feat_index += 1
                     reps_completed += 1
-                    self.setStatus("Remove hand from view")
+                    self.setStatus("Remove hand from view", str(reps), str(reps_completed))
                     print "Remove hand from view"
                     printed = False
                     extended = False
