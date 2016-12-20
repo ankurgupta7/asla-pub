@@ -71,7 +71,7 @@ opacity = 0.6
 error_config = {'ecolor': '0.3'}
 fig, ax = plt.subplots()
 index = 0
-colors = ['r', 'g', 'b', 'y']
+colors = ['g', 'b', 'y', 'r']
 for key, value in accuracy.items():
     rects1 = plt.bar(index + bar_width, value[0], bar_width,
                      alpha=opacity,
@@ -79,12 +79,14 @@ for key, value in accuracy.items():
                      yerr=value[1],
                      error_kw=error_config,
                      label=key)
-    index +=1
+    ax.text(index + bar_width, value[0]+value[1] + 0.02, "%0.2f" % (value[0]), color='black', fontweight='bold')
+    index += 1
     print key, value
 
+ax.set_aspect('auto')
 index = np.arange(4)
-plt.ylabel('Scores')
-plt.title('Scores by Classifiers')
-plt.xticks(index + bar_width, ('RF', 'SVM', 'kNN', 'DT'), rotation=70)
-plt.tight_layout()
+plt.ylabel('Accuracy')
+plt.title('Accuracy by Classifiers')
+plt.xticks(index + bar_width + 0.1, ('RF', 'SVM', 'kNN', 'DT'), rotation=70)
+# plt.tight_layout()
 plt.show()
