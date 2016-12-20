@@ -36,6 +36,7 @@ class GestureCollection(QtCore.QObject):
     """
     msg_ready_signal = QtCore.pyqtSignal(str) # sorry for the ugliness. thats how qt works
     iter_rep_signal = QtCore.pyqtSignal(str, str, str)
+
     def __init__(self, label):
         QtCore.QObject.__init__(self)
         self.label = ord(label.upper()) - 64
@@ -47,14 +48,15 @@ class GestureCollection(QtCore.QObject):
         self.stop_thread_flag = False
         self.stop_thread_mutex = False
 
-    def set_stop_thread_flag(self, stop = True):
-        while(self.stop_thread_mutex):
+    def set_stop_thread_flag(self, stop=True):
+        while self.stop_thread_mutex:
             continue
         self.stop_thread_mutex = True
         self.stop_thread_flag = stop
         self.stop_thread_mutex = False
+
     def get_stop_thread_flag(self):
-        while (self.stop_thread_mutex):
+        while self.stop_thread_mutex:
             continue
         return self.stop_thread_flag
 
@@ -67,6 +69,7 @@ class GestureCollection(QtCore.QObject):
         self.status = text
         self.status_mutex = False
         # self.status_bar.showMessage(text)
+
     def send_iter_rep_to_process(self, msg, rep, cur_iter):
         self.iter_rep_signal.emit(msg, str(rep), str(cur_iter))
 
@@ -129,7 +132,7 @@ class GestureCollection(QtCore.QObject):
         :rtype: list
         """
 
-        BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE = 2, TYPE_PROXIMAL = 1, TYPE_METACARPAL = 0)
+        BoneType = self.enum(TYPE_DISTAL=3, TYPE_INTERMEDIATE=2, TYPE_PROXIMAL=1, TYPE_METACARPAL=0)
         feat_len = int(hold_time / gap_time)
         feat_index = 0
         time_elapsed = 0
@@ -140,7 +143,7 @@ class GestureCollection(QtCore.QObject):
 
         while self.controller.is_connected:
 
-            if (self.get_stop_thread_flag() == True):
+            if self.get_stop_thread_flag():
                 return features.final_feat
             if reps_completed == reps:
                 return features.final_feat
@@ -319,7 +322,6 @@ class GestureCollection(QtCore.QObject):
         print "Mcp inner distances", features.mcp_inner_distances[feat_index]
         print "Angle between tips", features.angle_between_tips[feat_index]
         print "Angle between fingers and palm", features.angle_between_finger_palm[feat_index]
-
         print "Palm direction", features.palm_direction[feat_index]
         print "Palm sphere radius", features.palm_radius[feat_index]
         print "Palm grab strength", features.palm_grab[feat_index]

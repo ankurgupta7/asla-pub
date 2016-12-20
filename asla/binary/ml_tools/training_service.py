@@ -2,7 +2,7 @@ import os, sys
 root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
 try:
-    if (os.environ["NOQT"] == "1"):
+    if os.environ["NOQT"] == "1":
         print 'gesture collection which needs qt, not being imported'
     else:
         from ..leap_tools.gesture_collection import GestureCollection
@@ -38,7 +38,7 @@ class TrainingService:
         self.exp_ges.label = ord(label.upper()) - 64
         print "LABEL", label
         # self.exp_ges.label = label
-        if (self.exp_ges.wait_for_connection() == False):
+        if not self.exp_ges.wait_for_connection():
             return False
         if not self.exp_ges.is_calibrated():
             self.exp_ges.calibration.calibrate()
@@ -54,7 +54,6 @@ class TrainingService:
             self.mongo_client.admin.command('ismaster')
             self.db = self.mongo_client['trainingdata']
             self.model_data = self.db['globalmodeldata']
-
             rel_path = os.path.dirname(os.path.realpath(__file__))
             headers_file = os.path.join(rel_path, 'headers.csv')
             header_string = open(headers_file)
@@ -68,7 +67,6 @@ class TrainingService:
             return True
         except Exception as e:
             return False
-
 
     def set_status_bar(self, s):
         self.exp_ges.setStatusBar(s)

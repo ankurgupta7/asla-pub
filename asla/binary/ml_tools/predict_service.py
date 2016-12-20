@@ -4,7 +4,7 @@ root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
 
 try:
-    if (os.environ["NOQT"] == "1"):
+    if os.environ["NOQT"] == "1":
         print 'gesture collection which needs qt, not being imported'
     else:
         from ..leap_tools.gesture_collection import GestureCollection
@@ -34,13 +34,14 @@ class PredictService:
         """
         Captures user's gesture
         """
-        if(self.user_ges.wait_for_connection() == False):
+        if not self.user_ges.wait_for_connection():
             return False
 
         if not self.user_ges.is_calibrated():
             self.user_ges.calibration.calibrate()
         self.to_predict = self.user_ges.extract_features(reps=1, skip_time=0.25, hold_time=0.5 , print_feat=False)
         return True
+
     def predict_label(self):
         """
         Predicts label for a captured gesture
