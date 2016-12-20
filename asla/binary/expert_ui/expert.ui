@@ -18,8 +18,8 @@
     <item>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0" colspan="3">
-       <widget class="QWebView" name="skeletonView" native="true">
-        <property name="url" stdset="0">
+       <widget class="QWebView" name="skeletonView">
+        <property name="url">
          <url>
           <string>http://jaanga.github.io/gestification-r2/template-leap-threejs/pehrlich-threejs-bones/pehrlich-threejs-bones.html</string>
          </url>
@@ -144,7 +144,7 @@
         <item row="0" column="2">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Hold For</string>
+           <string>Repitions per Label</string>
           </property>
          </widget>
         </item>
@@ -168,19 +168,19 @@
            </font>
           </property>
           <property name="text">
-           <string>1</string>
+           <string>0</string>
           </property>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLabel" name="timeleft">
+         <widget class="QLabel" name="reps">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>5s</string>
+           <string>3</string>
           </property>
          </widget>
         </item>

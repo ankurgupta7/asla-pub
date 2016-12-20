@@ -35,6 +35,7 @@ class GestureCollection(QtCore.QObject):
     Extracting the features from captured gesture
     """
     msg_ready_signal = QtCore.pyqtSignal(str) # sorry for the ugliness. thats how qt works
+    iter_rep_signal = QtCore.pyqtSignal(str, str, str)
     def __init__(self, label):
         QtCore.QObject.__init__(self)
         self.label = ord(label.upper()) - 64
@@ -66,6 +67,8 @@ class GestureCollection(QtCore.QObject):
         self.status = text
         self.status_mutex = False
         # self.status_bar.showMessage(text)
+    def send_iter_rep_to_process(self, msg, rep, cur_iter):
+        self.iter_rep_signal.emit(msg, str(rep), str(cur_iter))
 
     def getStatus(self):
         # while (self.status_mutex):
@@ -111,8 +114,10 @@ class GestureCollection(QtCore.QObject):
         Wait for Controller to be connected to the device.
         """
         if not self.controller.is_connected:
-            pass
+            self.setStatus("Leap Not Connected!")
+            return False
         print 'Controller CONNECTED'
+        return True
 
     # enums for bone types
     def enum(self, **enums):
@@ -134,6 +139,7 @@ class GestureCollection(QtCore.QObject):
         start_frame = None
 
         while self.controller.is_connected:
+
             if (self.get_stop_thread_flag() == True):
                 return features.final_feat
             if reps_completed == reps:
@@ -205,7 +211,7 @@ class GestureCollection(QtCore.QObject):
                     features.avg_and_append_features(int(self.label), reps_completed)
                     reps_completed += 1
                     print "Remove hand from view"
-                    self.setStatus("Remove hand from view")
+                    self.send_iter_rep_to_process("Remove hand from view", str(reps), str(reps_completed))
                     printed = False
                 if len(hands) != 0:
                     time.sleep(gap_time)

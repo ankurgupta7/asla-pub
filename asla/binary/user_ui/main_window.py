@@ -1,8 +1,8 @@
 from ui_main_window import Ui_MainWindow
 from binary.ml_tools.predict_service import PredictService
 
-# from pygame import mixer
-# from gtts import gTTS
+from pygame import mixer
+from gtts import gTTS
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl
@@ -52,6 +52,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage(text)
 
     def status_ready(self, txt):
+        if txt == "Remove hand from view":
+            txt = ""
         self.statusbar.showMessage(txt)
     def update_models(self):
         """ checks if the model is stale and updates it from remote
@@ -111,8 +113,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if self.pred_serv_launch:
             self.thread.kill_gesture_prediction_service_thread()
+            self.thread.predict_service.user_ges.set_stop_thread_flag(False)
             self.pred_serv_launch = False
-            self.statusbar.setMessage("")
+            self.status_ready("Prediction Stopped. Press Spacebar to continue Prediction")
         else:
             self.thread.spawn_gesture_prediction_service_thread()
             self.pred_serv_launch = True
@@ -149,16 +152,17 @@ class PredictionThread():
     def do_predict_label(self):
         print 'in predict label. mainwindow. thread functioning'
         while True:
-            self.predict_service.capture_gesture()
-            self.predicted_label = self.predict_service.predict_label()
-            # tts = gTTS(text=str(self.predicted_label), lang='en')
-            # tts.save("prediction.mp3")
-            # mixer.music.load("prediction.mp3")
-            # mixer.music.play()
-            self.main_window.predLabel.setText(self.predicted_label)
+            if (self.predict_service.capture_gesture()):
+                self.predicted_label = self.predict_service.predict_label()
+                tts = gTTS(text=str(self.predicted_label), lang='en')
+                tts.save("prediction.mp3")
+                mixer.music.load("prediction.mp3")
+                mixer.music.play()
+                
+                self.main_window.predLabel.setText(self.predicted_label)
+
             if self.stop == True:
                 break
-
             time.sleep(0.05)
 
     def spawn_gesture_prediction_service_thread(self):

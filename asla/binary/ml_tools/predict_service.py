@@ -34,15 +34,18 @@ class PredictService:
         """
         Captures user's gesture
         """
-        self.user_ges.wait_for_connection()
+        if(self.user_ges.wait_for_connection() == False):
+            return False
+
         if not self.user_ges.is_calibrated():
             self.user_ges.calibration.calibrate()
         self.to_predict = self.user_ges.extract_features(reps=1, skip_time=0.25, hold_time=0.5 , print_feat=False)
-
+        return True
     def predict_label(self):
         """
         Predicts label for a captured gesture
         """
+
         self.to_predict = self.to_predict[0][1:].reshape(1, -1)
         to_predict_scaled = self.scaler.transform(self.to_predict)
         return chr(64 + int(self.model.predict(to_predict_scaled)[0]))
