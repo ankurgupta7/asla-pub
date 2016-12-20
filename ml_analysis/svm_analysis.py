@@ -4,6 +4,9 @@ import glob
 import numpy as np
 from sklearn import svm
 from sklearn import preprocessing
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn import metrics
 from sklearn.externals import joblib
 from sklearn.model_selection import KFold
@@ -14,6 +17,7 @@ from pymongo import MongoClient
 import gridfs
 from bson.binary import Binary
 from sklearn.model_selection import LeaveOneGroupOut
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -46,17 +50,43 @@ def main():
                 user_data[current_user] = np.vstack((user_data[current_user], data))
         print len(user_data[current_user])
         groups.extend(np.repeat(len(users), len(user_data[current_user])))
-        print groups
+        #print groups
 
     scaler = preprocessing.StandardScaler().fit(x_train)
     x_train_scaled = scaler.transform(x_train)
     logo = LeaveOneGroupOut()
-    print logo
-    svc = svm.SVC(C=1, kernel='linear')
-    scores = [svc.fit(x_train_scaled[train], y_train[train]).score(x_train_scaled[test], y_train[test])
-              for train, test in logo.split(x_train_scaled, y_train, groups=groups)]
-    print scores
-    print("CV Accuracy: %0.2f (+/- %0.2f)" % (np.mean(scores), np.std(scores) * 2))
+    #print logo\
+    param = np.linspace(50,5000,200)
+    avg = []
+    for p in param:
+        if p == 50:
+            decisionTreeClassifier = DecisionTreeClassifier(max_depth = int(p))
+            res = [1 - decisionTreeClassifier.fit(x_train_scaled[train], y_train[train]).score(x_train_scaled[test], y_train[test])
+                      for train, test in logo.split(x_train_scaled, y_train, groups=groups)]
+            avg.append(np.mean(res))
+        else:
+            decisionTreeClassifier = DecisionTreeClassifier(max_depth = int(p))
+            scores = [1 - decisionTreeClassifier.fit(x_train_scaled[train], y_train[train]).score(x_train_scaled[test], y_train[test])
+                      for train, test in logo.split(x_train_scaled, y_train, groups=groups)]
+            res = np.vstack((res,scores))
+            avg.append(np.mean(scores))
+            #print avg, p
+
+    np.savetxt('knn_res',res)
+
+    plt.plot(param, res[:,0], c = 'g', label = 'group1')
+    plt.plot(param, res[:,1],c= 'y', label = 'group2')
+    plt.plot(param, res[:,2],c='b', label = 'group3')
+    plt.plot(param, res[:,3],c='m', label = 'group4')
+    plt.plot(param, np.mean(res,axis = 1), c='r', label='average', linewidth = 4)
+    plt.legend(loc = 'upper right')
+    plt.xlabel('Maximum depth', size = 15)
+    plt.ylabel('CV error', size = 15)
+    plt.title('Decision Tree Leave Group Out cross validation curve', size = 15)
+    plt.plot(param, avg,color = 'red')
+    plt.show()
+
+    #print("CV Accuracy: %0.2f (+/- %0.2f)" % (np.mean(scores), np.std(scores) * 2))
 
         # print 'user_name', in_file.split('/')[1]
     # scaler = preprocessing.StandardScaler().fit(x_train)
@@ -121,3 +151,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#SVM C= 0.04 81%
+#RF Number of trees = 60 83%
+#Knn #Neighbors = 10 72%
+#Decision 3000 69%
