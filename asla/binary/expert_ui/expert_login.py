@@ -3,19 +3,23 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
+
     def _fromUtf8(s):
         return s
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
+
 class Ui_ExpertloginForm(object):
-    """ login form ui for user"""
+    """ Login form for expert"""
+
     def setupUi(self, loginForm):
         """ sets up the ui with pre fixed values. """
         loginForm.setObjectName(_fromUtf8("loginForm"))
@@ -55,13 +59,13 @@ class Ui_ExpertloginForm(object):
         QtCore.QMetaObject.connectSlotsByName(loginForm)
 
     def retranslateUi(self, loginForm):
-        """repaints the ui on scaling and moving"""
+        """Repaints the UI on scaling and moving"""
         loginForm.setWindowTitle(_translate("loginForm", "Form", None))
         self.remMeChk.setText(_translate("loginForm", "Remeber Me", None))
         self.atoken.setText(_translate("loginForm", "Expert Access Token", None))
         self.loginbtn.setText(_translate("loginForm", "Login", None))
         self.signupLink.setText(_translate("loginForm", "<a href=\"http://getasla.com/signup\">Signup</a>", None))
         self.signupText.setText(_translate("loginForm", "Don\'t have an account? ", None))
-   
+
     def loginbtnClicked(self):
-        """ sends the authentication token to server for euthentication """
+        """ sends the authentication token to server for authentication """

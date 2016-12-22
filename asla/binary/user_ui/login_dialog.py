@@ -8,7 +8,9 @@ import json
 
 url = 'https://aslaflaskwebsite.herokuapp.com/authenticate'
 
+
 class LoginDialog(QDialog, Ui_Dialog):
+    """Login Dialog"""
     def __init__(self):
         QDialog.__init__(self)
         self.setupUi(self)
@@ -42,7 +44,6 @@ class LoginDialog(QDialog, Ui_Dialog):
             msgBox.setStandardButtons(QMessageBox.Ok)
             msgBox.exec_()
             # self.setResult(self.)
-
 
     def loginBtn_clicked(self):
         """ sends the username and password to server for euthentication """

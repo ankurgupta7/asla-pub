@@ -26,13 +26,16 @@ except AttributeError:
 
 try:
     _encoding = QApplication.UnicodeUTF8
+
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QApplication.translate(context, text, disambig)
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
+    """Main bean class for the user binary"""
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
@@ -55,6 +58,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if txt == "Remove hand from view":
             txt = ""
         self.statusbar.showMessage(txt)
+
     def update_models(self):
         """ checks if the model is stale and updates it from remote
         returns the filepath for the latest model file"""

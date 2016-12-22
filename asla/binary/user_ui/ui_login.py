@@ -15,7 +15,7 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_loginForm(object):
-    """ main class handling login ui"""
+    """ Main class for handling login ui for the user"""
     def setupUi(self, loginForm):
         """ sets up the ui with pre fixed values. """
         loginForm.setObjectName(_fromUtf8("loginForm"))

@@ -10,7 +10,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
+    """QT generated class"""
     def setupUi(self, Dialog):
+        """QT generated method"""
         Dialog.setObjectName("Dialog")
         Dialog.resize(262, 143)
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -51,6 +53,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
+        """QT generated method"""
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.loginBtn.setText(_translate("Dialog", "Login"))

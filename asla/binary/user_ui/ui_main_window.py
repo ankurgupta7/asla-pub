@@ -10,7 +10,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
+    """QT generated class for User UI Main Window"""
     def setupUi(self, MainWindow):
+        """QT generated method"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(585, 607)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -90,6 +92,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        """QT generated method"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.predLabel.setText(_translate("MainWindow", "D"))

@@ -29,6 +29,7 @@ except AttributeError:
 
 
 class ExpertMainWindow(Ui_MainWindow, QMainWindow):
+    """Main bean class for the expert ui"""
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
@@ -42,22 +43,24 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
         # self.iternum.setText("0")
         self.cal_train_msg_slot("Connect Leap and Press Spacebar to start", "3", "0")
         self.new_train_thread()
-        letters = ['Q' ,'R' ,'S' ,'T' ,'U' ,'V' ,'W' ,'X' ,'Y' ,'Z']
+        letters = ['Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         self.labelCombo.addItems(letters)
         self.train_serv_launch = False
         self.statusbar.show()
 
     def label_combo_changed(self):
+        """Set new label"""
         self.curLabel.setText(self.labelCombo.currentText())
 
     def new_train_thread(self):
+        """Thread used by training service"""
         self.thread = TrainingThread(self)
         self.thread.train_service.exp_ges.msg_ready_signal.connect(self.status_ready)
         self.thread.train_service.exp_ges.iter_rep_signal.connect(self.cal_train_msg_slot)
         self.thread.train_service.exp_ges.calibration.msg_ready_signal.connect(self.cal_train_msg_slot)
 
     def submitDataBtn_clicked(self):
-        """ collects all the gesture data from expert and sends it to the server for training """
+        """ Collects all the gesture data from expert and sends it to the server for training """
         if (self.thread.train_service.send_to_server() == True):
             self.doSpacebarpressed()
             self.new_train_thread()
@@ -65,15 +68,16 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
             # self.doSpacebarpressed()
         else:
             self.status_ready("Error: Data NOT uploaded. Network TimeOut.")
+
     def cal_train_msg_slot(self, msg, reps, iter):
+        """Displays message to the expert"""
         # text = msg + '. repetitions = ' + iter +'/' + reps
         self.statusbar.showMessage(msg)
-        self.iternum.setText( iter )
+        self.iternum.setText(iter)
         self.timeleft.setText(reps)
 
-
-
     def status_ready(self, txt):
+        """Show message"""
         self.statusbar.showMessage(txt)
 
     def checkSpacebarpressed(self):
@@ -91,7 +95,6 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
     def updateTimeLeft(self):
         """ updates clock to let the expert know of time left to hold gesture"""
 
-
     def doSpacebarpressed(self):
         """checks if the user has pressed spacebar. toggles recording of gestures"""
         if self.train_serv_launch:
@@ -105,7 +108,9 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
                 return
             self.thread.spawn_gesture_trainion_service_thread(self.labelCombo.currentText())
             self.train_serv_launch = True
+
     def closeEvent(self, *args, **kwargs):
+        """Close event"""
         self.thread.kill_gesture_trainion_service_thread()
 
     def keyPressEvent(self, event):
@@ -116,6 +121,7 @@ class ExpertMainWindow(Ui_MainWindow, QMainWindow):
 
 
 class TrainingThread():
+    """Class to manage the Training Thread"""
     def __init__(self, main_window):
         self.thread = None
         self.stop = True
@@ -131,6 +137,7 @@ class TrainingThread():
         self.trained_label = None
 
     def do_train_label(self, cur_label):
+        """Calls the training service """
         print 'in train label. MainWindow. thread functioning'
         if True:
             self.train_service.capture_gesture(label=cur_label)
