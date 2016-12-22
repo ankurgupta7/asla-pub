@@ -1,0 +1,229 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module binary.leap_tools.gesture_collection</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="binary.html"><font color="#ffffff">binary</font></a>.<a href="binary.leap_tools.html"><font color="#ffffff">leap_tools</font></a>.gesture_collection</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/leap_tools/gesture_collection.py">/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/leap_tools/gesture_collection.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="binary.leap_tools.lib.Leap.html">binary.leap_tools.lib.Leap</a><br>
+<a href="PyQt5.QtCore.html">PyQt5.QtCore</a><br>
+</td><td width="25%" valign=top><a href="itertools.html">itertools</a><br>
+<a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>(<a href="sip.html#wrapper">sip.wrapper</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="binary.leap_tools.gesture_collection.html#GestureCollection">GestureCollection</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GestureCollection">class <strong>GestureCollection</strong></a>(<a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Extracting&nbsp;the&nbsp;features&nbsp;from&nbsp;captured&nbsp;gesture<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="binary.leap_tools.gesture_collection.html#GestureCollection">GestureCollection</a></dd>
+<dd><a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="GestureCollection-__init__"><strong>__init__</strong></a>(self, label)</dt></dl>
+
+<dl><dt><a name="GestureCollection-enum"><strong>enum</strong></a>(self, **enums)</dt><dd><tt>#&nbsp;enums&nbsp;for&nbsp;bone&nbsp;types</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-extract_features"><strong>extract_features</strong></a>(self, reps<font color="#909090">=3</font>, skip_time<font color="#909090">=1.5</font>, hold_time<font color="#909090">=2</font>, gap_time<font color="#909090">=0.25</font>, print_feat<font color="#909090">=True</font>)</dt><dd><tt>Method&nbsp;to&nbsp;extract&nbsp;features<br>
+:return:&nbsp;final&nbsp;feature&nbsp;list<br>
+:rtype:&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-getStatus"><strong>getStatus</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GestureCollection-get_stop_thread_flag"><strong>get_stop_thread_flag</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GestureCollection-is_calibrated"><strong>is_calibrated</strong></a>(self)</dt><dd><tt>Checks&nbsp;if&nbsp;the&nbsp;sensor&nbsp;is&nbsp;calibrated<br>
+:return:&nbsp;True&nbsp;if&nbsp;calibrated,&nbsp;False&nbsp;if&nbsp;not<br>
+:rtype:&nbsp;boolean</tt></dd></dl>
+
+<strong>iter_rep_signal</strong> = &lt;unbound signal iter_rep_signal&gt;
+<strong>msg_ready_signal</strong> = &lt;unbound signal msg_ready_signal&gt;
+<dl><dt><a name="GestureCollection-send_iter_rep_to_process"><strong>send_iter_rep_to_process</strong></a>(self, msg, rep, cur_iter)</dt></dl>
+
+<dl><dt><a name="GestureCollection-setStatus"><strong>setStatus</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="GestureCollection-setStatusBar"><strong>setStatusBar</strong></a>(self, s)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_inner_distances"><strong>set_inner_distances</strong></a>(self, features, feat_index, list_of_fingers, type)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_lengths"><strong>set_lengths</strong></a>(self, features, feat_index, list_of_fingers, hand, type)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_stop_thread_flag"><strong>set_stop_thread_flag</strong></a>(self, stop<font color="#909090">=True</font>)</dt></dl>
+
+<dl><dt><a name="GestureCollection-wait_for_connection"><strong>wait_for_connection</strong></a>(self)</dt><dd><tt>Wait&nbsp;for&nbsp;Controller&nbsp;to&nbsp;be&nbsp;connected&nbsp;to&nbsp;the&nbsp;device.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="GestureCollection-print_dynamic_features"><strong>print_dynamic_features</strong></a>(features)</dt></dl>
+
+<dl><dt><a name="GestureCollection-print_static_features"><strong>print_static_features</strong></a>(features, feat_index)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_angle_between_fingers_and_palm"><strong>set_angle_between_fingers_and_palm</strong></a>(features, feat_index, list_of_fingers, hand)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_angle_between_tips"><strong>set_angle_between_tips</strong></a>(features, feat_index, list_of_fingers)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_extended_fingers"><strong>set_extended_fingers</strong></a>(features, feat_index, list_of_fingers)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_hand_features"><strong>set_hand_features</strong></a>(features, feat_index, hand)</dt></dl>
+
+<dl><dt><a name="GestureCollection-set_movement_features"><strong>set_movement_features</strong></a>(features, start_frame, end_frame, hand)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><a name="GestureCollection-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-__getattr__">__getattr__</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-blockSignals">blockSignals</a>(self,&nbsp;bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-childEvent"><strong>childEvent</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-childEvent">childEvent</a>(self,&nbsp;QChildEvent)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-children"><strong>children</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-children">children</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-connectNotify"><strong>connectNotify</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-connectNotify">connectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-customEvent"><strong>customEvent</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-customEvent">customEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-deleteLater">deleteLater</a>(self)</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="GestureCollection-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-disconnect">disconnect</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-disconnectNotify">disconnectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-dumpObjectInfo">dumpObjectInfo</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-dumpObjectTree">dumpObjectTree</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-dynamicPropertyNames">dynamicPropertyNames</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-event"><strong>event</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-event">event</a>(self,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-eventFilter">eventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-findChild">findChild</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object<br>
+<a href="#GestureCollection-findChild">findChild</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#GestureCollection-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-inherits">inherits</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-installEventFilter">installEventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-isSignalConnected"><strong>isSignalConnected</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-isSignalConnected">isSignalConnected</a>(self,&nbsp;QMetaMethod)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-isWidgetType">isWidgetType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-isWindowType"><strong>isWindowType</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-isWindowType">isWindowType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-killTimer">killTimer</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-metaObject">metaObject</a>(self)&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-moveToThread">moveToThread</a>(self,&nbsp;QThread)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-objectName">objectName</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<strong>objectNameChanged</strong> = &lt;unbound signal objectNameChanged&gt;
+<dl><dt><a name="GestureCollection-parent"><strong>parent</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-parent">parent</a>(self)&nbsp;-&gt;&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a></tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-property"><strong>property</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-property">property</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt><a href="PyQt5.QtCore.html#QObject">QObject</a>.<a href="#GestureCollection-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-receivers"><strong>receivers</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-receivers">receivers</a>(self,&nbsp;object)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-removeEventFilter">removeEventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-sender"><strong>sender</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-sender">sender</a>(self)&nbsp;-&gt;&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a></tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-senderSignalIndex">senderSignalIndex</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-setObjectName">setObjectName</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-setParent">setParent</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-setProperty">setProperty</a>(self,&nbsp;str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-signalsBlocked">signalsBlocked</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-startTimer">startTimer</a>(self,&nbsp;int,&nbsp;timerType:&nbsp;Qt.TimerType&nbsp;=&nbsp;Qt.CoarseTimer)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-thread"><strong>thread</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-thread">thread</a>(self)&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-timerEvent"><strong>timerEvent</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-timerEvent">timerEvent</a>(self,&nbsp;QTimerEvent)</tt></dd></dl>
+
+<dl><dt><a name="GestureCollection-tr"><strong>tr</strong></a>(...)</dt><dd><tt><a href="#GestureCollection-tr">tr</a>(self,&nbsp;str,&nbsp;disambiguation:&nbsp;str&nbsp;=&nbsp;None,&nbsp;n:&nbsp;int&nbsp;=&nbsp;-1)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#GestureCollection-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>division</strong> = _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 8192)<br>
+<strong>platform</strong> = 'darwin'</td></tr></table>
+</body></html>

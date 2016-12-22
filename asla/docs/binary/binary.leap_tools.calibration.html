@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module binary.leap_tools.calibration</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="binary.html"><font color="#ffffff">binary</font></a>.<a href="binary.leap_tools.html"><font color="#ffffff">leap_tools</font></a>.calibration</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/leap_tools/calibration.py">/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/leap_tools/calibration.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="binary.leap_tools.lib.Leap.html">binary.leap_tools.lib.Leap</a><br>
+<a href="PyQt5.QtCore.html">PyQt5.QtCore</a><br>
+</td><td width="25%" valign=top><a href="io.html">io</a><br>
+<a href="itertools.html">itertools</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>(<a href="sip.html#wrapper">sip.wrapper</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="binary.leap_tools.calibration.html#Calibration">Calibration</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Calibration">class <strong>Calibration</strong></a>(<a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;to&nbsp;calibrate&nbsp;the&nbsp;sensor<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="binary.leap_tools.calibration.html#Calibration">Calibration</a></dd>
+<dd><a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Calibration-__init__"><strong>__init__</strong></a>(self, controller)</dt></dl>
+
+<dl><dt><a name="Calibration-calibrate"><strong>calibrate</strong></a>(self, reps<font color="#909090">=3</font>, skip_time<font color="#909090">=2</font>, hold_time<font color="#909090">=5</font>, gap_time<font color="#909090">=0.25</font>)</dt><dd><tt>:param&nbsp;reps:&nbsp;Number&nbsp;of&nbsp;repetitions<br>
+:type&nbsp;reps:&nbsp;int<br>
+:param&nbsp;skip_time:&nbsp;The&nbsp;time&nbsp;after&nbsp;which&nbsp;sensor&nbsp;starts&nbsp;capturing<br>
+:type&nbsp;skip_time:&nbsp;int<br>
+:param&nbsp;hold_time:&nbsp;The&nbsp;time&nbsp;person&nbsp;need&nbsp;to&nbsp;hold&nbsp;the&nbsp;hand&nbsp;in&nbsp;position<br>
+:type&nbsp;hold_time:&nbsp;int<br>
+:param&nbsp;gap_time:&nbsp;The&nbsp;time&nbsp;after&nbsp;which&nbsp;frame&nbsp;is&nbsp;captured<br>
+:type&nbsp;gap_time:&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Calibration-enum"><strong>enum</strong></a>(self, **enums)</dt></dl>
+
+<strong>msg_ready_signal</strong> = &lt;unbound signal msg_ready_signal&gt;
+<dl><dt><a name="Calibration-setStatus"><strong>setStatus</strong></a>(self, msg, rep, cur_iter)</dt></dl>
+
+<dl><dt><a name="Calibration-setStatusbar"><strong>setStatusbar</strong></a>(self, s)</dt></dl>
+
+<dl><dt><a name="Calibration-write_calibration"><strong>write_calibration</strong></a>(self)</dt><dd><tt>Writes&nbsp;calibration&nbsp;parameters&nbsp;to&nbsp;file</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Calibration-set_inner_distances"><strong>set_inner_distances</strong></a>(features, feat_index, list_of_fingers, type)</dt></dl>
+
+<dl><dt><a name="Calibration-set_lengths"><strong>set_lengths</strong></a>(features, feat_index, list_of_fingers, hand, type)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><a name="Calibration-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt><a href="#Calibration-__getattr__">__getattr__</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Calibration-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt><a href="#Calibration-blockSignals">blockSignals</a>(self,&nbsp;bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-childEvent"><strong>childEvent</strong></a>(...)</dt><dd><tt><a href="#Calibration-childEvent">childEvent</a>(self,&nbsp;QChildEvent)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-children"><strong>children</strong></a>(...)</dt><dd><tt><a href="#Calibration-children">children</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Calibration-connectNotify"><strong>connectNotify</strong></a>(...)</dt><dd><tt><a href="#Calibration-connectNotify">connectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-customEvent"><strong>customEvent</strong></a>(...)</dt><dd><tt><a href="#Calibration-customEvent">customEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt><a href="#Calibration-deleteLater">deleteLater</a>(self)</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="Calibration-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt><a href="#Calibration-disconnect">disconnect</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Calibration-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt><dd><tt><a href="#Calibration-disconnectNotify">disconnectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt><a href="#Calibration-dumpObjectInfo">dumpObjectInfo</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt><a href="#Calibration-dumpObjectTree">dumpObjectTree</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt><a href="#Calibration-dynamicPropertyNames">dynamicPropertyNames</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Calibration-event"><strong>event</strong></a>(...)</dt><dd><tt><a href="#Calibration-event">event</a>(self,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt><a href="#Calibration-eventFilter">eventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt><a href="#Calibration-findChild">findChild</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object<br>
+<a href="#Calibration-findChild">findChild</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="Calibration-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt><a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#Calibration-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List</tt></dd></dl>
+
+<dl><dt><a name="Calibration-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt><a href="#Calibration-inherits">inherits</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt><a href="#Calibration-installEventFilter">installEventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-isSignalConnected"><strong>isSignalConnected</strong></a>(...)</dt><dd><tt><a href="#Calibration-isSignalConnected">isSignalConnected</a>(self,&nbsp;QMetaMethod)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt><a href="#Calibration-isWidgetType">isWidgetType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-isWindowType"><strong>isWindowType</strong></a>(...)</dt><dd><tt><a href="#Calibration-isWindowType">isWindowType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt><a href="#Calibration-killTimer">killTimer</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt><a href="#Calibration-metaObject">metaObject</a>(self)&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="Calibration-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt><a href="#Calibration-moveToThread">moveToThread</a>(self,&nbsp;QThread)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt><a href="#Calibration-objectName">objectName</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<strong>objectNameChanged</strong> = &lt;unbound signal objectNameChanged&gt;
+<dl><dt><a name="Calibration-parent"><strong>parent</strong></a>(...)</dt><dd><tt><a href="#Calibration-parent">parent</a>(self)&nbsp;-&gt;&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a></tt></dd></dl>
+
+<dl><dt><a name="Calibration-property"><strong>property</strong></a>(...)</dt><dd><tt><a href="#Calibration-property">property</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="Calibration-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt><a href="PyQt5.QtCore.html#QObject">QObject</a>.<a href="#Calibration-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="Calibration-receivers"><strong>receivers</strong></a>(...)</dt><dd><tt><a href="#Calibration-receivers">receivers</a>(self,&nbsp;object)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Calibration-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt><a href="#Calibration-removeEventFilter">removeEventFilter</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-sender"><strong>sender</strong></a>(...)</dt><dd><tt><a href="#Calibration-sender">sender</a>(self)&nbsp;-&gt;&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a></tt></dd></dl>
+
+<dl><dt><a name="Calibration-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt><dd><tt><a href="#Calibration-senderSignalIndex">senderSignalIndex</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Calibration-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt><a href="#Calibration-setObjectName">setObjectName</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt><a href="#Calibration-setParent">setParent</a>(self,&nbsp;<a href="PyQt5.QtCore.html#QObject">QObject</a>)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt><a href="#Calibration-setProperty">setProperty</a>(self,&nbsp;str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt><a href="#Calibration-signalsBlocked">signalsBlocked</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="Calibration-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt><a href="#Calibration-startTimer">startTimer</a>(self,&nbsp;int,&nbsp;timerType:&nbsp;Qt.TimerType&nbsp;=&nbsp;Qt.CoarseTimer)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="Calibration-thread"><strong>thread</strong></a>(...)</dt><dd><tt><a href="#Calibration-thread">thread</a>(self)&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="Calibration-timerEvent"><strong>timerEvent</strong></a>(...)</dt><dd><tt><a href="#Calibration-timerEvent">timerEvent</a>(self,&nbsp;QTimerEvent)</tt></dd></dl>
+
+<dl><dt><a name="Calibration-tr"><strong>tr</strong></a>(...)</dt><dd><tt><a href="#Calibration-tr">tr</a>(self,&nbsp;str,&nbsp;disambiguation:&nbsp;str&nbsp;=&nbsp;None,&nbsp;n:&nbsp;int&nbsp;=&nbsp;-1)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#Calibration-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>division</strong> = _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 8192)<br>
+<strong>platform</strong> = 'darwin'</td></tr></table>
+</body></html>

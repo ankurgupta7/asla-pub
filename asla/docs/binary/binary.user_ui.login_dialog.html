@@ -1,0 +1,821 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module binary.user_ui.login_dialog</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="binary.html"><font color="#ffffff">binary</font></a>.<a href="binary.user_ui.html"><font color="#ffffff">user_ui</font></a>.login_dialog</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/user_ui/login_dialog.py">/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/binary/user_ui/login_dialog.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="PyQt5.QtCore.html">PyQt5.QtCore</a><br>
+</td><td width="25%" valign=top><a href="PyQt5.QtGui.html">PyQt5.QtGui</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>(<a href="PyQt5.QtWidgets.html#QWidget">PyQt5.QtWidgets.QWidget</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="binary.user_ui.login_dialog.html#LoginDialog">LoginDialog</a>(<a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>, <a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="binary.user_ui.login_dialog.html#LoginDialog">LoginDialog</a>(<a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>, <a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LoginDialog">class <strong>LoginDialog</strong></a>(<a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>, <a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Login&nbsp;Dialog<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="binary.user_ui.login_dialog.html#LoginDialog">LoginDialog</a></dd>
+<dd><a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a></dd>
+<dd><a href="PyQt5.QtWidgets.html#QWidget">PyQt5.QtWidgets.QWidget</a></dd>
+<dd><a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a></dd>
+<dd><a href="sip.html#wrapper">sip.wrapper</a></dd>
+<dd><a href="PyQt5.QtGui.html#QPaintDevice">PyQt5.QtGui.QPaintDevice</a></dd>
+<dd><a href="sip.html#simplewrapper">sip.simplewrapper</a></dd>
+<dd><a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LoginDialog-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LoginDialog-loginBtn_clicked"><strong>loginBtn_clicked</strong></a>(self)</dt><dd><tt>sends&nbsp;the&nbsp;username&nbsp;and&nbsp;password&nbsp;to&nbsp;server&nbsp;for&nbsp;euthentication</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-onAccept"><strong>onAccept</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>:<br>
+<dl><dt><a name="LoginDialog-accept"><strong>accept</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-accept">accept</a>(self)</tt></dd></dl>
+
+<strong>accepted</strong> = &lt;unbound signal accepted&gt;
+<dl><dt><a name="LoginDialog-closeEvent"><strong>closeEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-closeEvent">closeEvent</a>(self,&nbsp;QCloseEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-contextMenuEvent">contextMenuEvent</a>(self,&nbsp;QContextMenuEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-done"><strong>done</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-done">done</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-eventFilter"><strong>eventFilter</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-eventFilter">eventFilter</a>(self,&nbsp;QObject,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-exec_"><strong>exec_</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-exec_">exec_</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<strong>finished</strong> = &lt;unbound signal finished&gt;
+<dl><dt><a name="LoginDialog-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isSizeGripEnabled">isSizeGripEnabled</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-keyPressEvent">keyPressEvent</a>(self,&nbsp;QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-minimumSizeHint">minimumSizeHint</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-open"><strong>open</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-open">open</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-reject"><strong>reject</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-reject">reject</a>(self)</tt></dd></dl>
+
+<strong>rejected</strong> = &lt;unbound signal rejected&gt;
+<dl><dt><a name="LoginDialog-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-resizeEvent">resizeEvent</a>(self,&nbsp;QResizeEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-result"><strong>result</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-result">result</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setModal"><strong>setModal</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setModal">setModal</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setResult"><strong>setResult</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setResult">setResult</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setSizeGripEnabled">setSizeGripEnabled</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setVisible"><strong>setVisible</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setVisible">setVisible</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-showEvent"><strong>showEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-showEvent">showEvent</a>(self,&nbsp;QShowEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-sizeHint"><strong>sizeHint</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-sizeHint">sizeHint</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt5.QtWidgets.html#QDialog">PyQt5.QtWidgets.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = 1</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PyQt5.QtWidgets.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = 0</dl>
+
+<hr>
+Methods inherited from <a href="PyQt5.QtWidgets.html#QWidget">PyQt5.QtWidgets.QWidget</a>:<br>
+<dl><dt><a name="LoginDialog-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-acceptDrops">acceptDrops</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-accessibleDescription">accessibleDescription</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-accessibleName"><strong>accessibleName</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-accessibleName">accessibleName</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-actionEvent"><strong>actionEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-actionEvent">actionEvent</a>(self,&nbsp;QActionEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-actions"><strong>actions</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-actions">actions</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-activateWindow"><strong>activateWindow</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-activateWindow">activateWindow</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-addAction"><strong>addAction</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-addAction">addAction</a>(self,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-addActions"><strong>addActions</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-addActions">addActions</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-adjustSize"><strong>adjustSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-adjustSize">adjustSize</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-autoFillBackground">autoFillBackground</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-backgroundRole">backgroundRole</a>(self)&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-baseSize"><strong>baseSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-baseSize">baseSize</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-changeEvent"><strong>changeEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-changeEvent">changeEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-childAt"><strong>childAt</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-childAt">childAt</a>(self,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QWidget<br>
+<a href="#LoginDialog-childAt">childAt</a>(self,&nbsp;int,&nbsp;int)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-childrenRect"><strong>childrenRect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-childrenRect">childrenRect</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-childrenRegion">childrenRegion</a>(self)&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-clearFocus"><strong>clearFocus</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-clearFocus">clearFocus</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-clearMask"><strong>clearMask</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-clearMask">clearMask</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-close"><strong>close</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-close">close</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-contentsMargins">contentsMargins</a>(self)&nbsp;-&gt;&nbsp;QMargins</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-contentsRect"><strong>contentsRect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-contentsRect">contentsRect</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-contextMenuPolicy">contextMenuPolicy</a>(self)&nbsp;-&gt;&nbsp;Qt.ContextMenuPolicy</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-create"><strong>create</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-create">create</a>(self,&nbsp;window:&nbsp;object&nbsp;=&nbsp;0,&nbsp;initializeWindow:&nbsp;bool&nbsp;=&nbsp;True,&nbsp;destroyOldWindow:&nbsp;bool&nbsp;=&nbsp;True)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-createWindowContainer"><strong>createWindowContainer</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-createWindowContainer">createWindowContainer</a>(QWindow,&nbsp;parent:&nbsp;QWidget&nbsp;=&nbsp;None,&nbsp;flags:&nbsp;Qt.WindowFlags&nbsp;=&nbsp;0)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-cursor"><strong>cursor</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-cursor">cursor</a>(self)&nbsp;-&gt;&nbsp;QCursor</tt></dd></dl>
+
+<strong>customContextMenuRequested</strong> = &lt;unbound signal customContextMenuRequested&gt;
+<dl><dt><a name="LoginDialog-destroy"><strong>destroy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-destroy">destroy</a>(self,&nbsp;destroyWindow:&nbsp;bool&nbsp;=&nbsp;True,&nbsp;destroySubWindows:&nbsp;bool&nbsp;=&nbsp;True)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-devType"><strong>devType</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-devType">devType</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dragEnterEvent">dragEnterEvent</a>(self,&nbsp;QDragEnterEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dragLeaveEvent">dragLeaveEvent</a>(self,&nbsp;QDragLeaveEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dragMoveEvent">dragMoveEvent</a>(self,&nbsp;QDragMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dropEvent"><strong>dropEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dropEvent">dropEvent</a>(self,&nbsp;QDropEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-effectiveWinId">effectiveWinId</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-ensurePolished">ensurePolished</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-enterEvent"><strong>enterEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-enterEvent">enterEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-event"><strong>event</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-event">event</a>(self,&nbsp;QEvent)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-find"><strong>find</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-find">find</a>(object)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusInEvent">focusInEvent</a>(self,&nbsp;QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusNextChild">focusNextChild</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusNextPrevChild">focusNextPrevChild</a>(self,&nbsp;bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusOutEvent">focusOutEvent</a>(self,&nbsp;QFocusEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusPolicy">focusPolicy</a>(self)&nbsp;-&gt;&nbsp;Qt.FocusPolicy</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusPreviousChild">focusPreviousChild</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusProxy"><strong>focusProxy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusProxy">focusProxy</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-focusWidget"><strong>focusWidget</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-focusWidget">focusWidget</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-font"><strong>font</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-font">font</a>(self)&nbsp;-&gt;&nbsp;QFont</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-fontInfo"><strong>fontInfo</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-fontInfo">fontInfo</a>(self)&nbsp;-&gt;&nbsp;QFontInfo</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-fontMetrics">fontMetrics</a>(self)&nbsp;-&gt;&nbsp;QFontMetrics</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-foregroundRole">foregroundRole</a>(self)&nbsp;-&gt;&nbsp;QPalette.ColorRole</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-frameGeometry">frameGeometry</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-frameSize"><strong>frameSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-frameSize">frameSize</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-geometry"><strong>geometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-geometry">geometry</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-getContentsMargins">getContentsMargins</a>(self)&nbsp;-&gt;&nbsp;Tuple[int,&nbsp;int,&nbsp;int,&nbsp;int]</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-grab"><strong>grab</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-grab">grab</a>(self,&nbsp;rectangle:&nbsp;QRect&nbsp;=&nbsp;QRect(QPoint(0,0),QSize(-1,-1)))&nbsp;-&gt;&nbsp;QPixmap</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-grabGesture"><strong>grabGesture</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-grabGesture">grabGesture</a>(self,&nbsp;Qt.GestureType,&nbsp;flags:&nbsp;Qt.GestureFlags&nbsp;=&nbsp;Qt.GestureFlags(0))</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-grabKeyboard">grabKeyboard</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-grabMouse"><strong>grabMouse</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-grabMouse">grabMouse</a>(self)<br>
+<a href="#LoginDialog-grabMouse">grabMouse</a>(self,&nbsp;QCursor)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-grabShortcut">grabShortcut</a>(self,&nbsp;QKeySequence,&nbsp;context:&nbsp;Qt.ShortcutContext&nbsp;=&nbsp;Qt.WindowShortcut)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-graphicsEffect">graphicsEffect</a>(self)&nbsp;-&gt;&nbsp;QGraphicsEffect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-graphicsProxyWidget">graphicsProxyWidget</a>(self)&nbsp;-&gt;&nbsp;QGraphicsProxyWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-hasFocus"><strong>hasFocus</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-hasFocus">hasFocus</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-hasHeightForWidth"><strong>hasHeightForWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-hasHeightForWidth">hasHeightForWidth</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-hasMouseTracking">hasMouseTracking</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-height"><strong>height</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-height">height</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-heightForWidth">heightForWidth</a>(self,&nbsp;int)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-hide"><strong>hide</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-hide">hide</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-hideEvent"><strong>hideEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-hideEvent">hideEvent</a>(self,&nbsp;QHideEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-initPainter"><strong>initPainter</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-initPainter">initPainter</a>(self,&nbsp;QPainter)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-inputMethodEvent">inputMethodEvent</a>(self,&nbsp;QInputMethodEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-inputMethodHints">inputMethodHints</a>(self)&nbsp;-&gt;&nbsp;Qt.InputMethodHints</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-inputMethodQuery">inputMethodQuery</a>(self,&nbsp;Qt.InputMethodQuery)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-insertAction"><strong>insertAction</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-insertAction">insertAction</a>(self,&nbsp;QAction,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-insertActions"><strong>insertActions</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-insertActions">insertActions</a>(self,&nbsp;QAction,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isActiveWindow">isActiveWindow</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isAncestorOf">isAncestorOf</a>(self,&nbsp;QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isEnabled"><strong>isEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isEnabled">isEnabled</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isEnabledTo">isEnabledTo</a>(self,&nbsp;QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isFullScreen">isFullScreen</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isHidden"><strong>isHidden</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isHidden">isHidden</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isLeftToRight">isLeftToRight</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isMaximized"><strong>isMaximized</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isMaximized">isMaximized</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isMinimized"><strong>isMinimized</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isMinimized">isMinimized</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isModal"><strong>isModal</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isModal">isModal</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isRightToLeft">isRightToLeft</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isVisible"><strong>isVisible</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isVisible">isVisible</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isVisibleTo">isVisibleTo</a>(self,&nbsp;QWidget)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isWindow"><strong>isWindow</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isWindow">isWindow</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isWindowModified">isWindowModified</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-keyReleaseEvent">keyReleaseEvent</a>(self,&nbsp;QKeyEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-keyboardGrabber">keyboardGrabber</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-layout"><strong>layout</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-layout">layout</a>(self)&nbsp;-&gt;&nbsp;QLayout</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-layoutDirection">layoutDirection</a>(self)&nbsp;-&gt;&nbsp;Qt.LayoutDirection</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-leaveEvent">leaveEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-locale"><strong>locale</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-locale">locale</a>(self)&nbsp;-&gt;&nbsp;QLocale</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-lower"><strong>lower</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-lower">lower</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapFrom"><strong>mapFrom</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapFrom">mapFrom</a>(self,&nbsp;QWidget,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapFromGlobal">mapFromGlobal</a>(self,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapFromParent">mapFromParent</a>(self,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapTo"><strong>mapTo</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapTo">mapTo</a>(self,&nbsp;QWidget,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapToGlobal">mapToGlobal</a>(self,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mapToParent"><strong>mapToParent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mapToParent">mapToParent</a>(self,&nbsp;QPoint)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mask"><strong>mask</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mask">mask</a>(self)&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-maximumHeight">maximumHeight</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-maximumSize"><strong>maximumSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-maximumSize">maximumSize</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-maximumWidth">maximumWidth</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-metric"><strong>metric</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-metric">metric</a>(self,&nbsp;QPaintDevice.PaintDeviceMetric)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-minimumHeight">minimumHeight</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-minimumSize"><strong>minimumSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-minimumSize">minimumSize</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-minimumWidth">minimumWidth</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mouseDoubleClickEvent">mouseDoubleClickEvent</a>(self,&nbsp;QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mouseGrabber">mouseGrabber</a>()&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mouseMoveEvent">mouseMoveEvent</a>(self,&nbsp;QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mousePressEvent">mousePressEvent</a>(self,&nbsp;QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-mouseReleaseEvent">mouseReleaseEvent</a>(self,&nbsp;QMouseEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-move"><strong>move</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-move">move</a>(self,&nbsp;QPoint)<br>
+<a href="#LoginDialog-move">move</a>(self,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-moveEvent"><strong>moveEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-moveEvent">moveEvent</a>(self,&nbsp;QMoveEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-nativeEvent"><strong>nativeEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-nativeEvent">nativeEvent</a>(self,&nbsp;QByteArray,&nbsp;sip.voidptr)&nbsp;-&gt;&nbsp;Tuple[bool,&nbsp;int]</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-nativeParentWidget">nativeParentWidget</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-nextInFocusChain">nextInFocusChain</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-normalGeometry">normalGeometry</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-overrideWindowFlags">overrideWindowFlags</a>(self,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-overrideWindowState">overrideWindowState</a>(self,&nbsp;Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-paintEngine"><strong>paintEngine</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-paintEngine">paintEngine</a>(self)&nbsp;-&gt;&nbsp;QPaintEngine</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-paintEvent"><strong>paintEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-paintEvent">paintEvent</a>(self,&nbsp;QPaintEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-palette"><strong>palette</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-palette">palette</a>(self)&nbsp;-&gt;&nbsp;QPalette</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-parentWidget"><strong>parentWidget</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-parentWidget">parentWidget</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-pos"><strong>pos</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-pos">pos</a>(self)&nbsp;-&gt;&nbsp;QPoint</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-previousInFocusChain">previousInFocusChain</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-raise_"><strong>raise_</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-raise_">raise_</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-rect"><strong>rect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-rect">rect</a>(self)&nbsp;-&gt;&nbsp;QRect</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-releaseKeyboard">releaseKeyboard</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-releaseMouse">releaseMouse</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-releaseShortcut">releaseShortcut</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-removeAction"><strong>removeAction</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-removeAction">removeAction</a>(self,&nbsp;QAction)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-render"><strong>render</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-render">render</a>(self,&nbsp;QPaintDevice,&nbsp;targetOffset:&nbsp;QPoint&nbsp;=&nbsp;QPoint(),&nbsp;sourceRegion:&nbsp;QRegion&nbsp;=&nbsp;QRegion(),&nbsp;flags:&nbsp;QWidget.RenderFlags&nbsp;=&nbsp;QWidget.DrawWindowBackground|QWidget.DrawChildren)<br>
+<a href="#LoginDialog-render">render</a>(self,&nbsp;QPainter,&nbsp;targetOffset:&nbsp;QPoint&nbsp;=&nbsp;QPoint(),&nbsp;sourceRegion:&nbsp;QRegion&nbsp;=&nbsp;QRegion(),&nbsp;flags:&nbsp;QWidget.RenderFlags&nbsp;=&nbsp;QWidget.DrawWindowBackground|QWidget.DrawChildren)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-repaint"><strong>repaint</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-repaint">repaint</a>(self)<br>
+<a href="#LoginDialog-repaint">repaint</a>(self,&nbsp;int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-repaint">repaint</a>(self,&nbsp;QRect)<br>
+<a href="#LoginDialog-repaint">repaint</a>(self,&nbsp;QRegion)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-resize"><strong>resize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-resize">resize</a>(self,&nbsp;QSize)<br>
+<a href="#LoginDialog-resize">resize</a>(self,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-restoreGeometry">restoreGeometry</a>(self,&nbsp;QByteArray)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-saveGeometry">saveGeometry</a>(self)&nbsp;-&gt;&nbsp;QByteArray</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-scroll"><strong>scroll</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-scroll">scroll</a>(self,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-scroll">scroll</a>(self,&nbsp;int,&nbsp;int,&nbsp;QRect)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setAcceptDrops">setAcceptDrops</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setAccessibleDescription">setAccessibleDescription</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setAccessibleName">setAccessibleName</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setAttribute"><strong>setAttribute</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setAttribute">setAttribute</a>(self,&nbsp;Qt.WidgetAttribute,&nbsp;on:&nbsp;bool&nbsp;=&nbsp;True)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setAutoFillBackground">setAutoFillBackground</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setBackgroundRole">setBackgroundRole</a>(self,&nbsp;QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setBaseSize">setBaseSize</a>(self,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-setBaseSize">setBaseSize</a>(self,&nbsp;QSize)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setContentsMargins">setContentsMargins</a>(self,&nbsp;int,&nbsp;int,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-setContentsMargins">setContentsMargins</a>(self,&nbsp;QMargins)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setContextMenuPolicy">setContextMenuPolicy</a>(self,&nbsp;Qt.ContextMenuPolicy)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setCursor"><strong>setCursor</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setCursor">setCursor</a>(self,&nbsp;QCursor)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setDisabled"><strong>setDisabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setDisabled">setDisabled</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setEnabled"><strong>setEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setEnabled">setEnabled</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFixedHeight">setFixedHeight</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFixedSize">setFixedSize</a>(self,&nbsp;QSize)<br>
+<a href="#LoginDialog-setFixedSize">setFixedSize</a>(self,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFixedWidth">setFixedWidth</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFocus"><strong>setFocus</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFocus">setFocus</a>(self)<br>
+<a href="#LoginDialog-setFocus">setFocus</a>(self,&nbsp;Qt.FocusReason)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFocusPolicy">setFocusPolicy</a>(self,&nbsp;Qt.FocusPolicy)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFocusProxy">setFocusProxy</a>(self,&nbsp;QWidget)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setFont"><strong>setFont</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setFont">setFont</a>(self,&nbsp;QFont)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setForegroundRole">setForegroundRole</a>(self,&nbsp;QPalette.ColorRole)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setGeometry"><strong>setGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setGeometry">setGeometry</a>(self,&nbsp;QRect)<br>
+<a href="#LoginDialog-setGeometry">setGeometry</a>(self,&nbsp;int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setGraphicsEffect">setGraphicsEffect</a>(self,&nbsp;QGraphicsEffect)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setHidden"><strong>setHidden</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setHidden">setHidden</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setInputMethodHints">setInputMethodHints</a>(self,&nbsp;Qt.InputMethodHints)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setLayout"><strong>setLayout</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setLayout">setLayout</a>(self,&nbsp;QLayout)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setLayoutDirection">setLayoutDirection</a>(self,&nbsp;Qt.LayoutDirection)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setLocale"><strong>setLocale</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setLocale">setLocale</a>(self,&nbsp;QLocale)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMask"><strong>setMask</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMask">setMask</a>(self,&nbsp;QBitmap)<br>
+<a href="#LoginDialog-setMask">setMask</a>(self,&nbsp;QRegion)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMaximumHeight">setMaximumHeight</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMaximumSize">setMaximumSize</a>(self,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-setMaximumSize">setMaximumSize</a>(self,&nbsp;QSize)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMaximumWidth">setMaximumWidth</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMinimumHeight">setMinimumHeight</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMinimumSize">setMinimumSize</a>(self,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-setMinimumSize">setMinimumSize</a>(self,&nbsp;QSize)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMinimumWidth">setMinimumWidth</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setMouseTracking">setMouseTracking</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setPalette"><strong>setPalette</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setPalette">setPalette</a>(self,&nbsp;QPalette)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setParent"><strong>setParent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setParent">setParent</a>(self,&nbsp;QWidget)<br>
+<a href="#LoginDialog-setParent">setParent</a>(self,&nbsp;QWidget,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setShortcutAutoRepeat">setShortcutAutoRepeat</a>(self,&nbsp;int,&nbsp;enabled:&nbsp;bool&nbsp;=&nbsp;True)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setShortcutEnabled">setShortcutEnabled</a>(self,&nbsp;int,&nbsp;enabled:&nbsp;bool&nbsp;=&nbsp;True)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setSizeIncrement">setSizeIncrement</a>(self,&nbsp;int,&nbsp;int)<br>
+<a href="#LoginDialog-setSizeIncrement">setSizeIncrement</a>(self,&nbsp;QSize)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setSizePolicy">setSizePolicy</a>(self,&nbsp;QSizePolicy)<br>
+<a href="#LoginDialog-setSizePolicy">setSizePolicy</a>(self,&nbsp;QSizePolicy.Policy,&nbsp;QSizePolicy.Policy)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setStatusTip">setStatusTip</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setStyle"><strong>setStyle</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setStyle">setStyle</a>(self,&nbsp;QStyle)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setStyleSheet">setStyleSheet</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setTabOrder">setTabOrder</a>(QWidget,&nbsp;QWidget)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setToolTip"><strong>setToolTip</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setToolTip">setToolTip</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setToolTipDuration"><strong>setToolTipDuration</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setToolTipDuration">setToolTipDuration</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setUpdatesEnabled">setUpdatesEnabled</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWhatsThis">setWhatsThis</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowFilePath">setWindowFilePath</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowFlags">setWindowFlags</a>(self,&nbsp;Qt.WindowFlags)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowIcon">setWindowIcon</a>(self,&nbsp;QIcon)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowIconText">setWindowIconText</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowModality">setWindowModality</a>(self,&nbsp;Qt.WindowModality)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowModified">setWindowModified</a>(self,&nbsp;bool)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowOpacity">setWindowOpacity</a>(self,&nbsp;float)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowRole">setWindowRole</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowState"><strong>setWindowState</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowState">setWindowState</a>(self,&nbsp;Qt.WindowStates)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setWindowTitle">setWindowTitle</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-sharedPainter"><strong>sharedPainter</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-sharedPainter">sharedPainter</a>(self)&nbsp;-&gt;&nbsp;QPainter</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-show"><strong>show</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-show">show</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-showFullScreen">showFullScreen</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-showMaximized"><strong>showMaximized</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-showMaximized">showMaximized</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-showMinimized"><strong>showMinimized</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-showMinimized">showMinimized</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-showNormal"><strong>showNormal</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-showNormal">showNormal</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-size"><strong>size</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-size">size</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-sizeIncrement">sizeIncrement</a>(self)&nbsp;-&gt;&nbsp;QSize</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-sizePolicy">sizePolicy</a>(self)&nbsp;-&gt;&nbsp;QSizePolicy</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-stackUnder"><strong>stackUnder</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-stackUnder">stackUnder</a>(self,&nbsp;QWidget)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-statusTip"><strong>statusTip</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-statusTip">statusTip</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-style"><strong>style</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-style">style</a>(self)&nbsp;-&gt;&nbsp;QStyle</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-styleSheet"><strong>styleSheet</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-styleSheet">styleSheet</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-tabletEvent">tabletEvent</a>(self,&nbsp;QTabletEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-testAttribute"><strong>testAttribute</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-testAttribute">testAttribute</a>(self,&nbsp;Qt.WidgetAttribute)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-toolTip"><strong>toolTip</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-toolTip">toolTip</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-toolTipDuration"><strong>toolTipDuration</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-toolTipDuration">toolTipDuration</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-underMouse"><strong>underMouse</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-underMouse">underMouse</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-ungrabGesture">ungrabGesture</a>(self,&nbsp;Qt.GestureType)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-unsetCursor">unsetCursor</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-unsetLayoutDirection">unsetLayoutDirection</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-unsetLocale">unsetLocale</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-update"><strong>update</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-update">update</a>(self)<br>
+<a href="#LoginDialog-update">update</a>(self,&nbsp;QRect)<br>
+<a href="#LoginDialog-update">update</a>(self,&nbsp;QRegion)<br>
+<a href="#LoginDialog-update">update</a>(self,&nbsp;int,&nbsp;int,&nbsp;int,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-updateGeometry">updateGeometry</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-updateMicroFocus">updateMicroFocus</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-updatesEnabled">updatesEnabled</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-visibleRegion">visibleRegion</a>(self)&nbsp;-&gt;&nbsp;QRegion</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-whatsThis"><strong>whatsThis</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-whatsThis">whatsThis</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-wheelEvent">wheelEvent</a>(self,&nbsp;QWheelEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-width"><strong>width</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-width">width</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-winId"><strong>winId</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-winId">winId</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-window"><strong>window</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-window">window</a>(self)&nbsp;-&gt;&nbsp;QWidget</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowFilePath">windowFilePath</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowFlags"><strong>windowFlags</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowFlags">windowFlags</a>(self)&nbsp;-&gt;&nbsp;Qt.WindowFlags</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowHandle"><strong>windowHandle</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowHandle">windowHandle</a>(self)&nbsp;-&gt;&nbsp;QWindow</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowIcon"><strong>windowIcon</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowIcon">windowIcon</a>(self)&nbsp;-&gt;&nbsp;QIcon</tt></dd></dl>
+
+<strong>windowIconChanged</strong> = &lt;unbound signal windowIconChanged&gt;
+<dl><dt><a name="LoginDialog-windowIconText"><strong>windowIconText</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowIconText">windowIconText</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<strong>windowIconTextChanged</strong> = &lt;unbound signal windowIconTextChanged&gt;
+<dl><dt><a name="LoginDialog-windowModality"><strong>windowModality</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowModality">windowModality</a>(self)&nbsp;-&gt;&nbsp;Qt.WindowModality</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowOpacity">windowOpacity</a>(self)&nbsp;-&gt;&nbsp;float</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowRole"><strong>windowRole</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowRole">windowRole</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowState"><strong>windowState</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowState">windowState</a>(self)&nbsp;-&gt;&nbsp;Qt.WindowStates</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-windowTitle"><strong>windowTitle</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowTitle">windowTitle</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<strong>windowTitleChanged</strong> = &lt;unbound signal windowTitleChanged&gt;
+<dl><dt><a name="LoginDialog-windowType"><strong>windowType</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-windowType">windowType</a>(self)&nbsp;-&gt;&nbsp;Qt.WindowType</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-x"><strong>x</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-x">x</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-y"><strong>y</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-y">y</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt5.QtWidgets.html#QWidget">PyQt5.QtWidgets.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = 2</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = 1</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = 4</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PyQt5.QtWidgets.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'PyQt5.QtWidgets.RenderFlags'&gt;<dd><tt>QWidget.<a href="#LoginDialog-RenderFlags">RenderFlags</a>(QWidget.RenderFlags)<br>
+QWidget.<a href="#LoginDialog-RenderFlags">RenderFlags</a>(int)<br>
+QWidget.<a href="#LoginDialog-RenderFlags">RenderFlags</a>()</tt></dl>
+
+<hr>
+Methods inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><a name="LoginDialog-__getattr__"><strong>__getattr__</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-__getattr__">__getattr__</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-blockSignals"><strong>blockSignals</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-blockSignals">blockSignals</a>(self,&nbsp;bool)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-childEvent"><strong>childEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-childEvent">childEvent</a>(self,&nbsp;QChildEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-children"><strong>children</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-children">children</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-connectNotify"><strong>connectNotify</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-connectNotify">connectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-customEvent"><strong>customEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-customEvent">customEvent</a>(self,&nbsp;QEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-deleteLater"><strong>deleteLater</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-deleteLater">deleteLater</a>(self)</tt></dd></dl>
+
+<strong>destroyed</strong> = &lt;unbound signal destroyed&gt;
+<dl><dt><a name="LoginDialog-disconnect"><strong>disconnect</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-disconnect">disconnect</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-disconnectNotify">disconnectNotify</a>(self,&nbsp;QMetaMethod)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dumpObjectInfo">dumpObjectInfo</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dumpObjectTree">dumpObjectTree</a>(self)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-dynamicPropertyNames">dynamicPropertyNames</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-findChild"><strong>findChild</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-findChild">findChild</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object<br>
+<a href="#LoginDialog-findChild">findChild</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-findChildren"><strong>findChildren</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;name:&nbsp;object&nbsp;=&nbsp;'',&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegExp,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;type,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List<br>
+<a href="#LoginDialog-findChildren">findChildren</a>(self,&nbsp;Tuple,&nbsp;QRegularExpression,&nbsp;options:&nbsp;Qt.FindChildOptions&nbsp;=&nbsp;Qt.FindChildrenRecursively)&nbsp;-&gt;&nbsp;List</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-inherits"><strong>inherits</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-inherits">inherits</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-installEventFilter">installEventFilter</a>(self,&nbsp;QObject)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isSignalConnected"><strong>isSignalConnected</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isSignalConnected">isSignalConnected</a>(self,&nbsp;QMetaMethod)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isWidgetType">isWidgetType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-isWindowType"><strong>isWindowType</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-isWindowType">isWindowType</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-killTimer"><strong>killTimer</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-killTimer">killTimer</a>(self,&nbsp;int)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-metaObject"><strong>metaObject</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-metaObject">metaObject</a>(self)&nbsp;-&gt;&nbsp;QMetaObject</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-moveToThread"><strong>moveToThread</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-moveToThread">moveToThread</a>(self,&nbsp;QThread)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-objectName"><strong>objectName</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-objectName">objectName</a>(self)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<strong>objectNameChanged</strong> = &lt;unbound signal objectNameChanged&gt;
+<dl><dt><a name="LoginDialog-parent"><strong>parent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-parent">parent</a>(self)&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-property"><strong>property</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-property">property</a>(self,&nbsp;str)&nbsp;-&gt;&nbsp;QVariant</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-pyqtConfigure"><strong>pyqtConfigure</strong></a>(...)</dt><dd><tt>QObject.<a href="#LoginDialog-pyqtConfigure">pyqtConfigure</a>(...)<br>
+&nbsp;<br>
+Each&nbsp;keyword&nbsp;argument&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Qt&nbsp;property&nbsp;or&nbsp;a&nbsp;Qt&nbsp;signal.<br>
+For&nbsp;properties&nbsp;the&nbsp;property&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;of&nbsp;an<br>
+appropriate&nbsp;type.<br>
+For&nbsp;signals&nbsp;the&nbsp;signal&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;given&nbsp;value&nbsp;which&nbsp;should&nbsp;be&nbsp;a<br>
+callable.</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-receivers"><strong>receivers</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-receivers">receivers</a>(self,&nbsp;object)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-removeEventFilter">removeEventFilter</a>(self,&nbsp;QObject)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-sender"><strong>sender</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-sender">sender</a>(self)&nbsp;-&gt;&nbsp;QObject</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-senderSignalIndex">senderSignalIndex</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setObjectName"><strong>setObjectName</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setObjectName">setObjectName</a>(self,&nbsp;object)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setProperty"><strong>setProperty</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-setProperty">setProperty</a>(self,&nbsp;str,&nbsp;QVariant)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-signalsBlocked">signalsBlocked</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-startTimer"><strong>startTimer</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-startTimer">startTimer</a>(self,&nbsp;int,&nbsp;timerType:&nbsp;Qt.TimerType&nbsp;=&nbsp;Qt.CoarseTimer)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-thread"><strong>thread</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-thread">thread</a>(self)&nbsp;-&gt;&nbsp;QThread</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-timerEvent"><strong>timerEvent</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-timerEvent">timerEvent</a>(self,&nbsp;QTimerEvent)</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-tr"><strong>tr</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-tr">tr</a>(self,&nbsp;str,&nbsp;disambiguation:&nbsp;str&nbsp;=&nbsp;None,&nbsp;n:&nbsp;int&nbsp;=&nbsp;-1)&nbsp;-&gt;&nbsp;object</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="PyQt5.QtCore.html#QObject">PyQt5.QtCore.QObject</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>staticMetaObject</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="PyQt5.QtGui.html#QPaintDevice">PyQt5.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="LoginDialog-colorCount"><strong>colorCount</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-colorCount">colorCount</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-depth"><strong>depth</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-depth">depth</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-devicePixelRatio"><strong>devicePixelRatio</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-devicePixelRatio">devicePixelRatio</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-heightMM"><strong>heightMM</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-heightMM">heightMM</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-logicalDpiX">logicalDpiX</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-logicalDpiY">logicalDpiY</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-paintingActive"><strong>paintingActive</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-paintingActive">paintingActive</a>(self)&nbsp;-&gt;&nbsp;bool</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-physicalDpiX">physicalDpiX</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-physicalDpiY">physicalDpiY</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-widthMM"><strong>widthMM</strong></a>(...)</dt><dd><tt><a href="#LoginDialog-widthMM">widthMM</a>(self)&nbsp;-&gt;&nbsp;int</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PyQt5.QtGui.html#QPaintDevice">PyQt5.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PyQt5.QtGui.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = 6</dl>
+
+<dl><dt><strong>PdmDevicePixelRatio</strong> = 11</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = 7</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = 8</dl>
+
+<dl><dt><strong>PdmHeight</strong> = 2</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = 4</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = 5</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = 9</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = 10</dl>
+
+<dl><dt><strong>PdmWidth</strong> = 1</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = 3</dl>
+
+<hr>
+Data descriptors inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="sip.html#simplewrapper">sip.simplewrapper</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of sip.wrappertype object&gt;<dd><tt>T.<a href="#LoginDialog-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="binary.user_ui.ui_login_dialog.html#Ui_Dialog">binary.user_ui.ui_login_dialog.Ui_Dialog</a>:<br>
+<dl><dt><a name="LoginDialog-retranslateUi"><strong>retranslateUi</strong></a>(self, Dialog)</dt><dd><tt>QT&nbsp;generated&nbsp;method</tt></dd></dl>
+
+<dl><dt><a name="LoginDialog-setupUi"><strong>setupUi</strong></a>(self, Dialog)</dt><dd><tt>QT&nbsp;generated&nbsp;method</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>url</strong> = 'https://aslaflaskwebsite.herokuapp.com/authenticate'</td></tr></table>
+</body></html>

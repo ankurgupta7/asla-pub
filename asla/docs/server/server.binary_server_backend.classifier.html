@@ -1,0 +1,119 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module server.binary_server_backend.classifier</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="server.html"><font color="#ffffff">server</font></a>.<a href="server.binary_server_backend.html"><font color="#ffffff">binary_server_backend</font></a>.classifier</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/server/binary_server_backend/classifier.py">/Users/Trevor/Desktop/04_Fall_2016/C02_OOSE/git/2016-group-15/asla/server/binary_server_backend/classifier.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sklearn.preprocessing.html">sklearn.preprocessing</a><br>
+</td><td width="25%" valign=top><a href="sklearn.svm.html">sklearn.svm</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="server.binary_server_backend.classifier.html#Classifier">Classifier</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="server.binary_server_backend.classifier.html#DTC">DTC</a>
+</font></dt><dt><font face="helvetica, arial"><a href="server.binary_server_backend.classifier.html#KNN">KNN</a>
+</font></dt><dt><font face="helvetica, arial"><a href="server.binary_server_backend.classifier.html#RFC">RFC</a>
+</font></dt><dt><font face="helvetica, arial"><a href="server.binary_server_backend.classifier.html#SVM">SVM</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Classifier">class <strong>Classifier</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Parent&nbsp;class&nbsp;for&nbsp;the&nbsp;classifier.<br>
+A&nbsp;classifier&nbsp;object&nbsp;is&nbsp;used&nbsp;to&nbsp;train&nbsp;and&nbsp;generate&nbsp;a&nbsp;new&nbsp;model&nbsp;for&nbsp;prediction.<br>
+Allows&nbsp;for&nbsp;more&nbsp;classifiers&nbsp;to&nbsp;be&nbsp;added&nbsp;at&nbsp;a&nbsp;later&nbsp;stage.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Classifier-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Classifier-create_model"><strong>create_model</strong></a>(self, x, y)</dt><dd><tt>:param&nbsp;x:&nbsp;Features&nbsp;of&nbsp;data&nbsp;to&nbsp;be&nbsp;trained&nbsp;on<br>
+:type&nbsp;x:&nbsp;2D&nbsp;numpy&nbsp;array,&nbsp;2d&nbsp;list,&nbsp;or&nbsp;a&nbsp;data&nbsp;frame<br>
+:param&nbsp;y:&nbsp;Labels&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;features<br>
+:type&nbsp;y:&nbsp;1D&nbsp;numpy&nbsp;array&nbsp;or&nbsp;list<br>
+:return:&nbsp;model&nbsp;and&nbsp;scaler<br>
+:rtype:&nbsp;object</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DTC">class <strong>DTC</strong></a>(<a href="server.binary_server_backend.classifier.html#Classifier">Classifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Decision&nbsp;Tree&nbsp;<a href="#Classifier">Classifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DTC-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DTC-create_model"><strong>create_model</strong></a>(self, x, y)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KNN">class <strong>KNN</strong></a>(<a href="server.binary_server_backend.classifier.html#Classifier">Classifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>k-Nearest&nbsp;Neighbours&nbsp;<a href="#Classifier">Classifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="KNN-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="KNN-create_model"><strong>create_model</strong></a>(self, x, y)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RFC">class <strong>RFC</strong></a>(<a href="server.binary_server_backend.classifier.html#Classifier">Classifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Random&nbsp;forest&nbsp;<a href="#Classifier">Classifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="RFC-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RFC-create_model"><strong>create_model</strong></a>(self, x, y)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SVM">class <strong>SVM</strong></a>(<a href="server.binary_server_backend.classifier.html#Classifier">Classifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Linear&nbsp;<a href="#SVM">SVM</a>&nbsp;<a href="#Classifier">Classifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SVM-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SVM-create_model"><strong>create_model</strong></a>(self, x, y)</dt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
