@@ -167,7 +167,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-#SVM C= 0.04 81%
-#RF Number of trees = 60 83%
-#Knn #Neighbors = 10 72%
-#Decision 3000 69%
+# SVM C= 0.04 81%
+# RF Number of trees = 60 83%
+# Knn #Neighbors = 10 72%
+# Decision 3000 69%

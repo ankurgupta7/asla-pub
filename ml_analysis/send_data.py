@@ -1,11 +1,15 @@
-import os, sys
+import glob
+import os
+import sys
+
+from pymongo import MongoClient
+
 root_path = os.path.dirname(os.path.abspath('..'))
 sys.path.append(root_path)
-from pymongo import MongoClient
-import glob
 
 
 def send_data():
+    """Script to send all the csv data to the database"""
     mongo_client = MongoClient("mongodb://asla-expert:asla@ds149207.mlab.com:49207/trainingdata")
     db = mongo_client['trainingdata']
     model_data = db['globalmodeldata']
@@ -25,5 +29,5 @@ def send_data():
                 data_to_send['is_trained'] = 'N'
                 model_data.insert_one(data_to_send)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     send_data()

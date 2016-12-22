@@ -21,10 +21,5 @@ class PredictService:
     def predict_label(self):
         self.to_predict = self.to_predict[0][1:].reshape(1, -1)
         to_predict_scaled = self.scaler.transform(self.to_predict)
-        # a = (self.model.predict_proba(to_predict_scaled))
-        # print a[0]
-        # ind = np.argsort(a[0])[-5:]
-        # print ind
-        # print ", ".join([chr(item + 64) for item in ind])
         label = self.model.predict(to_predict_scaled)
         return chr(label + 64)
